@@ -1,0 +1,25 @@
+﻿CREATE TABLE [CHG].[CHANGE_DETAIL] (
+    [CHG_LOG_ID]                    INT            IDENTITY (1, 1) NOT NULL,
+    [CHG_ID]                        INT            NOT NULL,
+    [CHG_OPEN_DATE]                 DATETIME       NOT NULL,
+    [CHG_CLOSE_DATE]                DATETIME       NULL,
+    [CHG_OWNER]                     VARCHAR (100)  NOT NULL,
+    [CHG_DESCRIPTION]               VARCHAR (2000) NULL,
+    [LOAD_TYPE_VALUE_ID]            INT            NOT NULL,
+    [STATUS_CODE_VALUE_ID]          TINYINT        NULL,
+    [LAST_SOURCE_NME]               VARCHAR (100)  NULL,
+    [LAST_TARGET_NME]               VARCHAR (100)  NULL,
+    [APPEND_SOURCE_TOTAL_RECORDS]   INT            NULL,
+    [APPEND_TARGET_LOAD_ID_RECORDS] INT            NULL,
+    [MERGE_SOURCE_NEW_RECORDS]      DECIMAL (10)   NULL,
+    [MERGE_SOURCE_CHANGE_RECORDS]   DECIMAL (10)   NULL,
+    [MERGE_SOURCE_DELETE_RECORDS]   DECIMAL (10)   NULL,
+    [MERGE_TARGET_NEW_RECORDS]      DECIMAL (10)   NULL,
+    [MERGE_TARGET_CHANGE_RECORDS]   DECIMAL (10)   NULL,
+    [MERGE_TARGET_DELETE_RECORDS]   DECIMAL (10)   NULL,
+    [LAST_MESSAGE]                  VARCHAR (2000) NULL,
+    [CREATED_DTE]                   DATETIME       DEFAULT (getdate()) NOT NULL,
+    [CREATED_BY]                    VARCHAR (50)   DEFAULT (suser_sname()) NOT NULL,
+    CONSTRAINT [PK_CHG_DETAIL] PRIMARY KEY CLUSTERED ([CHG_LOG_ID] ASC) WITH (FILLFACTOR = 95)
+);
+

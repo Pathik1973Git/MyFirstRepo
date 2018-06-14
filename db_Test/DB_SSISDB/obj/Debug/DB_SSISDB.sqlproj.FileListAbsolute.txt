@@ -1,0 +1,11 @@
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\bin\Debug\DB_SSISDB.dacpac
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\DB_SSISDB.dll
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\DB_SSISDB.pdb
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\bin\Debug\DB_SSISDB.dll
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\bin\Debug\DB_SSISDB.pdb
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\bin\Debug\master.dacpac
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\bin\Debug\Microsoft_1.SqlServer.IntegrationServices.Server.dll
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\Model.xml
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\refactor.xml
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\postdeploy.sql
+D:\Pathiks_Dev_space\Database project\db_Test\DB_SSISDB\obj\Debug\predeploy.sql

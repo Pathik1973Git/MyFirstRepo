@@ -1,0 +1,11 @@
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\bin\Debug\db_Test.dacpac
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\bin\Debug\db_Test.dll
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\bin\Debug\db_Test.pdb
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\bin\Debug\DB_SSISDB.dacpac
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\bin\Debug\master.dacpac
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\Model.xml
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\refactor.xml
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\postdeploy.sql
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\predeploy.sql
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\db_Test.dll
+D:\Pathiks_Dev_space\Database project\db_Test\db_Test\obj\Debug\db_Test.pdb
