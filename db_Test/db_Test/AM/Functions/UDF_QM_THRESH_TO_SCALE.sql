@@ -1,4 +1,4 @@
-﻿
+﻿--PG: Adding File Header on 06/14/2018
 
 CREATE FUNCTION [AM].[UDF_QM_THRESH_TO_SCALE] ()
 	RETURNS TINYINT
