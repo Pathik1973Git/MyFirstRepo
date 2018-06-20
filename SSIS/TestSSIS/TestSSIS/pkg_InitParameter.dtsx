@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
-          Expression="@[System::CreatorName]" />
+          Expression="@[System::MachineName]" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
