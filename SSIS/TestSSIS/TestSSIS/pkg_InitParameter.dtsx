@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="pkg_InitParameter"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{4FE8C838-D302-46CD-8720-72B4ABD7C098}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{7C82FD6A-FE6B-43CD-8D4F-2F60BA09A140}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -30,7 +30,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <ExpressionTask
-          Expression="@[System::MachineName]" />
+          Expression="@[System::MachineName] + &quot; / &quot;+  @[System::PackageName]" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
