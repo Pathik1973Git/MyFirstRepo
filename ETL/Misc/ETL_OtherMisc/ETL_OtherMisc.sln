@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_Haworth", "ETL_OtherMisc\ETL_Haworth.dtproj", "{49411E03-085F-42B4-A1AE-78234E0E19AC}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_ConcurFTP", "ETL_ConcurFTP\ETL_ConcurFTP.dtproj", "{63824E01-1DF9-465B-AAA0-8767E732E2BA}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_Buxton", "ETL_Buxton\ETL_Buxton.dtproj", "{635E9A22-4A81-4CBA-A94B-08CD569D5B01}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_LabEff", "ETL_LabEff\ETL_LabEff.dtproj", "{F097E468-2F17-40F2-9641-500DCC46DDC2}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_PaymentTech", "ETL_PaymentTech\ETL_PaymentTech.dtproj", "{52CE0985-8CDB-4478-9E52-7B8C0B821A05}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETLGivexGiftCard", "ETLGivexGiftCard\ETLGivexGiftCard.dtproj", "{2DCBD0AC-52F7-493B-BBDD-5A3E4A155ED8}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL PMACustomer", "ETL PMACustomer\ETL PMACustomer.dtproj", "{7E6562C1-0E97-4D1A-BFA1-E7F2A580FA08}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL UnitedRetailInvoice", "ETL UnitedRetailInvoice\ETL UnitedRetailInvoice.dtproj", "{4F8AA846-540F-45B8-8A46-D7A2D0291A79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49411E03-085F-42B4-A1AE-78234E0E19AC}.Development|Default.ActiveCfg = Development
+		{49411E03-085F-42B4-A1AE-78234E0E19AC}.Development|Default.Build.0 = Development
+		{63824E01-1DF9-465B-AAA0-8767E732E2BA}.Development|Default.ActiveCfg = Development
+		{63824E01-1DF9-465B-AAA0-8767E732E2BA}.Development|Default.Build.0 = Development
+		{635E9A22-4A81-4CBA-A94B-08CD569D5B01}.Development|Default.ActiveCfg = Development
+		{635E9A22-4A81-4CBA-A94B-08CD569D5B01}.Development|Default.Build.0 = Development
+		{F097E468-2F17-40F2-9641-500DCC46DDC2}.Development|Default.ActiveCfg = Development
+		{F097E468-2F17-40F2-9641-500DCC46DDC2}.Development|Default.Build.0 = Development
+		{52CE0985-8CDB-4478-9E52-7B8C0B821A05}.Development|Default.ActiveCfg = Development
+		{52CE0985-8CDB-4478-9E52-7B8C0B821A05}.Development|Default.Build.0 = Development
+		{2DCBD0AC-52F7-493B-BBDD-5A3E4A155ED8}.Development|Default.ActiveCfg = Development
+		{2DCBD0AC-52F7-493B-BBDD-5A3E4A155ED8}.Development|Default.Build.0 = Development
+		{7E6562C1-0E97-4D1A-BFA1-E7F2A580FA08}.Development|Default.ActiveCfg = Development
+		{7E6562C1-0E97-4D1A-BFA1-E7F2A580FA08}.Development|Default.Build.0 = Development
+		{4F8AA846-540F-45B8-8A46-D7A2D0291A79}.Development|Default.ActiveCfg = Development
+		{4F8AA846-540F-45B8-8A46-D7A2D0291A79}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsapp1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ETL_ConcurFTP\\ETL_ConcurFTP.dtproj
+		SccProjectName1 = ETL_ConcurFTP
+		SccLocalPath1 = ETL_ConcurFTP
+		SccProjectUniqueName2 = ETL_OtherMisc\\ETL_Haworth.dtproj
+		SccProjectName2 = ETL_OtherMisc
+		SccLocalPath2 = ETL_OtherMisc
+		SccProjectUniqueName3 = ETL_Buxton\\ETL_Buxton.dtproj
+		SccProjectName3 = ETL_Buxton
+		SccLocalPath3 = ETL_Buxton
+		SccProjectUniqueName4 = ETL_LabEff\\ETL_LabEff.dtproj
+		SccProjectName4 = ETL_LabEff
+		SccLocalPath4 = ETL_LabEff
+		SccProjectUniqueName5 = ETL_PaymentTech\\ETL_PaymentTech.dtproj
+		SccProjectName5 = ETL_PaymentTech
+		SccLocalPath5 = ETL_PaymentTech
+		SccProjectUniqueName6 = ETLGivexGiftCard\\ETLGivexGiftCard.dtproj
+		SccProjectName6 = ETLGivexGiftCard
+		SccLocalPath6 = ETLGivexGiftCard
+		SccProjectUniqueName7 = ETL\u0020PMACustomer\\ETL\u0020PMACustomer.dtproj
+		SccProjectName7 = ETL\u0020PMACustomer
+		SccLocalPath7 = ETL\u0020PMACustomer
+		SccProjectUniqueName8 = ETL\u0020UnitedRetailInvoice\\ETL\u0020UnitedRetailInvoice.dtproj
+		SccProjectName8 = ETL\u0020UnitedRetailInvoice
+		SccLocalPath8 = ETL\u0020UnitedRetailInvoice
+	EndGlobalSection
+EndGlobal

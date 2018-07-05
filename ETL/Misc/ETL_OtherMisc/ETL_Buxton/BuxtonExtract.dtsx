@@ -1,0 +1,3113 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/16/2012 2:48:35 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CHRWORT-T410S"
+  DTS:CreatorName="RWSC\chrwort"
+  DTS:DTSID="{D81DA346-8C8C-4D8C-A3CC-F3AAF39A10A3}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.0800.90"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="BuxtonExtract"
+  DTS:PackageType="5"
+  DTS:VersionBuild="282"
+  DTS:VersionGUID="{6F58EF28-484E-42D7-9DBA-5F38635C36F2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BuxtonCustomersFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1FF99803-0A00-45D6-BA9D-5C6933B271F5}"
+      DTS:ObjectName="BuxtonCustomersFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\rfcfile\shared\public directory\Buxton\Customers.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreNumber"
+              DTS:DTSID="{67D984E4-63BC-4C07-9456-2C72EFE96A65}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CustNo"
+              DTS:DTSID="{40B87393-A573-4883-BAF0-680B132C2E6F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AccountID"
+              DTS:DTSID="{EF39DEE2-B017-4C69-A1E8-77DD3ECCDCA2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CustType"
+              DTS:DTSID="{5A947DF1-D7BD-4C7A-AC94-C6FE210D4C84}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="37"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AcctName_FirstName"
+              DTS:DTSID="{75970E11-20EF-4F96-92EE-1D9339F8A093}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LastName"
+              DTS:DTSID="{6166ACD0-03DE-4663-9CF9-58BE1BE33F81}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="60"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address"
+              DTS:DTSID="{9D7456B6-6BF0-4734-A2DB-2D5BD91424EE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{E5271A37-CF24-4F8B-AB94-16F5794B7325}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="State"
+              DTS:DTSID="{CD86AB2A-8141-4E44-B3A0-7216108C9448}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Zip"
+              DTS:DTSID="{2A3A6E95-1FF8-4FDA-9AC9-AAB5E3CCDD2B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BuxtonExtract_Log.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{A29989CC-8313-4EA8-A671-D41044B17483}"
+      DTS:ObjectName="BuxtonExtract_Log.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="1"
+          DTS:ConnectionString="\\DWSQL\ssis_packages\Log\BuxtonExtract_Log.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BuxtonRetailTransactionsFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{455E5DF3-1840-4F05-A9F6-B5C27B8F9345}"
+      DTS:ObjectName="BuxtonRetailTransactionsFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\rfcfile\shared\public directory\Buxton\Transactions.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreNumber"
+              DTS:DTSID="{280248C6-BBBB-4BD4-8E8D-A2B48A412BD4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RWSCAccountNum"
+              DTS:DTSID="{E92DAFA3-B75E-4588-945D-8164AAB9A0CA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CustNo"
+              DTS:DTSID="{832F6A8A-0ED0-4DF4-8684-3505622C6737}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AccountID"
+              DTS:DTSID="{5558B94E-C0FC-453B-975A-9FA2331CD31E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransactionNumber"
+              DTS:DTSID="{D5023D70-2732-41FC-A614-08C6B6AB33CC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TransactionDate"
+              DTS:DTSID="{6DCDEE66-3ED6-4A13-B725-1A37410BD5EC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemNumber"
+              DTS:DTSID="{1C34AEA7-22F9-4239-B6BA-3B34C2DF2419}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Brand"
+              DTS:DTSID="{E80D9E64-FE5D-446F-839E-E0A0587BDE25}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemType"
+              DTS:DTSID="{CB643E67-A1BF-4FD8-B684-09265387E90F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{E88355EB-F34D-415B-8F69-7EC4F04A7D89}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BuxtonSalesFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{81BAFE35-B78C-4BE0-86BF-6E13EC6CAE33}"
+      DTS:ObjectName="BuxtonSalesFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\rfcfile\shared\public directory\Buxton\Sales.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreType"
+              DTS:DTSID="{B2653F00-E44F-4463-A23C-709370B0F7D2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RWSCAccountNum"
+              DTS:DTSID="{E056056D-77B3-4183-92D9-4331B7179B1A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreNumber"
+              DTS:DTSID="{396CA273-BBF4-4EAE-A1E2-266DFF024991}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RWSCFiscalPeriod"
+              DTS:DTSID="{B7801F15-7B84-42F2-B22D-5024496D7288}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Brand"
+              DTS:DTSID="{12DF56F2-4C39-49A0-9C7E-52D3665213D6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="21"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ItemType"
+              DTS:DTSID="{B6287DEC-D765-47AF-93C3-2D77BBB38F5B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Pairs"
+              DTS:DTSID="{A8A5C8E1-3362-4C0A-A3CF-2F63EB15FB83}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Amount"
+              DTS:DTSID="{19777D1B-E0B4-4090-867C-E07DC5DD1E02}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BuxtonStoreFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1FDFA341-24B1-4F46-8050-FE48CF9DDAD0}"
+      DTS:ObjectName="BuxtonStoreFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\rfcfile\shared\public directory\Buxton\Stores.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreNumber"
+              DTS:DTSID="{A3106976-99B5-4720-9FD9-C2B2BF680679}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AcctNo"
+              DTS:DTSID="{7D47F743-D939-436E-B7DA-F5D057803A8C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AcctName"
+              DTS:DTSID="{9D2C2F07-E4ED-4016-97E8-D5E000DF73F6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Active"
+              DTS:DTSID="{97E502BF-2D45-4F03-80A8-85CFD6610218}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Addr1"
+              DTS:DTSID="{D0BFA780-486E-4CEA-A83A-B47F700AA3E6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Addr2"
+              DTS:DTSID="{51A4AD31-2F9C-43A8-89E4-CBAB7636EEFB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="4000"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{2E9D9942-8BBC-4F1A-AE9A-155D0B5A39D7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="State"
+              DTS:DTSID="{67D8E957-D9E8-4D93-BBA7-D63525E47880}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Zip"
+              DTS:DTSID="{1E91269B-BF44-47DC-952D-B0ABEEB043CE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="16"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Phone"
+              DTS:DTSID="{222EE137-5E71-437E-B7D9-C8F83E39D3F9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="OpenDate"
+              DTS:DTSID="{A33348B3-83C5-4875-9903-1EEDACCDD034}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CloseDate"
+              DTS:DTSID="{C0B7FA46-B67C-47DE-82F5-C22E4B76B97A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="64"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StoreTypeDesc"
+              DTS:DTSID="{A337E8A5-BC0F-45C3-A875-878362252A2F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RD"
+              DTS:DTSID="{9C08F52F-EC7A-4A19-AF21-21D01CBEB055}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ROM"
+              DTS:DTSID="{038816E2-6AB1-48BD-B63A-335C9CD0932D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TSM"
+              DTS:DTSID="{D8708C57-CC10-41B8-97AB-E98E7FA25766}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="40"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ISM"
+              DTS:DTSID="{E433409D-6B2E-488F-86A1-F3BC2715ADEE}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[M3ODS_Sprocs]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C58ADF7B-7337-4ECB-8D9D-DF960D5B3065}"
+      DTS:ObjectName="M3ODS_Sprocs">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DWHSQLDB;Initial Catalog=M3ODS_Sprocs;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSISConfig]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2D5ACA1B-1993-4AC0-BAB5-AED9389F0724}"
+      DTS:ObjectName="SSISConfig">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DWHSQLTST;Initial Catalog=RWSAudit;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[SSISConfig].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{AC26055C-5E89-4134-B678-66EFD5E6F46E}"
+      DTS:ObjectName="SSISAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSISConfig&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;BuxtonMonthlyFileExtract.SRC.M3ODS_Sprocs&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{69A07623-B538-41CA-83C2-7428908EE7E7}"
+      DTS:ObjectName="SRC_M3ODS_Sprocs" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;SSISConfig&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;BuxtonMonthlyFileExtract.DEST.Log&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{DE0A2865-E7B7-4E2B-8D5A-93743C39A695}"
+      DTS:ObjectName="DEST_Package_Log" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="BuxtonExtract_Log.txt"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{C7C80230-7AE2-4F02-96EE-F000412AC157}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">2,7,OnError,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{C7C80230-7AE2-4F02-96EE-F000412AC157}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\MAIL_ProcessComplete"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="MAIL_ProcessComplete"
+      DTS:Disabled="True"
+      DTS:DTSID="{DDC068B7-8D34-4C1B-9599-70953597843C}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="MAIL_ProcessComplete"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{F0CE1A2C-702A-4DCD-A6C5-7A29089F8BDC}"
+          SendMailTask:From="IT.Reports@redwingshoe.com"
+          SendMailTask:To="Sherry.Schilling@redwingshoes.com"
+          SendMailTask:Subject="Red Wing/Buxton Monthly File Process Complete"
+          SendMailTask:MessageSource="Red Wing Shoe Company monthly FTP process has completed. &#xA;&#xA;Please do not reply to this automated message. In the event of an error/inquiry please retain this e-mail and contact the RWSC Help Desk for assistance at 651-385-6555 or 1-877-733-9464 or E-mail at it.helpdesk@redwingshoes.com." xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC_Create_Local_Files"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{53B9C936-42D4-432F-9E88-4275E6747284}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC_Create_Local_Files">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{8D3E39D0-810E-4A53-9754-6792FA62112A}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT_Get_Data"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              engineThreads="5"
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BuxtonStoreFile]"
+                      connectionManagerRefId="Package.ConnectionManagers[BuxtonStoreFile]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[StoreNumber]"
+                          cachedDataType="i4"
+                          cachedName="StoreNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[AcctNo]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="AcctNo"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AcctNo]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctNo]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[AcctName]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="AcctName"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AcctName]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctName]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Active]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="Active"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Active]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Addr1]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="Addr1"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Addr1]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr1]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Addr2]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="Addr2"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Addr2]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr2]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[City]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[State]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="State"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Zip]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Zip"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Zip]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Zip]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Phone]"
+                          cachedDataType="wstr"
+                          cachedLength="16"
+                          cachedName="Phone"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Phone]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[OpenDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="OpenDate"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[OpenDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OpenDate]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[CloseDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CloseDate"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CloseDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CloseDate]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[StoreTypeDesc]"
+                          cachedDataType="wstr"
+                          cachedLength="64"
+                          cachedName="StoreTypeDesc"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[StoreTypeDesc]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreTypeDesc]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[RD]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="RD"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[RD]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[ROM]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="ROM"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ROM]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ROM]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[TSM]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="TSM"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSM]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSM]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[ISM]"
+                          cachedDataType="wstr"
+                          cachedLength="40"
+                          cachedName="ISM"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ISM]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ISM]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="10"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AcctNo]"
+                          dataType="wstr"
+                          length="10"
+                          name="AcctNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AcctName]"
+                          dataType="wstr"
+                          length="50"
+                          name="AcctName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="Active" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Addr1]"
+                          dataType="wstr"
+                          length="4000"
+                          name="Addr1" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Addr2]"
+                          dataType="wstr"
+                          length="4000"
+                          name="Addr2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="4000"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                          dataType="wstr"
+                          length="2"
+                          name="State" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Zip]"
+                          dataType="wstr"
+                          length="10"
+                          name="Zip" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="16"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[OpenDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="OpenDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CloseDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="30"
+                          name="CloseDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[StoreTypeDesc]"
+                          codePage="1252"
+                          dataType="str"
+                          length="64"
+                          name="StoreTypeDesc" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[RD]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="RD" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ROM]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ROM" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TSM]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="TSM" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ISM]"
+                          codePage="1252"
+                          dataType="str"
+                          length="40"
+                          name="ISM" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination 1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BuxtonCustomersFile]"
+                      connectionManagerRefId="Package.ConnectionManagers[BuxtonCustomersFile]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[StoreNumber]"
+                          cachedDataType="i4"
+                          cachedName="StoreNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[StoreNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[State]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="2"
+                          cachedName="State"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[State]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[CustNo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="CustNo"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[CustNo]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustNo]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[CustType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="37"
+                          cachedName="CustType"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[CustType]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustType]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[AcctName_FirstName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8000"
+                          cachedName="AcctName_FirstName"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[AcctName_FirstName]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AcctName_FirstName]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[LastName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8000"
+                          cachedName="LastName"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[LastName]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[Address]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8000"
+                          cachedName="Address"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Address]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Address]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[City]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8000"
+                          cachedName="City"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[City]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[Zip]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="Zip"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Zip]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Zip]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[AccountID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="256"
+                          cachedName="AccountID"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[AccountID]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AccountID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="CustNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[CustType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="CustType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[AcctName_FirstName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="37"
+                          name="AcctName_FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="4000"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Address]"
+                          codePage="1252"
+                          dataType="str"
+                          length="60"
+                          name="Address" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="State" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Zip]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="Zip" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AccountID" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination 2">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BuxtonSalesFile]"
+                      connectionManagerRefId="Package.ConnectionManagers[BuxtonSalesFile]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[StoreNumber]"
+                          cachedDataType="i4"
+                          cachedName="StoreNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[StoreType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="9"
+                          cachedName="StoreType"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[StoreType]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreType]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[RWSCAccountNum]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="RWSCAccountNum"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[RWSCAccountNum]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[RWSCFiscalPeriod]"
+                          cachedDataType="i4"
+                          cachedName="RWSCFiscalPeriod"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[RWSCFiscalPeriod]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCFiscalPeriod]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[Brand]"
+                          cachedDataType="wstr"
+                          cachedLength="4000"
+                          cachedName="Brand"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Brand]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Brand]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[Pairs]"
+                          cachedDataType="numeric"
+                          cachedName="Pairs"
+                          cachedPrecision="38"
+                          cachedScale="6"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Pairs]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Pairs]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[Amount]"
+                          cachedDataType="numeric"
+                          cachedName="Amount"
+                          cachedPrecision="38"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Amount]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].Columns[ItemType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="21"
+                          cachedName="ItemType"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[ItemType]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[ItemType]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StoreType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[RWSCAccountNum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RWSCAccountNum" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[RWSCFiscalPeriod]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RWSCFiscalPeriod" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Brand]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Brand" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Pairs]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Pairs" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Amount" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input].ExternalColumns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="21"
+                          name="ItemType" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination 3"
+                  validateExternalMetadata="False">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[BuxtonRetailTransactionsFile]"
+                      connectionManagerRefId="Package.ConnectionManagers[BuxtonRetailTransactionsFile]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[StoreNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="StoreNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[StoreNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[RWSCAccountNum]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="RWSCAccountNum"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[RWSCAccountNum]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[TransactionNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TransactionNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[TransactionNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[TransactionDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="TransactionDate"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[TransactionDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[ItemNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ItemNumber"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[ItemNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemNumber]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[Brand]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Brand"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[Brand]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Brand]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[Amount]"
+                          cachedDataType="cy"
+                          cachedName="Amount"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Amount]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[CustNo]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="CustNo"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[CustNo]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[CustNo]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[AccountID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="AccountID"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[AccountID]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[AccountID]" />
+                        <inputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].Columns[ItemType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ItemType"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[ItemType]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemType]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[RWSCAccountNum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RWSCAccountNum" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[TransactionNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TransactionNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[TransactionDate]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TransactionDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[ItemNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ItemNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[Brand]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Brand" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[Amount]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Amount" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="AccountID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input].ExternalColumns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ItemType" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[rptBuxtonStore]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from rptBuxtonStore</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      connectionManagerRefId="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          name="StoreNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctNo]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctNo]"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctNo]"
+                          name="AcctNo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctName]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[AcctName]"
+                          name="AcctName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          length="3"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Active]"
+                          name="Active"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr1]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Addr1]"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr1]"
+                          name="Addr1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Addr2]"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Addr2]"
+                          name="Addr2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[City]"
+                          name="City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                          length="2"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[State]"
+                          name="State"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Zip]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Zip]"
+                          name="Zip"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          length="16"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[Phone]"
+                          name="Phone"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OpenDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OpenDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[OpenDate]"
+                          name="OpenDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CloseDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CloseDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[CloseDate]"
+                          name="CloseDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreTypeDesc]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreTypeDesc]"
+                          length="64"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[StoreTypeDesc]"
+                          name="StoreTypeDesc"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RD]"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD]"
+                          name="RD"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ROM]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ROM]"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ROM]"
+                          name="ROM"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSM]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSM]"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[TSM]"
+                          name="TSM"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ISM]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ISM]"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].Columns[ISM]"
+                          name="ISM"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          dataType="i4"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctNo]"
+                          dataType="wstr"
+                          length="10"
+                          name="AcctNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AcctName]"
+                          dataType="wstr"
+                          length="50"
+                          name="AcctName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="Active" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Addr1]"
+                          dataType="wstr"
+                          length="4000"
+                          name="Addr1" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Addr2]"
+                          dataType="wstr"
+                          length="4000"
+                          name="Addr2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          dataType="wstr"
+                          length="4000"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                          dataType="wstr"
+                          length="2"
+                          name="State" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                          dataType="wstr"
+                          length="10"
+                          name="Zip" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Phone]"
+                          dataType="wstr"
+                          length="16"
+                          name="Phone" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OpenDate]"
+                          dataType="dbTimeStamp"
+                          name="OpenDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CloseDate]"
+                          dataType="dbTimeStamp"
+                          name="CloseDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StoreTypeDesc]"
+                          dataType="wstr"
+                          length="64"
+                          name="StoreTypeDesc" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RD]"
+                          dataType="wstr"
+                          length="40"
+                          name="RD" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ROM]"
+                          dataType="wstr"
+                          length="40"
+                          name="ROM" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TSM]"
+                          dataType="wstr"
+                          length="40"
+                          name="TSM" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ISM]"
+                          dataType="wstr"
+                          length="40"
+                          name="ISM" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          name="StoreNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctNo]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctNo]"
+                          name="AcctNo" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AcctName]"
+                          name="AcctName" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Active]"
+                          name="Active" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Addr1]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Addr1]"
+                          name="Addr1" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Addr2]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Addr2]"
+                          name="Addr2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[City]"
+                          name="City" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[State]"
+                          dataType="wstr"
+                          length="2"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[State]"
+                          name="State" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                          name="Zip" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          dataType="wstr"
+                          length="16"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Phone]"
+                          name="Phone" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OpenDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OpenDate]"
+                          name="OpenDate" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CloseDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CloseDate]"
+                          name="CloseDate" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreTypeDesc]"
+                          dataType="wstr"
+                          length="64"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[StoreTypeDesc]"
+                          name="StoreTypeDesc" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RD]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RD]"
+                          name="RD" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ROM]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ROM]"
+                          name="ROM" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSM]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TSM]"
+                          name="TSM" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ISM]"
+                          dataType="wstr"
+                          length="40"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ISM]"
+                          name="ISM" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  localeId="1033"
+                  name="OLE DB Source 1"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[rptBuxtonCustomer]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from rptBuxtonCustomer
+where address &lt;&gt; '' and city &lt;&gt; ''</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      connectionManagerRefId="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          name="StoreNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[State]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                          length="2"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[State]"
+                          name="State"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[CustNo]"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustNo]"
+                          name="CustNo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[CustType]"
+                          length="37"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[CustType]"
+                          name="CustType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AcctName_FirstName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[AcctName_FirstName]"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AcctName_FirstName]"
+                          name="AcctName_FirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[LastName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[LastName]"
+                          name="LastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Address]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Address]"
+                          name="Address"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[City]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[City]"
+                          name="City"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Zip]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[Zip]"
+                          name="Zip"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[AccountID]"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].Columns[AccountID]"
+                          name="AccountID"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          dataType="i4"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          name="State" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="CustNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[CustType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="37"
+                          name="CustType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[AcctName_FirstName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          name="AcctName_FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Address]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          name="Address" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          name="City" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[Zip]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="Zip" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output].ExternalColumns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          name="AccountID" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          name="StoreNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[State]"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[State]"
+                          name="State" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[CustNo]"
+                          name="CustNo" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[CustType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="37"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[CustType]"
+                          name="CustType" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[AcctName_FirstName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[AcctName_FirstName]"
+                          name="AcctName_FirstName" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                          name="LastName" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Address]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Address]"
+                          name="Address" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[City]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[City]"
+                          name="City" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[Zip]"
+                          name="Zip" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="256"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Error Output].Columns[AccountID]"
+                          name="AccountID" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  localeId="1033"
+                  name="OLE DB Source 2"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[rptBuxtonSale]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.RptBuxtoxSales null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      connectionManagerRefId="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[StoreType]"
+                          length="9"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreType]"
+                          name="StoreType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[RWSCAccountNum]"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]"
+                          name="RWSCAccountNum"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          name="StoreNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCFiscalPeriod]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[RWSCFiscalPeriod]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[RWSCFiscalPeriod]"
+                          name="RWSCFiscalPeriod"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Brand]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Brand]"
+                          name="Brand"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Pairs]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Pairs]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Pairs]"
+                          name="Pairs"
+                          precision="38"
+                          scale="6"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[Amount]"
+                          name="Amount"
+                          precision="38"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[ItemType]"
+                          length="21"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].Columns[ItemType]"
+                          name="ItemType"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="9"
+                          name="StoreType" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[RWSCAccountNum]"
+                          dataType="wstr"
+                          length="10"
+                          name="RWSCAccountNum" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          dataType="i4"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[RWSCFiscalPeriod]"
+                          dataType="i4"
+                          name="RWSCFiscalPeriod" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                          dataType="wstr"
+                          length="4000"
+                          name="Brand" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Pairs]"
+                          dataType="numeric"
+                          name="Pairs"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="38"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output].ExternalColumns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="21"
+                          name="ItemType" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[StoreType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="9"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[StoreType]"
+                          name="StoreType" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[RWSCAccountNum]"
+                          dataType="wstr"
+                          length="10"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[RWSCAccountNum]"
+                          name="RWSCAccountNum" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          name="StoreNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[RWSCFiscalPeriod]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[RWSCFiscalPeriod]"
+                          name="RWSCFiscalPeriod" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                          dataType="wstr"
+                          length="4000"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                          name="Brand" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Pairs]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Pairs]"
+                          name="Pairs"
+                          precision="38"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          name="Amount"
+                          precision="38"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="21"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Error Output].Columns[ItemType]"
+                          name="ItemType" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation;Microsoft SqlServer v9; (C) 2005 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  localeId="1033"
+                  name="OLE DB Source 3"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[rptBuxtonRetailTransaction]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC dbo.RptBuxtoxRetailTransactions null</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      connectionManagerRefId="Package.ConnectionManagers[M3ODS_Sprocs]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[StoreNumber]"
+                          name="StoreNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[RWSCAccountNum]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[RWSCAccountNum]"
+                          name="RWSCAccountNum"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[TransactionNumber]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionNumber]"
+                          name="TransactionNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[TransactionDate]"
+                          name="TransactionDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[ItemNumber]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemNumber]"
+                          name="ItemNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Brand]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Brand]"
+                          name="Brand"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Amount]"
+                          dataType="cy"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[Amount]"
+                          name="Amount"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[CustNo]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[CustNo]"
+                          name="CustNo"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[AccountID]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[AccountID]"
+                          name="AccountID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[ItemType]"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].Columns[ItemType]"
+                          name="ItemType"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="StoreNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[RWSCAccountNum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="RWSCAccountNum" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[TransactionNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TransactionNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
+                          dataType="dbTimeStamp"
+                          name="TransactionDate" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[ItemNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ItemNumber" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[Brand]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Brand" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          dataType="cy"
+                          name="Amount" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="CustNo" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="AccountID" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output].ExternalColumns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ItemType" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[StoreNumber]"
+                          name="StoreNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[RWSCAccountNum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[RWSCAccountNum]"
+                          name="RWSCAccountNum" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[TransactionNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[TransactionNumber]"
+                          name="TransactionNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[TransactionDate]"
+                          name="TransactionDate" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ItemNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ItemNumber]"
+                          name="ItemNumber" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[Brand]"
+                          name="Brand" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          dataType="cy"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          name="Amount" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[CustNo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[CustNo]"
+                          name="CustNo" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[AccountID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[AccountID]"
+                          name="AccountID" />
+                        <outputColumn
+                          refId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ItemType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Error Output].Columns[ItemType]"
+                          name="ItemType" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output1]"
+                  endId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output2]"
+                  endId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output3]"
+                  endId="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination.Inputs[Flat File Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="264,44"
+          Id="Package\MAIL_ProcessComplete"
+          TopLeft="1590.925597251,1217.05705717912" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          TopLeft="41.566037735849,18.396226415094" />
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="291,82"
+          Size="291,126"
+          Id="Package\SEQC_Create_Local_Files"
+          TopLeft="137.901406828972,92.103773584906" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC_Create_Local_Files\DFT_Get_Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 2"
+          TopLeft="471.797858122248,120.758801367321" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2"
+          TopLeft="458.783018867925,34.0283018867924" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination"
+          TopLeft="56.9758584048633,126.488946268415" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source"
+          TopLeft="63.4245283018868,34.2924528301887" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1"
+          TopLeft="246.141509433962,35.1603773584906" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 1"
+          TopLeft="257.221261140204,121.095315091618" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3"
+          TopLeft="670.443396226415,32.933962264151" />
+        <NodeLayout
+          Size="164,48"
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data\Flat File Destination 3"
+          TopLeft="672.74882706091,118.762691946092" />
+        <EdgeLayout
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output2]"
+          TopLeft="526.783018867925,78.0283018867924">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="35.5148392543231,42.7304994805285"
+              Start="0,0"
+              End="35.5148392543231,35.2304994805285">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3652497402642" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3652497402642"
+                    Point2="0,21.3652497402642"
+                    Point3="4,21.3652497402642" />
+                  <mssgle:LineSegment
+                    End="31.5148392543231,21.3652497402642" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.5148392543231,21.3652497402642"
+                    Point2="35.5148392543231,21.3652497402642"
+                    Point3="35.5148392543231,25.3652497402642" />
+                  <mssgle:LineSegment
+                    End="35.5148392543231,35.2304994805285" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output1]"
+          TopLeft="738.443396226415,76.933962264151">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="16.3054308344946,41.8287296819413"
+              Start="0,0"
+              End="16.3054308344946,34.3287296819413">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9143648409706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9143648409706"
+                    Point2="0,20.9143648409706"
+                    Point3="4,20.9143648409706" />
+                  <mssgle:LineSegment
+                    End="12.3054308344946,20.9143648409706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.3054308344946,20.9143648409706"
+                    Point2="16.3054308344946,20.9143648409706"
+                    Point3="16.3054308344946,24.9143648409706" />
+                  <mssgle:LineSegment
+                    End="16.3054308344946,34.3287296819413" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output]"
+          TopLeft="314.141509433962,79.1603773584906">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="33.5797517062417,41.9349377331271"
+              Start="0,0"
+              End="33.5797517062417,34.4349377331271">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.9674688665636" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.9674688665636"
+                    Point2="0,20.9674688665636"
+                    Point3="4,20.9674688665636" />
+                  <mssgle:LineSegment
+                    End="29.5797517062417,20.9674688665636" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5797517062417,20.9674688665636"
+                    Point2="33.5797517062417,20.9674688665636"
+                    Point3="33.5797517062417,24.9674688665636" />
+                  <mssgle:LineSegment
+                    End="33.5797517062417,34.4349377331271" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC_Create_Local_Files\DFT_Get_Data.Paths[OLE DB Source Output3]"
+          TopLeft="131.424528301887,78.2924528301887">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="11.5513301029765,48.1964934382263"
+              Start="0,0"
+              End="11.5513301029765,40.6964934382263">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0982467191132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.0982467191132"
+                    Point2="0,24.0982467191132"
+                    Point3="4,24.0982467191132" />
+                  <mssgle:LineSegment
+                    End="7.55133010297649,24.0982467191132" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.55133010297649,24.0982467191132"
+                    Point2="11.5513301029765,24.0982467191132"
+                    Point3="11.5513301029765,28.0982467191132" />
+                  <mssgle:LineSegment
+                    End="11.5513301029765,40.6964934382263" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="SQL_dbo.RptBuxtonCustomers"
+          ParentId="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          Size="181,38"
+          Id="0f2698a3-84bb-4fe3-b301-79b84c3eef8d"
+          TopLeft="219.160377358491,5.53773584905662">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="SQL_dbo.RptBuxtonStores"
+          ParentId="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          Size="160,38"
+          Id="b4b4e637-9446-4175-a587-4da3491ce94f"
+          TopLeft="5.5,7.31132075471699">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="SQL_dbo.RptBuxtonRetailTransactions"
+          ParentId="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          Size="219,38"
+          Id="3e6d40dc-0a5c-499f-9c35-9d758ccd0566"
+          TopLeft="677.462264150943,6.51886792452831">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="SQL_dbo.RptBuxtonSales"
+          ParentId="Package\SEQC_Create_Local_Files\DFT_Get_Data"
+          Size="154,38"
+          Id="c66d36eb-cc36-4761-97f3-f5316f9090b7"
+          TopLeft="462.783018867925,5.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC_Create_Local_Files\DFT_Get_Data\OLE DB Source 3">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

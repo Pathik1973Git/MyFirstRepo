@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "EDW Micros", "EDW Micros_Solution\EDW Micros.dtproj", "{8BDC163A-E841-486F-9167-15BE3D7DFD38}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsapp1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EDW\u0020Micros_Solution\\EDW\u0020Micros.dtproj
+		SccProjectName1 = EDW\u0020Micros_Solution
+		SccLocalPath1 = EDW\u0020Micros_Solution
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BDC163A-E841-486F-9167-15BE3D7DFD38}.Development|Default.ActiveCfg = Development
+		{8BDC163A-E841-486F-9167-15BE3D7DFD38}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

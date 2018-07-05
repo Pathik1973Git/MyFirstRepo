@@ -1,0 +1,3237 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{F6359EE7-D817-44D0-87C8-1A3DA203E2F7}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="pkg_SFDC_FilterCriteria"
+  DTS:VersionBuild="619"
+  DTS:VersionGUID="{D1526CCF-34ED-444F-A68B-ED0C27FAAD28}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{A1458E68-5983-42D4-A25A-63058C8B6021}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{7E39FBD0-1D13-4D9A-8E5B-6B6213BD3911}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3Source&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{F84CA54B-5AE6-4B8E-B07F-F21966FF402C}"
+      DTS:ObjectName="M3Source" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3ODSCACCSTisAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{6DD93815-0809-4CE4-92A0-CDC2ABC57FC7}"
+      DTS:ObjectName="M3ODSCACCSTisAuditingEnabled" />
+  </DTS:Configurations>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="11"
+      DTS:DTSID="{24041D73-FE66-4976-8C5C-4FF25B1B95E2}"
+      DTS:ObjectName="ExecuteSFDCRefresh">
+      <DTS:Property
+        DTS:DataType="11"
+        DTS:Name="ParameterValue">-1</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1499121C-07AB-4E28-B227-FE0134C96206}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varART_CTRL_MASTER_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">2001</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D2FD5816-4C4D-4B6E-970D-3547D01B7E4B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varBulkAPIOption">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{680CE299-FE3A-4C8D-82C8-3FE50A6817B5}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="( @[User::varSourceNewRecords]) -( @[User::varTargetInsertedCount] +  @[User::varTargetUpdatedCount] +   @[User::varTargetUnchangedRecordsAfter])"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCountDifference">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0266A2D9-02FE-4155-BFB1-D455DF94BCB1}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot; IF NOT EXISTS (SELECT * FROM sysobjects WHERE name ='&quot;+  @[User::varTableName] +&quot;')&#xA;begin&#xA; CREATE TABLE [&quot; + @[User::varTableName] +&quot;] (ID INT)&#xA;end &quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDummyTable">
+      <DTS:VariableValue
+        DTS:DataType="8"> IF NOT EXISTS (SELECT * FROM sysobjects WHERE name ='Filter_Criteria__c')
+begin
+ CREATE TABLE [Filter_Criteria__c] (ID INT)
+end </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{864E901C-1109-48F0-B5CC-146DFDFC16F5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEndTime">
+      <DTS:VariableValue
+        DTS:DataType="7">12/5/2017 5:02:19 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BFC7F65E-178C-4ECB-AAB8-287EC664D3A4}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEXEC_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E57F612-5D3C-491A-B118-4B002DC49C7D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsErrorLogged">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{72886CF9-F7CD-42A8-AAA5-CA4006D3D7B0}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsLoadIncremental">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2D8D0E37-A7F9-478F-98DD-FC6AA5D4BE38}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Package::ExecuteSFDCRefresh]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="VarIsSFDCRefresh">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{54413D36-7D1E-4CA0-8D6C-F4378950C8D7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLOAD_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2BC25072-4A7F-4C3A-8E1B-7F6C10FB5D9E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varODSSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">SFDC</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B1A8A0F1-A5DC-4431-8F71-7B0624DB26E8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varReplicateOption">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B042CD1C-16FC-4A3B-90D7-4FC19A903834}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSchemaErrorAction">
+      <DTS:VariableValue
+        DTS:DataType="8">yes</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D8EE74F7-C8C0-4950-82B8-CAAD18346099}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceChangeRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F0E269CB-4E93-4CBF-BDC5-D2BC17A39462}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDeletedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A614FFD0-C600-4589-95D1-1F0659EBF0F6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceNewRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FE58A4BF-26B3-4C5F-BE25-A41CBF2857C6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTotalRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9D27EC52-BF15-42A3-A050-481022DEAB92}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStageSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">DBO</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B395A5FC-FE9C-4577-B24D-851185A4875B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">12/5/2017 5:01:55 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B177316F-A69E-43BB-BB48-84F259DB8012}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Filter_Criteria__c</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{509BDDFC-2AB7-423F-8864-F7984C1FA806}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDeletedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45513500-96D2-4752-8F18-FD9DB8F7B70C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetFailedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9E81324A-87A2-4BA9-9F86-84A57990F5FB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CAD37F87-8180-4CE5-8F22-E5F9E96B940F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::varODSSchema] + &quot;.[&quot; +  @[User::varTableName]  + &quot;]&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetName">
+      <DTS:VariableValue
+        DTS:DataType="8">SFDC.[Filter_Criteria__c]</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C3B17FB2-E595-4F8F-B430-89012AF44C55}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{612A7D5F-5BE6-43A5-BEB9-35B4CC46D315}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsBefore">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B2BD90BF-8C43-4B49-9219-3BEACFB61433}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUnchangedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{85156A5B-C97D-4C0C-9278-198496343B18}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{277FF78E-6277-4C90-868F-31CA8606E033}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varVerifyAction">
+      <DTS:VariableValue
+        DTS:DataType="8">no</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Bring full load using DFT from stage to ODS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{df1716d1-d58f-4219-9656-2034ad6dcbea}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bring full load using DFT from stage to ODS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task"
+          DTS:CreationName="SSIS.Pipeline.3"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{05f9d898-b7bf-4171-88ef-51db57e8f9db}"
+          DTS:ExecutableType="SSIS.Pipeline.3"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column"
+                  componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LoadID]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LoadID]"
+                          name="LoadID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">@[User::varLOAD_ID]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">@[User::varLOAD_ID]</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                          name="ODSLoadDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination"
+                  componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[SFDC].[Filter_Criteria__c]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS,ROWS_PER_BATCH = 50000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedById]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="CreatedById"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedById]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedDate]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="CreatedDate"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedDate]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrencyIsoCode]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CurrencyIsoCode"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyIsoCode]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CurrencyIsoCode]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Id]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="Id"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Id]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastModifiedById]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="LastModifiedById"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastModifiedById]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedById]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastModifiedDate]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="LastModifiedDate"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastModifiedDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedDate]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="121"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Name]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SystemModstamp]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="SystemModstamp"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SystemModstamp]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[SystemModstamp]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoadID]"
+                          cachedDataType="i4"
+                          cachedName="LoadID"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadID]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[LoadID]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ODSLoadDate]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ODSLoadDate"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[ODSLoadDate]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Category__c]"
+                          cachedDataType="wstr"
+                          cachedLength="1300"
+                          cachedName="Category__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Category__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Discount__c]"
+                          cachedDataType="numeric"
+                          cachedName="Discount__c"
+                          cachedPrecision="18"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Discount__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Filter_BE_Details__c]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="Filter_BE_Details__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_BE_Details__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_BE_Details__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Filter_Display__c]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="Filter_Display__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Display__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Display__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Filter_Name__c]"
+                          cachedDataType="wstr"
+                          cachedLength="1300"
+                          cachedName="Filter_Name__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Name__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Name__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Filter_Number__c]"
+                          cachedDataType="numeric"
+                          cachedName="Filter_Number__c"
+                          cachedPrecision="18"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Number__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Number__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IA_Feature__c]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="IA_Feature__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IA_Feature__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IA_Feature__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="5"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LastActivityDate]"
+                          cachedDataType="dbTimeStamp2"
+                          cachedName="LastActivityDate"
+                          cachedScale="7"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastActivityDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastActivityDate]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[OwnerId]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="OwnerId"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnerId]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[OwnerId]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Product_Code__c]"
+                          cachedDataType="nText"
+                          cachedName="Product_Code__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Code__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Product_Code__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Program__c]"
+                          cachedDataType="wstr"
+                          cachedLength="18"
+                          cachedName="Program__c"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Program__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Program__c]" />
+                        <inputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Results_Count__c]"
+                          cachedDataType="numeric"
+                          cachedName="Results_Count__c"
+                          cachedPrecision="18"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Results_Count__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Results_Count__c]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          dataType="wstr"
+                          length="18"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                          dataType="dbTimeStamp2"
+                          name="CreatedDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyIsoCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyIsoCode" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                          dataType="wstr"
+                          length="18"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastModifiedById]"
+                          dataType="wstr"
+                          length="18"
+                          name="LastModifiedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastModifiedDate]"
+                          dataType="dbTimeStamp2"
+                          name="LastModifiedDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SystemModstamp]"
+                          dataType="dbTimeStamp2"
+                          name="SystemModstamp"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadID]"
+                          dataType="i4"
+                          name="LoadID" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                          dataType="dbTimeStamp"
+                          name="ODSLoadDate" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ODSModifiedDate]"
+                          dataType="dbTimeStamp"
+                          name="ODSModifiedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Category__c]"
+                          dataType="wstr"
+                          length="1300"
+                          name="Category__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount__c]"
+                          dataType="numeric"
+                          name="Discount__c"
+                          precision="18"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_BE_Details__c]"
+                          dataType="wstr"
+                          length="1000"
+                          name="Filter_BE_Details__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Display__c]"
+                          dataType="wstr"
+                          length="1000"
+                          name="Filter_Display__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Name__c]"
+                          dataType="wstr"
+                          length="1300"
+                          name="Filter_Name__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Filter_Number__c]"
+                          dataType="numeric"
+                          name="Filter_Number__c"
+                          precision="18" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IA_Feature__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="IA_Feature__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastActivityDate]"
+                          dataType="dbTimeStamp2"
+                          name="LastActivityDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OwnerId]"
+                          dataType="wstr"
+                          length="18"
+                          name="OwnerId" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Product_Code__c]"
+                          dataType="nText"
+                          name="Product_Code__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Program__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="Program__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Results_Count__c]"
+                          dataType="numeric"
+                          name="Results_Count__c"
+                          precision="18" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG"
+                  componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source - RWSSTG"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Filter_Criteria__c]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Connections[OleDbConnection]"
+                      connectionManagerID="{B70493AD-77D4-4B1E-9D99-F28091AC18CB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[RWSSTG]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          name="CreatedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                          name="CreatedDate"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CurrencyIsoCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CurrencyIsoCode]"
+                          length="3"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[CurrencyIsoCode]"
+                          name="CurrencyIsoCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Id]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Id]"
+                          name="Id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedById]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastModifiedById]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedById]"
+                          name="LastModifiedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedDate]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastModifiedDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastModifiedDate]"
+                          name="LastModifiedDate"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          length="121"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[SystemModstamp]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[SystemModstamp]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[SystemModstamp]"
+                          name="SystemModstamp"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Category__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Category__c]"
+                          length="1300"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Category__c]"
+                          name="Category__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Discount__c]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Discount__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Discount__c]"
+                          name="Discount__c"
+                          precision="18"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_BE_Details__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_BE_Details__c]"
+                          length="1000"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_BE_Details__c]"
+                          name="Filter_BE_Details__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Display__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Display__c]"
+                          length="1000"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Display__c]"
+                          name="Filter_Display__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Name__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Name__c]"
+                          length="1300"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Name__c]"
+                          name="Filter_Name__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Number__c]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Number__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Filter_Number__c]"
+                          name="Filter_Number__c"
+                          precision="18"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IA_Feature__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[IA_Feature__c]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IA_Feature__c]"
+                          name="IA_Feature__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          length="5"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastActivityDate]"
+                          dataType="dbTimeStamp2"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastActivityDate]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[LastActivityDate]"
+                          name="LastActivityDate"
+                          scale="7"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[OwnerId]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[OwnerId]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[OwnerId]"
+                          name="OwnerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Product_Code__c]"
+                          dataType="nText"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Product_Code__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Product_Code__c]"
+                          name="Product_Code__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Program__c]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Program__c]"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Program__c]"
+                          name="Program__c"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Results_Count__c]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Results_Count__c]"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].Columns[Results_Count__c]"
+                          name="Results_Count__c"
+                          precision="18"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          dataType="wstr"
+                          length="18"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                          dataType="dbTimeStamp2"
+                          name="CreatedDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[CurrencyIsoCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyIsoCode" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Id]"
+                          dataType="wstr"
+                          length="18"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastModifiedById]"
+                          dataType="wstr"
+                          length="18"
+                          name="LastModifiedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastModifiedDate]"
+                          dataType="dbTimeStamp2"
+                          name="LastModifiedDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          name="Name" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[SystemModstamp]"
+                          dataType="dbTimeStamp2"
+                          name="SystemModstamp"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Category__c]"
+                          dataType="wstr"
+                          length="1300"
+                          name="Category__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Discount__c]"
+                          dataType="numeric"
+                          name="Discount__c"
+                          precision="18"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_BE_Details__c]"
+                          dataType="wstr"
+                          length="1000"
+                          name="Filter_BE_Details__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Display__c]"
+                          dataType="wstr"
+                          length="1000"
+                          name="Filter_Display__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Name__c]"
+                          dataType="wstr"
+                          length="1300"
+                          name="Filter_Name__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Filter_Number__c]"
+                          dataType="numeric"
+                          name="Filter_Number__c"
+                          precision="18" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[IA_Feature__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="IA_Feature__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[LastActivityDate]"
+                          dataType="dbTimeStamp2"
+                          name="LastActivityDate"
+                          scale="7" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[OwnerId]"
+                          dataType="wstr"
+                          length="18"
+                          name="OwnerId" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Product_Code__c]"
+                          dataType="nText"
+                          name="Product_Code__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Program__c]"
+                          dataType="wstr"
+                          length="18"
+                          name="Program__c" />
+                        <externalMetadataColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output].ExternalColumns[Results_Count__c]"
+                          dataType="numeric"
+                          name="Results_Count__c"
+                          precision="18" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Category__c]"
+                          dataType="wstr"
+                          length="1300"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Category__c]"
+                          name="Category__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          name="CreatedById" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                          name="CreatedDate"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CurrencyIsoCode]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[CurrencyIsoCode]"
+                          name="CurrencyIsoCode" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Discount__c]"
+                          dataType="numeric"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Discount__c]"
+                          name="Discount__c"
+                          precision="18"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_BE_Details__c]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_BE_Details__c]"
+                          name="Filter_BE_Details__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Display__c]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Display__c]"
+                          name="Filter_Display__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Name__c]"
+                          dataType="wstr"
+                          length="1300"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Name__c]"
+                          name="Filter_Name__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Number__c]"
+                          dataType="numeric"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Filter_Number__c]"
+                          name="Filter_Number__c"
+                          precision="18" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[IA_Feature__c]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[IA_Feature__c]"
+                          name="IA_Feature__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Id]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Id]"
+                          name="Id" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          codePage="1252"
+                          dataType="str"
+                          length="5"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastActivityDate]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastActivityDate]"
+                          name="LastActivityDate"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastModifiedById]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastModifiedById]"
+                          name="LastModifiedById" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastModifiedDate]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[LastModifiedDate]"
+                          name="LastModifiedDate"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          dataType="wstr"
+                          length="80"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[OwnerId]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[OwnerId]"
+                          name="OwnerId" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Product_Code__c]"
+                          dataType="nText"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Product_Code__c]"
+                          name="Product_Code__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Program__c]"
+                          dataType="wstr"
+                          length="18"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Program__c]"
+                          name="Program__c" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Results_Count__c]"
+                          dataType="numeric"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[Results_Count__c]"
+                          name="Results_Count__c"
+                          precision="18" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[SystemModstamp]"
+                          dataType="dbTimeStamp2"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[SystemModstamp]"
+                          name="SystemModstamp"
+                          scale="7" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task.Paths[Derived Column Output]"
+                  endId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Bring full load using DFT from stage to ODS\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bring full load using DFT from stage to ODS\Truncate ODS table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a6dadb19-d572-448e-945f-c781dd3e114b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate ODS table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Truncate  table " +  @[User::varTargetName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="Truncate  table SFDC.[Filter_Criteria__c]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bring full load using DFT from stage to ODS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{eb3cb47f-c94b-4aae-85ef-4cefa14ab4a4}"
+          DTS:From="Package\Bring full load using DFT from stage to ODS\Truncate ODS table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Bring full load using DFT from stage to ODS\Data Flow Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Bring incremental data from stage to ODS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{aab96c01-b5ed-4865-8b3b-5c03d4bd3758}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bring incremental data from stage to ODS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Bring incremental data from stage to ODS\Call Delete SP"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f4acd3a1-6731-49e1-860e-7e09a53da419}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Call Delete SP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="Exec SFDC.usp_Delete_FilterCriteria"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bring incremental data from stage to ODS\Call merge SP for incremental load"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{55d6ab9d-2175-4a63-a7b7-8373b415a748}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Call merge SP for incremental load"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="Declare @LoadID varchar(100) = ?,&#xA;@StartTime  datetime2(7) = ?,&#xA;@EndTime  datetime2(7) = ?&#xA;&#xA;Exec SFDC.usp_Merge_FilterCriteria&#xA;@LoadID,&#xA;@StartTime,&#xA;@EndTime"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varSourceNewRecords" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="3"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bring incremental data from stage to ODS\EST - Get EndTime from RWSSTG"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c8d0e311-8cd7-4c70-ba63-2f0b6fcb2067}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get EndTime from RWSSTG"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(max(SystemModstamp), '2100-01-01') from " + @[User::varStageSchema] +".[" + @[User::varTableName] + "]  nolock"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B70493AD-77D4-4B1E-9D99-F28091AC18CB}"
+              SQLTask:SqlStatementSource="Select ISNULL(max(SystemModstamp), '2100-01-01') from DBO.[Filter_Criteria__c]  nolock"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varEndTime" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bring incremental data from stage to ODS\EST - Get StartTime from ODS"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f18902af-7052-4eb1-82e5-9970ca81853b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get StartTime from ODS"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(dateadd(mi,-10,max(SystemModstamp)), '1900-01-01') from " +  @[User::varTargetName]  + " nolock"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="Select ISNULL(dateadd(mi,-10,max(SystemModstamp)), '1900-01-01') from SFDC.[Filter_Criteria__c] nolock"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varStartTime" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{9ed1f03c-71b0-4f82-a0a6-a60144112906}"
+          DTS:From="Package\Bring incremental data from stage to ODS\EST - Get StartTime from ODS"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Bring incremental data from stage to ODS\EST - Get EndTime from RWSSTG" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{696a7672-9a0e-493d-a43b-39631e4ce902}"
+          DTS:From="Package\Bring incremental data from stage to ODS\EST - Get EndTime from RWSSTG"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Bring incremental data from stage to ODS\Call Delete SP" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{8bc89119-d1bd-4cdf-a011-49268e13e4ba}"
+          DTS:From="Package\Bring incremental data from stage to ODS\Call Delete SP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Bring incremental data from stage to ODS\Call merge SP for incremental load" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Bring incremental Sales force data to stage"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{ac7258e4-fa7f-456f-af17-1fe47a199ab7}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bring incremental Sales force data to stage">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Bring incremental Sales force data to stage\Call Salesforce SP sf_refresh"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a2ac3cc7-e5ba-4b54-86f0-6fe2aabeb971}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Call Salesforce SP sf_refresh"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B70493AD-77D4-4B1E-9D99-F28091AC18CB}"
+              SQLTask:SqlStatementSource="Declare @table_server varchar(100) = ?,&#xA;@table_name  varchar(100) = ?,&#xA;@schema_error_action varchar(100) = ?,&#xA;@verify_action varchar(100) =?,&#xA;@bulkapi_option varchar(100) =?&#xA;&#xA;&#xA;Exec [DBO].[SF_Refresh] &#xA;@table_server,&#xA;@table_name,&#xA;@schema_error_action,&#xA;@verify_action,&#xA;@bulkapi_option" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Project::SFDCLinkeServerName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSchemaErrorAction"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varVerifyAction"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varBulkAPIOption"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{e67c78bc-7b85-4586-acc7-695f9fac3769}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::varIsLoadIncremental] == False"
+      DTS:From="Package\Bring incremental Sales force data to stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Bring full load using DFT from stage to ODS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{c19b6e69-90a5-443d-a43e-2953cb0bff3b}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::varIsLoadIncremental] == True"
+      DTS:From="Package\Bring incremental Sales force data to stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Bring incremental data from stage to ODS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{6A6DD9FE-8E32-45F4-9013-50916301C6DC}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{8D8491A9-E22D-468B-BB99-9C583F0F9374}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0BCB6298-5DFE-4A5E-B53F-1D293A41CBD8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA;@EXEC_ID INT =?,&#xA;&#xA;&#xA;EXEC [AM].[USP_PKG_ON_ERROR] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;null,&#xA;null ,&#xA;null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{99B1279E-671D-4CBC-8200-21785297BE93}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET - Set IsErrorLogged flag"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::varIsErrorLogged]=TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{3E6E6737-A4E7-4883-A3F0-1DD8CB3C5322}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_5a785293be4f4576bafbdd917f02dc93"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{2FB36374-C786-4876-8681-471CC27FC9D9}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{5A2C74DC-CC4D-489E-A3CE-CD88C7B20394}"
+          DTS:From="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{2E339809-C5E4-42AA-BB64-57B0E7222722}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{9D2B9CE6-45C9-48A3-A12D-2AFF7B6F3BF4}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B0B81B1D-9879-41F5-B6ED-B4C7B71AF8A3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA; @EXEC_ID INT = ?,&#xA;@SOURCE_TOTAL_RECORDS decimal(10,0) = ?,&#xA;@SOURCE_NEW_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_CHANGE_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_DELETE_RECORDS  decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_BEFORE decimal(10,0) = ?,&#xA;@TARGET_NEW_RECORDS decimal(10,0) = ?,&#xA;@TARGET_CHANGE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_DELETE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_UNCHANGED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_FAILED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_AFTER decimal(10,0) = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_COMPLETE] &#xA; @ART_CTRL_MASTER_ID, &#xA; @EXEC_ID,&#xA;@SOURCE_NME,&#xA;@SOURCE_TOTAL_RECORDS,&#xA;@SOURCE_NEW_RECORDS,&#xA;@SOURCE_CHANGE_RECORDS,&#xA;@SOURCE_DELETE_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_BEFORE,&#xA;@TARGET_NEW_RECORDS,&#xA;@TARGET_CHANGE_RECORDS,&#xA;@TARGET_DELETE_RECORDS,&#xA;@TARGET_UNCHANGED_RECORDS,&#xA;@TARGET_FAILED_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_AFTER,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceTotalRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varSourceNewRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varSourceChangeRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varSourceDeletedRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::varTargetFailedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="12"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="13"
+                SQLTask:DtsVariableName="User::varTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="14"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="15"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="16"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="17"
+                SQLTask:DtsVariableName="User::varIsLoadIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9CEAFE17-98FD-4C36-BE49-E9DBDFD4C229}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Post Execution Target Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0, @SorceNewRecords INT = 0
+
+
+
+
+SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM "+ (DT_STR, 100, 1252) @[User::varTargetName]   +" nolock )
+
+ 
+
+
+
+
+
+IF('"+ (DT_WSTR, 10) @[User::varIsLoadIncremental] + "'  = 'False')
+	
+
+SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS  RSTargetInserted,  @TargetTotalRecords AS RSSourceNew
+
+ELSE
+	SELECT  @TargetTotalRecords AS RSTargetTotal, " +  (DT_WSTR, 10) @[User::varTargetInsertedCount]  + " AS RSTargetInserted," +   (DT_WSTR, 10) @[User::varSourceNewRecords] + "  AS RSSourceNew"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0, @SorceNewRecords INT = 0&#xA;&#xA;&#xA;&#xA;&#xA;SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM SFDC.[Filter_Criteria__c] nolock )&#xA;&#xA; &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;IF('True'  = 'False')&#xA;&#x9;&#xA;&#xA;SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS  RSTargetInserted,  @TargetTotalRecords AS RSSourceNew&#xA;&#xA;ELSE&#xA;&#x9;SELECT  @TargetTotalRecords AS RSTargetTotal, 0 AS RSTargetInserted,0  AS RSSourceNew"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::varSourceNewRecords" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varIsLoadIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7E66D5BC-566E-46CF-AA67-D284FCE606EA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Log IBC Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="Exec AM.USP_PKG_ON_ERROR_IBC ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{7DD5B0B6-CE6F-4D5E-B40F-89CF51AC5299}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_4448f400433040b4a95621a38bf04feb"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{5395AC33-12AD-4D59-9CF9-18AF06AD90BA}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{C13CF43D-99D4-45E2-8E68-5F4DDEA706FA}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference] != 0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{EE36E0CF-5FE4-45B4-B32C-E6EB0FACB19F}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{C4824A91-A98D-4CA5-9F8B-9A7F7304B74A}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{196391F1-93AD-4852-8A68-5575F51181EE}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - delete partial load with LoadID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{56DA1652-E4D8-4FC5-9A53-6FEAAFF5A6F7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - delete partial load with LoadID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DELETE FROM " + @[User::varTargetName] + "  WHERE LOADID = " +  (DT_WSTR, 10) @[User::varLOAD_ID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{461D2097-1EC8-44B8-9B2C-2F8AFEA481E8}"
+              SQLTask:SqlStatementSource="DELETE FROM SFDC.[Filter_Criteria__c]  WHERE LOADID = 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{82B54F28-C99F-43FB-85A5-2272F47B7E1C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="DECLARE  @ART_CTRL_MASTER_ID INT = ? ,&#xA;  @EXEC_ID INT = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ? &#xA;&#xA;&#xA;EXEC [AM].[USP_PKG_ON_EXECUTE] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@SOURCE_NME,&#xA;@TARGET_NME,&#xA;null,&#xA;null,&#xA;null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varTableName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Get Load Type"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F10B657D-33CD-42E1-B1BF-30FB9A202A0C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Load Type"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="SELECT        CONVERT(bit, IS_INCREMENTAL_LOAD)  AS isNextRunIncremental&#xA;FROM            [AM].[ENVIRONMENT_VAR_BATCH] ENV_BAT JOIN [AM].[BATCH_CTRL_MASTER] CTRL_BAT ON ENV_BAT.SCHEDULE_TYPE_VALUE_ID=CTRL_BAT.SCHEDULE_TYPE_VALUE_ID&#xA;WHERE        (CTRL_BAT.LOAD_ID = ?)"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varIsLoadIncremental" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A7A8255B-1BF8-4F15-814F-C921581A93EE}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Set Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B3A7354-5180-4602-8BF4-BC0C00AE4BEF}"
+              SQLTask:SqlStatementSource="SELECT LAST_LOAD_ID FROM [AM].[ARTIFACT_CTRL_MASTER] WHERE [ART_CTRL_MASTER_ID] =  ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{249C9FBB-73D6-413C-B348-31948E66F1BE}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_da0fb2b6350e4e1b85eaee74b159a6e1"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{DB22CEFF-D04E-458D-9899-ADA4503148EB}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Set Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{97ADA247-6329-4BA3-BCF9-DA22B87EC32F}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Get Load Type" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{38D59AAC-C637-4ABA-A8A5-698F1408FD51}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - delete partial load with LoadID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{A57476F8-23FD-4842-85D0-357D4B987C14}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Get Load Type"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - delete partial load with LoadID" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Bring incremental data from stage to ODS\Call Delete SP"
+          TopLeft="83,166" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\Bring incremental data from stage to ODS\Call merge SP for incremental load"
+          TopLeft="33,240" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Bring incremental data from stage to ODS\EST - Get EndTime from RWSSTG"
+          TopLeft="35,96" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Bring incremental data from stage to ODS\EST - Get StartTime from ODS"
+          TopLeft="43,18" />
+        <EdgeLayout
+          Id="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint]"
+          TopLeft="155.25,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint 1]"
+          TopLeft="155.75,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bring incremental data from stage to ODS.PrecedenceConstraints[Constraint 2]"
+          TopLeft="155.5,208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="300,308"
+          Size="300,351"
+          Id="Package\Bring incremental data from stage to ODS"
+          TopLeft="79,269" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Bring incremental Sales force data to stage\Call Salesforce SP sf_refresh"
+          TopLeft="46,22" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="306,81"
+          Size="306,124"
+          Id="Package\Bring incremental Sales force data to stage"
+          TopLeft="278,60" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task"
+          TopLeft="84,96" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Bring full load using DFT from stage to ODS\Truncate ODS table"
+          TopLeft="77,15" />
+        <EdgeLayout
+          Id="Package\Bring full load using DFT from stage to ODS.PrecedenceConstraints[Constraint]"
+          TopLeft="162,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="315,147"
+          Size="315,190"
+          Id="Package\Bring full load using DFT from stage to ODS"
+          TopLeft="552,256" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="381.333333333333,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-152.333333333333,85"
+              Start="0,0"
+              End="-152.333333333333,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2652795838752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.2652795838752"
+                    Point2="0,34.2652795838752"
+                    Point3="-4,34.2652795838752" />
+                  <mssgle:LineSegment
+                    End="-148.333333333333,34.2652795838752" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-148.333333333333,34.2652795838752"
+                    Point2="-152.333333333333,34.2652795838752"
+                    Point3="-152.333333333333,38.2652795838752" />
+                  <mssgle:LineSegment
+                    End="-152.333333333333,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-84.1666666666667,39.2652795838752,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="480.666666666667,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="228.833333333333,72"
+              Start="0,0"
+              End="228.833333333333,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.0247074122237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.0247074122237"
+                    Point2="0,29.0247074122237"
+                    Point3="4,29.0247074122237" />
+                  <mssgle:LineSegment
+                    End="224.833333333333,29.0247074122237" />
+                  <mssgle:CubicBezierSegment
+                    Point1="224.833333333333,29.0247074122237"
+                    Point2="228.833333333333,29.0247074122237"
+                    Point3="228.833333333333,33.0247074122237" />
+                  <mssgle:LineSegment
+                    End="228.833333333333,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="106.416666666667,34.0247074122237,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Call DbAmp procedure sf_Refresh with Linkserver , table name and other parameters"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="203,66"
+          Id="0d73eee0-1cbd-4be4-ba8e-6e881b308264"
+          TopLeft="60,105" />
+        <AnnotationLayout
+          Text="calling merge procedure to bring incremental from stage to ODS"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="343,39"
+          Id="ac211292-bb97-4bbb-81f2-de7ea6f05e1b"
+          TopLeft="427.666666666667,537" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="256,42"
+          Id="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          TopLeft="29,209.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package.EventHandlers[OnError]\ST-Dummy Task"
+          TopLeft="54,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          TopLeft="133.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          TopLeft="133.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="275,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          TopLeft="5.50000000000006,209.5" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          TopLeft="294,107.5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          TopLeft="407.5,207.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          TopLeft="348.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="384.666666666667,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-241.666666666667,60"
+              Start="0,0"
+              End="-241.666666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2136498516321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2136498516321"
+                    Point2="0,24.2136498516321"
+                    Point3="-4,24.2136498516321" />
+                  <mssgle:LineSegment
+                    End="-237.666666666667,24.2136498516321" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-237.666666666667,24.2136498516321"
+                    Point2="-241.666666666667,24.2136498516321"
+                    Point3="-241.666666666667,28.2136498516321" />
+                  <mssgle:LineSegment
+                    End="-241.666666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.833333333333,29.2136498516321,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="471.333333333333,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.6666666666667,58"
+              Start="0,0"
+              End="22.6666666666667,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.406528189911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.406528189911"
+                    Point2="0,23.406528189911"
+                    Point3="4,23.406528189911" />
+                  <mssgle:LineSegment
+                    End="18.6666666666667,23.406528189911" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.6666666666667,23.406528189911"
+                    Point2="22.6666666666667,23.406528189911"
+                    Point3="22.6666666666667,27.406528189911" />
+                  <mssgle:LineSegment
+                    End="22.6666666666667,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.33333333333334,28.406528189911,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="428,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="255,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - delete partial load with LoadID"
+          TopLeft="336.5,299.5" />
+        <NodeLayout
+          Size="267,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          TopLeft="328.5,375.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Get Load Type"
+          TopLeft="372,209.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          TopLeft="378.5,107.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          TopLeft="381.5,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="461,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="461,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          TopLeft="463,341.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          TopLeft="462.5,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Bring full load using DFT from stage to ODS\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination"
+          TopLeft="119,182" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task\Derived Column"
+          TopLeft="131,104" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG"
+          TopLeft="112,32" />
+        <EdgeLayout
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="207.25,146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bring full load using DFT from stage to ODS\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="211.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Bring full load using DFT from stage to ODS\Data Flow Task\OLE DB Source - RWSSTG">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

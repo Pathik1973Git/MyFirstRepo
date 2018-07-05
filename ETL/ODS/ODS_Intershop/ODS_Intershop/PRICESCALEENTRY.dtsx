@@ -1,0 +1,2668 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{2713F9FC-ADB0-4D4A-8766-69B09F69E663}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3368.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="PRICESCALEENTRY6"
+  DTS:VersionBuild="305"
+  DTS:VersionGUID="{C0A85662-2FF3-4353-9D91-F85C675CCE6E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Intershop.intershop_live_ro]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{070ED0C3-DEB1-499B-985D-B2DAD5063329}"
+      DTS:ObjectName="Intershop.intershop_live_ro">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Intershop;User ID=intershop_live_ro;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFVM7Qm1L0k+blm5RjAOQjgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABwjweocUefMzu0XxFCJOP/AAAAAASAAACgAAAAEAAAAIcJaqkBsyqm2ZLKcBeKlzQYAAAA3hfaFzTjKh4h3jv2Blb2DbC2TnKmvQPDFAAAAP89Zwl01S8N8x9yJrRS1JLPB4rC</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[InterShopAudit]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E26AD53D-D5DA-467A-B59C-9893054736F8}"
+      DTS:ObjectName="InterShopAudit">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=DWSQLTST;Initial Catalog=RWSAudit;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[InterShopODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{764BF24A-5E0A-4CA3-A66D-08BF26E24CD5}"
+      DTS:ObjectName="InterShopODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DWSQLTST;Initial Catalog=RWSODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{843F73BA-A148-4AD3-A403-791BC4377E34}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[InterShopAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{BF7235A3-3A14-439C-941D-5997C99B9434}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;InterShopAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;InterShopSource&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{1240418D-F357-4DE5-ABED-91D3296DF447}"
+      DTS:ObjectName="InterShopSource" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;InterShopAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;InterShopODS&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{84C266AB-2A61-45DE-BD35-E716F36D8A13}"
+      DTS:ObjectName="InterShopODS" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4E611FCD-7836-4A96-ACCD-2FF5A6BEC03B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT count(*) cnt &#xA;from Intershop_live.&quot;+ @[User::ODSTableName] +&quot;&#xA;where lastmodified &gt;(trunc(sysdate) - &quot;+ (DT_WSTR, 4) @[User::DaysOld]+&quot;)&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CountSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT count(*) cnt 
+from Intershop_live.PRICESCALEENTRY
+where lastmodified &gt;(trunc(sysdate) - 100)</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C35968E6-FF64-4535-9C64-C1E1344D044E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DaysOld">
+      <DTS:VariableValue
+        DTS:DataType="3">100</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F72E713F-3B9F-4F00-B59A-5ACC57345FD9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select DATEDIFF(d,isnull(max(LASTMODIFIED),'1/1/2000'),getdate()) as DaysOld from rwsods.&quot; +@[User::DestinationSchemaName] + &quot;.&quot;+  @[User::ODSTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DaysOldSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">select DATEDIFF(d,isnull(max(LASTMODIFIED),'1/1/2000'),getdate()) as DaysOld from rwsods.InterShop.PRICESCALEENTRY</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25EF2282-F667-4985-925C-B9FA14787AFD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;delete from rwsods.&quot;+ @[User::DestinationSchemaName] +&quot;.&quot;+ @[User::ODSTableName] +&quot; where LASTMODIFIED &gt;= CONVERT(date, getdate() - &quot;+ (DT_WSTR, 4) @[User::DaysOld]+&quot;)&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeleteSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">delete from rwsods.InterShop.PRICESCALEENTRY where LASTMODIFIED &gt;= CONVERT(date, getdate() - 100)</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D8F06D5B-244B-4540-8923-8FDC10A37A49}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">InterShop</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{84F55EDE-8303-4A74-AB4D-3D67C88A852F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;select  DISCOUNTVALUE, DISCOUNTEDPRICE, LASTMODIFIED, OCA, DOMAINID, UUID, TAXRATE, NETPRICEFLAG, PERCENTAGE, SINGLEBASEPRICEVALUE, SINGLEBASEPRICECODE, QUANTITYLEVELVALUE, QUANTITYLEVELUNIT, TYPECODE, PRICESCALETABLEID, PRICEOLD from Intershop_live.&quot;+@[User::ODSTableName]+&quot; where lastmodified &gt; (trunc(sysdate)- &quot;+(DT_WSTR,4) @[User::DaysOld]+&quot;) order by lastmodified&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="IncrementalSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">select  DISCOUNTVALUE, DISCOUNTEDPRICE, LASTMODIFIED, OCA, DOMAINID, UUID, TAXRATE, NETPRICEFLAG, PERCENTAGE, SINGLEBASEPRICEVALUE, SINGLEBASEPRICECODE, QUANTITYLEVELVALUE, QUANTITYLEVELUNIT, TYPECODE, PRICESCALETABLEID, PRICEOLD from Intershop_live.PRICESCALEENTRY where lastmodified &gt; (trunc(sysdate)- 100) order by lastmodified</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2841BD9E-4512-40CA-9F27-77FB7245F1F8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NumberRecordsProcessed">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A02A8C1B-E85E-471C-8206-C1BFB4B96170}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ODSTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">PRICESCALEENTRY</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{77D659FF-5B49-4959-B5E0-E84F30FF85D6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="Audit"
+      DTS:ObjectName="PackageLoadId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{03240CB8-E462-4F3F-93AE-21E30CEF9348}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR, 1252) @[System::VersionBuild]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="Audit"
+      DTS:ObjectName="PackageVersion">
+      <DTS:VariableValue
+        DTS:DataType="8">305</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8AF8E85A-2823-4087-9BA7-141469A33D16}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;update Audit.IntershopPackageExecOrder&#xA;set ExecutionStatus =&#xA;(select case when cntexpected = cntactual then 'Complete' else 'Idle' end &#xA;from [Audit].[PackageLoadCount] &#xA;where tbl = '&quot;+ @[User::ODSTableName] +&quot;' &#xA;and runtime = (select MAX(runtime) from [Audit].[PackageLoadCount] where tbl = '&quot;+ @[User::ODSTableName] +&quot;'))&#xA;Where IsActive = 1&#xA;and DestinationSchema = '&quot;+ @[User::DestinationSchemaName] +&quot;'&#xA;and PackageName = '&quot;+ @[User::ODSTableName] +&quot;'&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StatusSQL">
+      <DTS:VariableValue
+        DTS:DataType="8">update Audit.IntershopPackageExecOrder
+set ExecutionStatus =
+(select case when cntexpected = cntactual then 'Complete' else 'Idle' end 
+from [Audit].[PackageLoadCount] 
+where tbl = 'PRICESCALEENTRY' 
+and runtime = (select MAX(runtime) from [Audit].[PackageLoadCount] where tbl = 'PRICESCALEENTRY'))
+Where IsActive = 1
+and DestinationSchema = 'InterShop'
+and PackageName = 'PRICESCALEENTRY'</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Count records to load"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6A61526A-4550-44F2-ACE4-C2209324F902}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Count records to load"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Count records to load\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Count records to load\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Count records to load\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Count records to load\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Tbl]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Tbl]"
+                      name="Tbl"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,16,1252)@[User::ODSTableName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,16,1252)@[User::ODSTableName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Source]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Source]"
+                      name="Source"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,10,1252)@[User::DestinationSchemaName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,10,1252)@[User::DestinationSchemaName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[DaysOld]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[DaysOld]"
+                      name="DaysOld"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::DaysOld]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::DaysOld]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Count records to load\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Count records to load\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Count records to load\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Count records to load\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Count records to load\OLE DB Command"
+              componentClassID="{93FFEC66-CBC8-4C7F-9C6A-CB1C17A7567D}"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">exec Audit.usp_LogCounts ?,?, 0, ?, ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Count records to load\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[InterShopAudit]"
+                  connectionManagerRefId="Package.ConnectionManagers[InterShopAudit]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].Columns[CNT]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="CNT"
+                      externalMetadataColumnId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@cnt]"
+                      lineageId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output].Columns[CNT]" />
+                    <inputColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].Columns[Tbl]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="Tbl"
+                      externalMetadataColumnId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@Table]"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Tbl]" />
+                    <inputColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].Columns[Source]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="Source"
+                      externalMetadataColumnId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@Source]"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[Source]" />
+                    <inputColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].Columns[DaysOld]"
+                      cachedDataType="i4"
+                      cachedName="DaysOld"
+                      externalMetadataColumnId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@DaysOld]"
+                      lineageId="Package\Count records to load\Derived Column.Outputs[Derived Column Output].Columns[DaysOld]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@cnt]"
+                      dataType="i8"
+                      name="@cnt">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@Source]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="@Source">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@Table]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="@Table">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[@DaysOld]"
+                      dataType="i4"
+                      name="@DaysOld">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Count records to load\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select *
+  FROM ALL_TAB_COLUMNS
+where table_name = 'PRODUCT'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::CountSQL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Count records to load\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Intershop.intershop_live_ro]"
+                  connectionManagerRefId="Package.ConnectionManagers[Intershop.intershop_live_ro]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output].Columns[CNT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CNT]"
+                      length="38"
+                      lineageId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output].Columns[CNT]"
+                      name="CNT"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CNT]"
+                      dataType="wstr"
+                      length="38"
+                      name="CNT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CNT]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CNT]"
+                      name="CNT" />
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Count records to load.Paths[Derived Column Output]"
+              endId="Package\Count records to load\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Count records to load\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Count records to load.Paths[OLE DB Source Output]"
+              endId="Package\Count records to load\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Count records to load\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Delete Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F6C708CB-AF5B-48A8-AC98-A24C278E1EDF}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Delete Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{764BF24A-5E0A-4CA3-A66D-08BF26E24CD5}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::DeleteSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get DaysOld"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DA6BB75F-456B-4CF1-A3B3-9DE1740EBE23}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get DaysOld"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{764BF24A-5E0A-4CA3-A66D-08BF26E24CD5}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::DaysOldSQL"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DaysOld"
+            SQLTask:DtsVariableName="User::DaysOld" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load InterShop"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ED441AF1-FAA6-429A-8745-168CAE064F68}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load InterShop"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Load InterShop\DER Values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="DER Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load InterShop\DER Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load InterShop\DER Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load InterShop\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load InterShop\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load InterShop\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      name="ODSLoadDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load InterShop\DER Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load InterShop\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load InterShop\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load InterShop\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load InterShop\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT TYPECODE
+      ,SKU
+      ,MANUFACTURERNAME
+      ,MANUFACTURERSKU
+      ,ONLINEFLAG
+      ,TEMPLATE
+      ,IMAGE
+      ,THUMBNAIL
+      ,MINORDERQUANTITYVALUE
+      ,MAXORDERQUANTITYVALUE
+      ,STEPQUANTITYVALUE
+      ,UNIT
+      ,ORIGINALPRODUCTUUID
+      ,TAXCLASSID
+      ,PRODUCTTYPEID
+      ,DEFAULTPRODUCTVARIATIONID
+      ,AVAILABLEFLAG
+      ,DEFAULTCATALOGCATEGORYID
+      ,OFFEREDPRODUCTID
+      ,PRICEQUANTITYVALUE
+      ,cast (VALIDFROM as varchar(1000)) as VALIDFROM
+      ,cast (VALIDTO as varchar(1000)) as VALIDTO
+      ,cast (SYNCHRONIZED as varchar(1000)) as SYNCHRONIZED
+      ,cast (LASTORDERDATEDB as varchar(1000)) as LASTORDERDATEDB
+      ,cast (ENDOFLIFEDB as varchar(1000)) as ENDOFLIFEDB
+      ,DERIVINGDATESFLAG
+      ,AVAILABILITYSTATUS
+      ,PRODUCTVARIATIONPOSITION
+      ,UUID
+      ,DOMAINID
+      ,OCA
+      ,cast (LASTMODIFIED as varchar(1000)) as LASTMODIFIED
+      ,NAME
+      ,NAME_DE_DE
+      ,NAME_EN_US
+      ,NAME_ES_US
+      ,NAME_EN_CA
+      ,UPC
+from ISHOP_TEST_IOC.PRODUCT</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::IncrementalSQL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load InterShop\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Intershop.intershop_live_ro]"
+                  connectionManagerRefId="Package.ConnectionManagers[Intershop.intershop_live_ro]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPECODE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TYPECODE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPECODE]"
+                      name="TYPECODE"
+                      precision="11"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[UUID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UUID]"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[UUID]"
+                      name="UUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DOMAINID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DOMAINID]"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DOMAINID]"
+                      name="DOMAINID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCA]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OCA]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCA]"
+                      name="OCA"
+                      precision="11"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[LASTMODIFIED]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LASTMODIFIED]"
+                      length="1000"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[LASTMODIFIED]"
+                      name="LASTMODIFIED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTVALUE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNTVALUE]"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTVALUE]"
+                      name="DISCOUNTVALUE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTEDPRICE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNTEDPRICE]"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTEDPRICE]"
+                      name="DISCOUNTEDPRICE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TAXRATE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TAXRATE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TAXRATE]"
+                      name="TAXRATE"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[NETPRICEFLAG]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NETPRICEFLAG]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[NETPRICEFLAG]"
+                      name="NETPRICEFLAG"
+                      precision="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERCENTAGE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERCENTAGE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERCENTAGE]"
+                      name="PERCENTAGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICEVALUE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SINGLEBASEPRICEVALUE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICEVALUE]"
+                      name="SINGLEBASEPRICEVALUE"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICECODE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SINGLEBASEPRICECODE]"
+                      length="3"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICECODE]"
+                      name="SINGLEBASEPRICECODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELVALUE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITYLEVELVALUE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELVALUE]"
+                      name="QUANTITYLEVELVALUE"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELUNIT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITYLEVELUNIT]"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELUNIT]"
+                      name="QUANTITYLEVELUNIT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICESCALETABLEID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRICESCALETABLEID]"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICESCALETABLEID]"
+                      name="PRICESCALETABLEID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICEOLD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRICEOLD]"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICEOLD]"
+                      name="PRICEOLD"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TYPECODE]"
+                      dataType="numeric"
+                      name="TYPECODE"
+                      precision="11" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UUID]"
+                      dataType="wstr"
+                      length="28"
+                      name="UUID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DOMAINID]"
+                      dataType="wstr"
+                      length="28"
+                      name="DOMAINID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OCA]"
+                      dataType="numeric"
+                      name="OCA"
+                      precision="11" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LASTMODIFIED]"
+                      dataType="dbTimeStamp"
+                      name="LASTMODIFIED" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNTVALUE]"
+                      dataType="wstr"
+                      length="256"
+                      name="DISCOUNTVALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNTEDPRICE]"
+                      dataType="wstr"
+                      length="256"
+                      name="DISCOUNTEDPRICE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TAXRATE]"
+                      dataType="numeric"
+                      name="TAXRATE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NETPRICEFLAG]"
+                      dataType="numeric"
+                      name="NETPRICEFLAG"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERCENTAGE]"
+                      dataType="r8"
+                      name="PERCENTAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SINGLEBASEPRICEVALUE]"
+                      dataType="numeric"
+                      name="SINGLEBASEPRICEVALUE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SINGLEBASEPRICECODE]"
+                      dataType="wstr"
+                      length="3"
+                      name="SINGLEBASEPRICECODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITYLEVELVALUE]"
+                      dataType="numeric"
+                      name="QUANTITYLEVELVALUE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITYLEVELUNIT]"
+                      dataType="wstr"
+                      length="256"
+                      name="QUANTITYLEVELUNIT" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRICESCALETABLEID]"
+                      dataType="wstr"
+                      length="28"
+                      name="PRICESCALETABLEID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRICEOLD]"
+                      dataType="wstr"
+                      length="256"
+                      name="PRICEOLD" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNTVALUE]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNTVALUE]"
+                      name="DISCOUNTVALUE" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNTEDPRICE]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DISCOUNTEDPRICE]"
+                      name="DISCOUNTEDPRICE" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TYPECODE]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TYPECODE]"
+                      name="TYPECODE"
+                      precision="11" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UUID]"
+                      dataType="wstr"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UUID]"
+                      name="UUID" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DOMAINID]"
+                      dataType="wstr"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DOMAINID]"
+                      name="DOMAINID" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OCA]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OCA]"
+                      name="OCA"
+                      precision="11" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TAXRATE]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TAXRATE]"
+                      name="TAXRATE"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NETPRICEFLAG]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NETPRICEFLAG]"
+                      name="NETPRICEFLAG"
+                      precision="1" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERCENTAGE]"
+                      dataType="r8"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERCENTAGE]"
+                      name="PERCENTAGE" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SINGLEBASEPRICEVALUE]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SINGLEBASEPRICEVALUE]"
+                      name="SINGLEBASEPRICEVALUE"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SINGLEBASEPRICECODE]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SINGLEBASEPRICECODE]"
+                      name="SINGLEBASEPRICECODE" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITYLEVELVALUE]"
+                      dataType="numeric"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITYLEVELVALUE]"
+                      name="QUANTITYLEVELVALUE"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITYLEVELUNIT]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITYLEVELUNIT]"
+                      name="QUANTITYLEVELUNIT" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LASTMODIFIED]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LASTMODIFIED]"
+                      name="LASTMODIFIED" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRICESCALETABLEID]"
+                      dataType="wstr"
+                      length="28"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRICESCALETABLEID]"
+                      name="PRICESCALETABLEID" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRICEOLD]"
+                      dataType="wstr"
+                      length="256"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRICEOLD]"
+                      name="PRICEOLD" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load InterShop\OLE DST ODS"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST ODS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Intershop].[PRICESCALEENTRY]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load InterShop\OLE DST ODS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[InterShopODS]"
+                  connectionManagerRefId="Package.ConnectionManagers[InterShopODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[UUID]"
+                      cachedDataType="wstr"
+                      cachedLength="28"
+                      cachedName="UUID"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[UUID]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[UUID]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[DOMAINID]"
+                      cachedDataType="wstr"
+                      cachedLength="28"
+                      cachedName="DOMAINID"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DOMAINID]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DOMAINID]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[OCA]"
+                      cachedDataType="numeric"
+                      cachedName="OCA"
+                      cachedPrecision="11"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[OCA]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[OCA]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LASTMODIFIED]"
+                      cachedDataType="wstr"
+                      cachedLength="1000"
+                      cachedName="LASTMODIFIED"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LASTMODIFIED]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[LASTMODIFIED]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[TYPECODE]"
+                      cachedDataType="numeric"
+                      cachedName="TYPECODE"
+                      cachedPrecision="11"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[TYPECODE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TYPECODE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSLoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSLoadDate"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      lineageId="Package\Load InterShop\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[DISCOUNTVALUE]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="DISCOUNTVALUE"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNTVALUE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTVALUE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[DISCOUNTEDPRICE]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="DISCOUNTEDPRICE"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNTEDPRICE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[DISCOUNTEDPRICE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[TAXRATE]"
+                      cachedDataType="numeric"
+                      cachedName="TAXRATE"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[TAXRATE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[TAXRATE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[NETPRICEFLAG]"
+                      cachedDataType="numeric"
+                      cachedName="NETPRICEFLAG"
+                      cachedPrecision="1"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[NETPRICEFLAG]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[NETPRICEFLAG]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[PERCENTAGE]"
+                      cachedDataType="r8"
+                      cachedName="PERCENTAGE"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PERCENTAGE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERCENTAGE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SINGLEBASEPRICEVALUE]"
+                      cachedDataType="numeric"
+                      cachedName="SINGLEBASEPRICEVALUE"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SINGLEBASEPRICEVALUE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICEVALUE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SINGLEBASEPRICECODE]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="SINGLEBASEPRICECODE"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SINGLEBASEPRICECODE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[SINGLEBASEPRICECODE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[QUANTITYLEVELVALUE]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITYLEVELVALUE"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITYLEVELVALUE]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELVALUE]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[QUANTITYLEVELUNIT]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="QUANTITYLEVELUNIT"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITYLEVELUNIT]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITYLEVELUNIT]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[PRICESCALETABLEID]"
+                      cachedDataType="wstr"
+                      cachedLength="28"
+                      cachedName="PRICESCALETABLEID"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PRICESCALETABLEID]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICESCALETABLEID]" />
+                    <inputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[PRICEOLD]"
+                      cachedDataType="wstr"
+                      cachedLength="256"
+                      cachedName="PRICEOLD"
+                      externalMetadataColumnId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PRICEOLD]"
+                      lineageId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRICEOLD]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[UUID]"
+                      dataType="wstr"
+                      length="28"
+                      name="UUID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DOMAINID]"
+                      dataType="wstr"
+                      length="28"
+                      name="DOMAINID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[OCA]"
+                      dataType="numeric"
+                      name="OCA"
+                      precision="11" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LASTMODIFIED]"
+                      dataType="dbTimeStamp"
+                      name="LASTMODIFIED" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[TYPECODE]"
+                      dataType="numeric"
+                      name="TYPECODE"
+                      precision="11" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      name="ODSLoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNTVALUE]"
+                      dataType="wstr"
+                      length="256"
+                      name="DISCOUNTVALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNTEDPRICE]"
+                      dataType="wstr"
+                      length="256"
+                      name="DISCOUNTEDPRICE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[TAXRATE]"
+                      dataType="numeric"
+                      name="TAXRATE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[NETPRICEFLAG]"
+                      dataType="numeric"
+                      name="NETPRICEFLAG"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PERCENTAGE]"
+                      dataType="numeric"
+                      name="PERCENTAGE"
+                      precision="38" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SINGLEBASEPRICEVALUE]"
+                      dataType="numeric"
+                      name="SINGLEBASEPRICEVALUE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SINGLEBASEPRICECODE]"
+                      dataType="wstr"
+                      length="3"
+                      name="SINGLEBASEPRICECODE" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITYLEVELVALUE]"
+                      dataType="numeric"
+                      name="QUANTITYLEVELVALUE"
+                      precision="38"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITYLEVELUNIT]"
+                      dataType="wstr"
+                      length="256"
+                      name="QUANTITYLEVELUNIT" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PRICESCALETABLEID]"
+                      dataType="wstr"
+                      length="28"
+                      name="PRICESCALETABLEID" />
+                    <externalMetadataColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[PRICEOLD]"
+                      dataType="wstr"
+                      length="256"
+                      name="PRICEOLD" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load InterShop\OLE DST ODS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load InterShop\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load InterShop\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load InterShop\ROW Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts the rows in a dataset."
+              name="ROW Count"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::NumberRecordsProcessed</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Load InterShop\ROW Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load InterShop\ROW Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\Load InterShop\ROW Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load InterShop.Paths[Derived Column Output]"
+              endId="Package\Load InterShop\ROW Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\Load InterShop\DER Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load InterShop.Paths[OLE DB Source Output]"
+              endId="Package\Load InterShop\DER Values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load InterShop\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Load InterShop.Paths[Row Count Output 1]"
+              endId="Package\Load InterShop\OLE DST ODS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\Load InterShop\ROW Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log records loaded"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{63CAA94E-1E22-4A68-9AA5-BF975D3A986B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log records loaded"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E26AD53D-D5DA-467A-B59C-9893054736F8}"
+          SQLTask:SqlStatementSource="exec Audit.usp_LogCounts 'Intershop', ?,1, ?, 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::NumberRecordsProcessed"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="20"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ODSTableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Set Status"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{91E62D15-808C-404A-8A67-3A059B8487E7}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Set Status"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E26AD53D-D5DA-467A-B59C-9893054736F8}"
+          SQLTask:SqlStmtSourceType="Variable"
+          SQLTask:SqlStatementSource="User::StatusSQL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Package End"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4542EA00-28D9-4CB5-81A1-5FE2D7D02E1F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Package End"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E26AD53D-D5DA-467A-B59C-9893054736F8}"
+          SQLTask:SqlStatementSource="Declare @Now Datetime&#xA;Set @Now = GetDate()&#xA;&#xA;Exec Audit.usp_RecordPackageEnd ?,@Now,'Succeeded'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="Audit::PackageLoadId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Package Start"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1960FC6C-E1E9-4DF4-85D8-7ACAB3C1F2A8}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:ISOLevel="4096"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Package Start"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E26AD53D-D5DA-467A-B59C-9893054736F8}"
+          SQLTask:SqlStatementSource="Exec Audit.usp_RecordPackageStart ?,?,?,?,?,'Started'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="Audit::PackageLoadId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="72"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::StartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="Audit::PackageVersion"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="4"
+            SQLTask:DtsVariableName="User::DestinationSchemaName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{652B26A1-436C-4E10-B3E2-A41B1A77CE9F}"
+      DTS:From="Package\Count records to load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Delete Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{98FA0D85-4671-4EE7-A4CD-70BB9F5D4D8D}"
+      DTS:From="Package\Get DaysOld"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL Package Start" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{CD3DD565-FFAB-49AB-9FE0-B7C1208A70F2}"
+      DTS:From="Package\Load InterShop"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Log records loaded" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{238A6233-3219-403E-BC49-96103D99A166}"
+      DTS:From="Package\Delete Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load InterShop" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0550734-41F2-4CAE-8072-B78B70A3E30E}"
+      DTS:From="Package\Log records loaded"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Set Status" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{5EA229EF-6BD5-4D02-BA57-2335AEACE5D5}"
+      DTS:From="Package\SQL Package Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Count records to load" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F9181FF-734C-4C2A-8765-FA6A6773466F}"
+      DTS:From="Package\Set Status"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\SQL Package End" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Count records to load"
+          TopLeft="159.423491109497,219.042443511279" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Delete Table"
+          TopLeft="190.169632248649,286.474229026087" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Get DaysOld"
+          TopLeft="133.551553692763,25.2245095527478" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Load InterShop"
+          TopLeft="149.64885287817,348.641405231031" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Log records loaded"
+          TopLeft="180.198134444504,426.683817017313" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Set Status"
+          TopLeft="438.967903204305,430.960343220695" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\SQL Package End"
+          TopLeft="667,431" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQL Package Start"
+          TopLeft="170.656402338838,118.707743956541" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="249.423491109497,261.042443511279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="9.74614113915197,25.4317855148082"
+              Start="0,0"
+              End="9.74614113915197,17.9317855148082">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.71589275740411" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.71589275740411"
+                    Point2="0,12.7158927574041"
+                    Point3="4,12.7158927574041" />
+                  <mssgle:LineSegment
+                    End="5.74614113915197,12.7158927574041" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.74614113915197,12.7158927574041"
+                    Point2="9.74614113915197,12.7158927574041"
+                    Point3="9.74614113915197,16.7158927574041" />
+                  <mssgle:LineSegment
+                    End="9.74614113915197,17.9317855148082" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="202.051553692763,67.2245095527478">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="51.6048486460747,51.4832344037934"
+              Start="0,0"
+              End="51.6048486460747,43.9832344037934">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7416172018967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.7416172018967"
+                    Point2="0,25.7416172018967"
+                    Point3="4,25.7416172018967" />
+                  <mssgle:LineSegment
+                    End="47.6048486460747,25.7416172018967" />
+                  <mssgle:CubicBezierSegment
+                    Point1="47.6048486460747,25.7416172018967"
+                    Point2="51.6048486460747,25.7416172018967"
+                    Point3="51.6048486460747,29.7416172018967" />
+                  <mssgle:LineSegment
+                    End="51.6048486460747,43.9832344037934" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="225.14885287817,390.641405231031">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="39.5492815663344,36.0424117862819"
+              Start="0,0"
+              End="39.5492815663344,28.5424117862819">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.0212058931409" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.0212058931409"
+                    Point2="0,18.0212058931409"
+                    Point3="4,18.0212058931409" />
+                  <mssgle:LineSegment
+                    End="35.5492815663344,18.0212058931409" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.5492815663344,18.0212058931409"
+                    Point2="39.5492815663344,18.0212058931409"
+                    Point3="39.5492815663344,22.0212058931409" />
+                  <mssgle:LineSegment
+                    End="39.5492815663344,28.5424117862819" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="190.169632248649,307.474229026087">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="34.9792206295207,41.1671762049438"
+              Start="0,0"
+              End="34.9792206295207,33.6671762049438">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.9792206295207,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.9792206295207,0"
+                    Point2="34.9792206295207,0"
+                    Point3="34.9792206295207,4" />
+                  <mssgle:LineSegment
+                    End="34.9792206295207,33.6671762049438" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="349.198134444504,449.822080119004">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="89.7697687598009,0"
+              Start="0,0"
+              End="82.2697687598009,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="82.2697687598009,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="251.539946724168,160.707743956541">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,58.3346995547374"
+              Start="0,0"
+              End="0,50.8346995547374">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.8346995547374" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="565.967903204305,452.480171610347">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="101.032096795695,0"
+              Start="0,0"
+              End="93.5320967956948,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="93.5320967956948,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="7"
+          ParentId="Package"
+          Size="25,42"
+          Id="2c704c9a-9879-4fde-a1be-fc7c55cb118f"
+          TopLeft="328.179245283019,556.141509433962">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="15"
+              Color="#FF080000"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="6"
+          ParentId="Package"
+          Size="23,42"
+          Id="15ffcae1-1dbc-4b1b-aad3-5ad613dd7e06"
+          TopLeft="237.311320754717,560.141509433962">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="15"
+              Color="#FF080000"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Count records to load">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Count records to load\OLE DB Source"
+          TopLeft="168.20070590118,106.452041056683" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Count records to load\OLE DB Command"
+          TopLeft="152.768864960027,277.943691681155" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Count records to load\Derived Column"
+          TopLeft="161.237789099447,191.015799442358" />
+        <EdgeLayout
+          Id="Package\Count records to load.Paths[OLE DB Source Output]"
+          TopLeft="240.719247500314,148.452041056683">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,42.5637583856742"
+              Start="0,0"
+              End="0,35.0637583856742">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.0637583856742" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Count records to load.Paths[Derived Column Output]"
+          TopLeft="237.003327029737,233.015799442358">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,44.9278922387971"
+              Start="0,0"
+              End="0,37.4278922387971">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.4278922387971" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Count records to load\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load InterShop">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load InterShop\ROW Count"
+          TopLeft="6.59433962264154,242.933962264151" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load InterShop\OLE DB Source"
+          TopLeft="13.6819928621979,20.6652125282567" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load InterShop\DER Values"
+          TopLeft="6.59433962264154,168.066037735849" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Load InterShop\OLE DST ODS"
+          TopLeft="6.59433962264154,323.38679245283" />
+        <EdgeLayout
+          Id="Package\Load InterShop.Paths[Row Count Output 1]"
+          TopLeft="74.4811320754717,286.858490566038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,36.5283018867925"
+              Start="0,0"
+              End="0,29.0283018867925">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0283018867925" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load InterShop.Paths[OLE DB Source Output]"
+          TopLeft="88.6819928621979,62.6652125282567">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-14.0876532395564,105.400825207592"
+              Start="0,0"
+              End="-14.0876532395564,97.9008252075923">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.7004126037961" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.7004126037961"
+                    Point2="0,52.7004126037961"
+                    Point3="-4,52.7004126037961" />
+                  <mssgle:LineSegment
+                    End="-10.0876532395564,52.7004126037961" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.0876532395564,52.7004126037961"
+                    Point2="-14.0876532395564,52.7004126037961"
+                    Point3="-14.0876532395564,56.7004126037961" />
+                  <mssgle:LineSegment
+                    End="-14.0876532395564,97.9008252075923" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load InterShop.Paths[Derived Column Output]"
+          TopLeft="74.4811320754717,211.990566037736">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.9433962264151"
+              Start="0,0"
+              End="0,23.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Get all data from source Table."
+          ParentId="Package\Load InterShop"
+          Size="226,NaN"
+          Id="7bb4dd6c-3229-4098-9bea-0e099c044c50"
+          TopLeft="173.462264150943,14.7075471698113">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="12"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Convert the Unicode strings back to Strings."
+          ParentId="Package\Load InterShop"
+          Size="296,NaN"
+          Id="bb79ad47-df64-48f2-ac18-1d9a87c1f421"
+          TopLeft="173.462264150943,100.669811320755">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="12"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Add records to Destination ODS Table."
+          ParentId="Package\Load InterShop"
+          Size="481,NaN"
+          Id="391601e7-a932-4864-bc16-03ea8a071512"
+          TopLeft="172.481132075472,332.292452830189">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="12"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Get row count for Auditing purpose."
+          ParentId="Package\Load InterShop"
+          Size="226,NaN"
+          Id="82095427-c3ac-4ab8-8990-18461bc66317"
+          TopLeft="173.462264150943,252.443396226415">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="12"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Create two new fields ODSModified and ODSCreated.&#xA;For adding to the destination rows."
+          ParentId="Package\Load InterShop"
+          Size="383,NaN"
+          Id="0562f574-b1ee-44a7-9b0d-6694d1864425"
+          TopLeft="173.462264150943,172.292452830189">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Verdana"
+              Size="12"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load InterShop\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load InterShop\OLE DST ODS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

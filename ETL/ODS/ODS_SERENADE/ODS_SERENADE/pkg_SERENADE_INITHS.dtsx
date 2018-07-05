@@ -1,0 +1,3447 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{34B7EDD6-919E-4FAB-A7F8-D3AC0BC396DC}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="pkg_SERENADE_INITHS"
+  DTS:VersionBuild="494"
+  DTS:VersionGUID="{C947CD84-7ECD-4365-9304-F82B6C0B8182}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{09C64D63-D1BF-48E5-81AF-E047C77AE96E}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{5BEC1353-CC58-4B68-9B30-A4D5E7FBDE58}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3Source&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{AC3FD339-7223-40F1-9234-E854E1203BD4}"
+      DTS:ObjectName="M3Source" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3ODSCACCSTisAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{5DB07DF0-3A67-4ECF-95F3-DACA67124811}"
+      DTS:ObjectName="M3ODSCACCSTisAuditingEnabled" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{277DD27B-39C6-49FD-B0B1-19B6AD514711}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="isIncremental">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC012CDF-E9B6-47E8-A250-222D2F1F351D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varART_CTRL_MASTER_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">3067</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F5CBAEFA-2307-4E75-B412-E3F075D7072D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="( @[User::varSourceNewRecords] ) - ( @[User::varTargetInsertedCount] +  @[User::varTargetUpdatedCount]  + @[User::varTargetUnchangedRecordsAfter] )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCountDifference">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{223DFA22-4C21-41CC-A81A-DFBF480AB632}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">RWSODS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1B5271D-A559-45DC-A258-6AC452026283}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">SERENADE</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{348D034E-2FE8-422B-9D79-D3DAA2670520}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEndTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:19:52 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{321052C5-12CD-42CD-A002-FCFA61FD9D4E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEXEC_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41F0E48D-5EFF-4947-9209-555F02502656}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsErrorLogged">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E1B33593-F42C-4303-9398-3469856F46CE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLOAD_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{462B872E-C0B0-49EE-8B56-D0A54818D7CB}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceChangeRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{874318DC-D787-4BA9-8713-865D753BD279}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDeletedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0635FA4A-EE4E-4DB2-8DA3-5BDF66CCC0A3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">CWI.INITHS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7077B94D-4533-469D-8399-DA5872E3D4CF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceNewRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D4DF09EA-9A43-4C0D-B760-EEDFE6FE7AD8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTotalRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4DA82091-4FB5-4310-999F-07948C134142}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:20:15 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A9AE234-ABDC-40A2-BDBE-82464A8059C8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDeletedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BE55EB8E-2E38-491B-B11C-7003015D944E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetFailedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B135E98B-BFB6-43BD-89B2-D9CBA2804A7A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A56B6702-2343-4D55-809C-4005ABFE43AA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::varDestinationSchemaName] + &quot;.&quot; + @[User::varTargetTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetName">
+      <DTS:VariableValue
+        DTS:DataType="8">SERENADE.INITHS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{570D08A2-00C6-4F7A-B1D5-CB8EC680F050}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">INITHS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{941D2521-5F0F-47A3-AF30-55BE31F58BB6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1A815D5B-6AE3-4CE5-B494-FA3A20F653DE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsBefore">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{44F0F6EB-CD78-4294-9C49-6C4EC9EB1CE8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUnchangedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6B14810-A58B-4FE1-A945-C6EE5DA5A29A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load SERENADE_INITHS Full"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5FC33D6F-85B3-497F-A29C-7EE3DB8B5846}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load SERENADE_INITHS Full"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          defaultBufferMaxRows="20000"
+          engineThreads="20"
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load SERENADE_INITHS Full\DER Values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="DER Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      name="ODSLoadDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[LoadID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[LoadID]"
+                      name="LoadID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::varLOAD_ID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::varLOAD_ID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">CWI.INITHS</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{5DCBEAFB-0701-48E5-89BD-406567BDFEB3}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4comp]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4comp]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4comp]"
+                      name="a4comp"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4becd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4becd]"
+                      length="12"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4becd]"
+                      name="a4becd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4besk]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4besk]"
+                      length="14"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4besk]"
+                      name="a4besk"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wcde]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4wcde]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wcde]"
+                      name="a4wcde"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aodt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aodt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aodt]"
+                      name="a4aodt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4adtm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4adtm]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4adtm]"
+                      name="a4adtm"
+                      precision="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jgno]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jgno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jgno]"
+                      name="a4jgno"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4arpr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4arpr]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4arpr]"
+                      name="a4arpr"
+                      precision="11"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bitx]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bitx]"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bitx]"
+                      name="a4bitx"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4brqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4brqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4brqt]"
+                      name="a4brqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bsqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bsqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bsqt]"
+                      name="a4bsqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4btqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4btqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4btqt]"
+                      name="a4btqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4daqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4daqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4daqt]"
+                      name="a4daqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eaqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4eaqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eaqt]"
+                      name="a4eaqt"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jlqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jlqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jlqt]"
+                      name="a4jlqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jmqt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jmqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jmqt]"
+                      name="a4jmqt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4agno]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4agno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4agno]"
+                      name="a4agno"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4s0nq]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4s0nq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4s0nq]"
+                      name="a4s0nq"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4o9qx]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4o9qx]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4o9qx]"
+                      name="a4o9qx"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ahno]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4ahno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ahno]"
+                      name="a4ahno"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aino]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aino]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aino]"
+                      name="a4aino"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4u5pr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4u5pr]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4u5pr]"
+                      name="a4u5pr"
+                      precision="7"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aacg]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aacg]"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aacg]"
+                      name="a4aacg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4hbnq]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4hbnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4hbnq]"
+                      name="a4hbnq"
+                      precision="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wmnq]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4wmnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wmnq]"
+                      name="a4wmnq"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4zpdt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4zpdt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4zpdt]"
+                      name="a4zpdt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ithm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4ithm]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ithm]"
+                      name="a4ithm"
+                      precision="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4a4nb]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4a4nb]"
+                      length="7"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4a4nb]"
+                      name="a4a4nb"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bwcd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bwcd]"
+                      length="1"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bwcd]"
+                      name="a4bwcd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4code]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4code]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4code]"
+                      name="a4code"
+                      precision="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4user]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4user]"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4user]"
+                      name="a4user"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eonb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4eonb]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eonb]"
+                      name="a4eonb"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4dcnq]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4dcnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4dcnq]"
+                      name="a4dcnq"
+                      precision="9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4gldt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4gldt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4gldt]"
+                      name="a4gldt"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4comp]"
+                      dataType="numeric"
+                      name="a4comp"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4becd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="a4becd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4besk]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="a4besk" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4wcde]"
+                      dataType="numeric"
+                      name="a4wcde"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aodt]"
+                      dataType="numeric"
+                      name="a4aodt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4adtm]"
+                      dataType="numeric"
+                      name="a4adtm"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jgno]"
+                      dataType="numeric"
+                      name="a4jgno"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4arpr]"
+                      dataType="numeric"
+                      name="a4arpr"
+                      precision="11"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bitx]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4bitx" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4brqt]"
+                      dataType="numeric"
+                      name="a4brqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bsqt]"
+                      dataType="numeric"
+                      name="a4bsqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4btqt]"
+                      dataType="numeric"
+                      name="a4btqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4daqt]"
+                      dataType="numeric"
+                      name="a4daqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4eaqt]"
+                      dataType="numeric"
+                      name="a4eaqt"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jlqt]"
+                      dataType="numeric"
+                      name="a4jlqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4jmqt]"
+                      dataType="numeric"
+                      name="a4jmqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4agno]"
+                      dataType="numeric"
+                      name="a4agno"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4s0nq]"
+                      dataType="numeric"
+                      name="a4s0nq"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4o9qx]"
+                      dataType="numeric"
+                      name="a4o9qx"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4ahno]"
+                      dataType="numeric"
+                      name="a4ahno"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aino]"
+                      dataType="numeric"
+                      name="a4aino"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4u5pr]"
+                      dataType="numeric"
+                      name="a4u5pr"
+                      precision="7"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4aacg]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4aacg" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4hbnq]"
+                      dataType="numeric"
+                      name="a4hbnq"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4wmnq]"
+                      dataType="numeric"
+                      name="a4wmnq"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4zpdt]"
+                      dataType="numeric"
+                      name="a4zpdt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4ithm]"
+                      dataType="numeric"
+                      name="a4ithm"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4a4nb]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="a4a4nb" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4bwcd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="a4bwcd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4code]"
+                      dataType="numeric"
+                      name="a4code"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4user]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4user" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4eonb]"
+                      dataType="numeric"
+                      name="a4eonb"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4dcnq]"
+                      dataType="numeric"
+                      name="a4dcnq"
+                      precision="9" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[a4gldt]"
+                      dataType="numeric"
+                      name="a4gldt"
+                      precision="7" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4comp]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4comp]"
+                      name="a4comp"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4becd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4becd]"
+                      name="a4becd" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4besk]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4besk]"
+                      name="a4besk" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4wcde]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4wcde]"
+                      name="a4wcde"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aodt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aodt]"
+                      name="a4aodt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4adtm]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4adtm]"
+                      name="a4adtm"
+                      precision="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jgno]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jgno]"
+                      name="a4jgno"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4arpr]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4arpr]"
+                      name="a4arpr"
+                      precision="11"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bitx]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bitx]"
+                      name="a4bitx" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4brqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4brqt]"
+                      name="a4brqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bsqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bsqt]"
+                      name="a4bsqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4btqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4btqt]"
+                      name="a4btqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4daqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4daqt]"
+                      name="a4daqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4eaqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4eaqt]"
+                      name="a4eaqt"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jlqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jlqt]"
+                      name="a4jlqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jmqt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4jmqt]"
+                      name="a4jmqt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4agno]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4agno]"
+                      name="a4agno"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4s0nq]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4s0nq]"
+                      name="a4s0nq"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4o9qx]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4o9qx]"
+                      name="a4o9qx"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4ahno]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4ahno]"
+                      name="a4ahno"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aino]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aino]"
+                      name="a4aino"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4u5pr]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4u5pr]"
+                      name="a4u5pr"
+                      precision="7"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aacg]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4aacg]"
+                      name="a4aacg" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4hbnq]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4hbnq]"
+                      name="a4hbnq"
+                      precision="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4wmnq]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4wmnq]"
+                      name="a4wmnq"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4zpdt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4zpdt]"
+                      name="a4zpdt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4ithm]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4ithm]"
+                      name="a4ithm"
+                      precision="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4a4nb]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4a4nb]"
+                      name="a4a4nb" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bwcd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4bwcd]"
+                      name="a4bwcd" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4code]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4code]"
+                      name="a4code"
+                      precision="2" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4user]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4user]"
+                      name="a4user" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4eonb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4eonb]"
+                      name="a4eonb"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4dcnq]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4dcnq]"
+                      name="a4dcnq"
+                      precision="9" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4gldt]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[a4gldt]"
+                      name="a4gldt"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST ODS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Serenade].[iniths]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Connections[OleDbConnection]"
+                  connectionManagerID="{76628D94-7500-41FE-BDDB-CBF583B918C8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LoadID]"
+                      cachedDataType="i4"
+                      cachedName="LoadID"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[LoadID]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSLoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSLoadDate"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADDATE]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4comp]"
+                      cachedDataType="numeric"
+                      cachedName="a4comp"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4comp]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4comp]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4becd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="a4becd"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4becd]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4becd]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4besk]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="a4besk"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4besk]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4besk]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4wcde]"
+                      cachedDataType="numeric"
+                      cachedName="a4wcde"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4wcde]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wcde]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4aodt]"
+                      cachedDataType="numeric"
+                      cachedName="a4aodt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aodt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aodt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4adtm]"
+                      cachedDataType="numeric"
+                      cachedName="a4adtm"
+                      cachedPrecision="6"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4adtm]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4adtm]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4jgno]"
+                      cachedDataType="numeric"
+                      cachedName="a4jgno"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jgno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jgno]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4arpr]"
+                      cachedDataType="numeric"
+                      cachedName="a4arpr"
+                      cachedPrecision="11"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4arpr]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4arpr]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4bitx]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="a4bitx"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bitx]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bitx]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4brqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4brqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4brqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4brqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4bsqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4bsqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bsqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bsqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4btqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4btqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4btqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4btqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4daqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4daqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4daqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4daqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4eaqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4eaqt"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4eaqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eaqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4jlqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4jlqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jlqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jlqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4jmqt]"
+                      cachedDataType="numeric"
+                      cachedName="a4jmqt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jmqt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4jmqt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4agno]"
+                      cachedDataType="numeric"
+                      cachedName="a4agno"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4agno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4agno]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4s0nq]"
+                      cachedDataType="numeric"
+                      cachedName="a4s0nq"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4s0nq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4s0nq]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4o9qx]"
+                      cachedDataType="numeric"
+                      cachedName="a4o9qx"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4o9qx]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4o9qx]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4ahno]"
+                      cachedDataType="numeric"
+                      cachedName="a4ahno"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4ahno]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ahno]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4aino]"
+                      cachedDataType="numeric"
+                      cachedName="a4aino"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aino]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aino]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4u5pr]"
+                      cachedDataType="numeric"
+                      cachedName="a4u5pr"
+                      cachedPrecision="7"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4u5pr]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4u5pr]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4aacg]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="a4aacg"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aacg]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4aacg]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4hbnq]"
+                      cachedDataType="numeric"
+                      cachedName="a4hbnq"
+                      cachedPrecision="6"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4hbnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4hbnq]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4wmnq]"
+                      cachedDataType="numeric"
+                      cachedName="a4wmnq"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4wmnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4wmnq]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4zpdt]"
+                      cachedDataType="numeric"
+                      cachedName="a4zpdt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4zpdt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4zpdt]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4ithm]"
+                      cachedDataType="numeric"
+                      cachedName="a4ithm"
+                      cachedPrecision="6"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4ithm]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4ithm]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4a4nb]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="a4a4nb"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4a4nb]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4a4nb]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4bwcd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="a4bwcd"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bwcd]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4bwcd]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4code]"
+                      cachedDataType="numeric"
+                      cachedName="a4code"
+                      cachedPrecision="2"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4code]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4code]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4user]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="a4user"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4user]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4user]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4eonb]"
+                      cachedDataType="numeric"
+                      cachedName="a4eonb"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4eonb]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4eonb]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4dcnq]"
+                      cachedDataType="numeric"
+                      cachedName="a4dcnq"
+                      cachedPrecision="9"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4dcnq]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4dcnq]" />
+                    <inputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[a4gldt]"
+                      cachedDataType="numeric"
+                      cachedName="a4gldt"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4gldt]"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output].Columns[a4gldt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      dataType="i4"
+                      name="LOADID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADDATE]"
+                      dataType="dbTimeStamp"
+                      name="LOADDATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4comp]"
+                      dataType="numeric"
+                      name="a4comp"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4becd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="a4becd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4besk]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="a4besk" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4wcde]"
+                      dataType="numeric"
+                      name="a4wcde"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aodt]"
+                      dataType="numeric"
+                      name="a4aodt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4adtm]"
+                      dataType="numeric"
+                      name="a4adtm"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jgno]"
+                      dataType="numeric"
+                      name="a4jgno"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4arpr]"
+                      dataType="numeric"
+                      name="a4arpr"
+                      precision="11"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bitx]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4bitx" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4brqt]"
+                      dataType="numeric"
+                      name="a4brqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bsqt]"
+                      dataType="numeric"
+                      name="a4bsqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4btqt]"
+                      dataType="numeric"
+                      name="a4btqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4daqt]"
+                      dataType="numeric"
+                      name="a4daqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4eaqt]"
+                      dataType="numeric"
+                      name="a4eaqt"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jlqt]"
+                      dataType="numeric"
+                      name="a4jlqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4jmqt]"
+                      dataType="numeric"
+                      name="a4jmqt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4agno]"
+                      dataType="numeric"
+                      name="a4agno"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4s0nq]"
+                      dataType="numeric"
+                      name="a4s0nq"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4o9qx]"
+                      dataType="numeric"
+                      name="a4o9qx"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4ahno]"
+                      dataType="numeric"
+                      name="a4ahno"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aino]"
+                      dataType="numeric"
+                      name="a4aino"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4u5pr]"
+                      dataType="numeric"
+                      name="a4u5pr"
+                      precision="7"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4aacg]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4aacg" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4hbnq]"
+                      dataType="numeric"
+                      name="a4hbnq"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4wmnq]"
+                      dataType="numeric"
+                      name="a4wmnq"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4zpdt]"
+                      dataType="numeric"
+                      name="a4zpdt"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4ithm]"
+                      dataType="numeric"
+                      name="a4ithm"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4a4nb]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="a4a4nb" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4bwcd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="a4bwcd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4code]"
+                      dataType="numeric"
+                      name="a4code"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4user]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="a4user" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4eonb]"
+                      dataType="numeric"
+                      name="a4eonb"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4dcnq]"
+                      dataType="numeric"
+                      name="a4dcnq"
+                      precision="9" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[a4gldt]"
+                      dataType="numeric"
+                      name="a4gldt"
+                      precision="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load SERENADE_INITHS Full\Row Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::varSourceTotalRecords</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load SERENADE_INITHS Full\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load SERENADE_INITHS Full\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - Load SERENADE_INITHS Full\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load SERENADE_INITHS Full.Paths[Derived Column Output]"
+              endId="Package\DFT - Load SERENADE_INITHS Full\Row Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load SERENADE_INITHS Full.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Load SERENADE_INITHS Full\DER Values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - Load SERENADE_INITHS Full.Paths[Row Count Output 1]"
+              endId="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - Load SERENADE_INITHS Full\Row Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Truncate ODS Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E13CB89B-2CFD-4F8C-8DCB-E47F1F017B4A}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Truncate ODS Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Truncate table " +  @[User::varTargetName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+          SQLTask:SqlStatementSource="Truncate table SERENADE.INITHS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full load Source counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F992C662-89E7-4D8A-A277-5436ED43E958}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full load Source counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Select " +   (DT_WSTR, 10) @[User::varSourceTotalRecords]  + " AS NewSourceCount  "</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DCBEAFB-0701-48E5-89BD-406567BDFEB3}"
+          SQLTask:SqlStatementSource="Select 0 AS NewSourceCount  "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C05FA43A-4D46-48A4-9F1D-931A9ECB4BFC}"
+      DTS:From="Package\EST - SQL Truncate ODS Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DFT - Load SERENADE_INITHS Full" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{29844EE4-F98D-40C8-BDB3-6158D36B594B}"
+      DTS:From="Package\DFT - Load SERENADE_INITHS Full"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Full load Source counts" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{96DA7AE0-E01D-48A2-B9D7-49A59ECFD3E1}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{5D3852FA-5CF0-48DA-83EB-81F66BD340DC}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FA254CC5-B6B7-4B3E-9188-C661456D15EF}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA;@EXEC_ID INT =?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_ERROR] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@START_TIME,&#xA;@END_TIME ,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{AEF6B026-2265-47F9-A2F5-C1F5EBA2E206}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET - Set IsErrorLogged flag"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::varIsErrorLogged]=TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{83BC0D79-AB32-41E5-AB6F-FC185CD2C055}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_5a785293be4f4576bafbdd917f02dc93"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{D5EF6114-6DAE-47BA-B4CD-3E8D62E40F8C}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varIsErrorLogged]==FALSE"
+          DTS:From="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{8C78030C-41B9-4F12-B5CC-2E390FAE6CD3}"
+          DTS:From="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{7296FE6C-BF9E-4284-8893-D6CDB05A4C5E}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F4491577-7561-41FB-A247-AD7A8336C33B}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6D79748F-52F2-4DAD-826F-2D82F84CEAF1}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA; @EXEC_ID INT = ?,&#xA;@SOURCE_TOTAL_RECORDS decimal(10,0) = ?,&#xA;@SOURCE_NEW_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_CHANGE_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_DELETE_RECORDS  decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_BEFORE decimal(10,0) = ?,&#xA;@TARGET_NEW_RECORDS decimal(10,0) = ?,&#xA;@TARGET_CHANGE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_DELETE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_UNCHANGED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_FAILED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_AFTER decimal(10,0) = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_COMPLETE] &#xA; @ART_CTRL_MASTER_ID, &#xA; @EXEC_ID,&#xA;@SOURCE_NME,&#xA;@SOURCE_TOTAL_RECORDS,&#xA;@SOURCE_NEW_RECORDS,&#xA;@SOURCE_CHANGE_RECORDS,&#xA;@SOURCE_DELETE_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_BEFORE,&#xA;@TARGET_NEW_RECORDS,&#xA;@TARGET_CHANGE_RECORDS,&#xA;@TARGET_DELETE_RECORDS,&#xA;@TARGET_UNCHANGED_RECORDS,&#xA;@TARGET_FAILED_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_AFTER,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceTotalRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varSourceNewRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varSourceChangeRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varSourceDeletedRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::varTargetFailedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="12"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="13"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="14"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="15"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="16"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="17"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9079F18F-8926-4515-AA40-37664CF615C3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Post Execution Target Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0
+SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM "+ (DT_STR, 100, 1252) @[User::varTargetName]   +" nolock)
+ SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+              SQLTask:SqlStatementSource="DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0&#xA;SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM SERENADE.INITHS nolock)&#xA; SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6A7FBB79-F421-4500-82FB-16DA5D762196}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Log IBC Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="Exec AM.USP_PKG_ON_ERROR_IBC ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{D825C4A9-F187-44A8-8162-1C103435480B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_457b4773b1c84d21ab737917771f6b46"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{86F5FCC4-0291-4533-8634-5F3E652BB2F6}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{11138621-4247-4C5E-BC67-4E9755FC5B0D}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference] != 0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{DD1B84A4-24F8-4EE4-9ABB-AD8809ACD70D}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{724F8C14-C156-4810-A918-E6719BA31A13}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{ABC21AC1-5190-48B7-B55B-482461B48455}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9FDFBF64-241C-4C05-96AE-82489445552B}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE  @ART_CTRL_MASTER_ID INT = ? ,&#xA;  @EXEC_ID INT = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ? ,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_EXECUTE] &#xA; @ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@SOURCE_NME,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A35B308E-DB69-4D58-885B-55D829C2F6A0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Target Before Count"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select Count(*) as NumRows from "+(DT_WSTR,100)  @[User::varTargetName]+" "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+              SQLTask:SqlStatementSource="Select Count(*) as NumRows from SERENADE.INITHS "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{83A76CB5-8672-45AF-977B-B87A40E1AD52}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Set Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="SELECT LAST_LOAD_ID FROM [AM].[ARTIFACT_CTRL_MASTER] WHERE [ART_CTRL_MASTER_ID] =  ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{45A8F6FC-4E45-4475-9D7F-4B5C1BAD3F13}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_897ecc0e90e34f0c9be0a6168fbcf683"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{EB9B31D6-E91D-4435-8044-6B72292DC5AC}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Set Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{0D7FE87C-690E-4850-A4E7-AED68754D7B4}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{A28E3A53-DBCE-43FA-AF91-2455A76AD649}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="246,42"
+          Id="Package\DFT - Load SERENADE_INITHS Full"
+          TopLeft="262.716981132075,240.486897274633" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\EST - SQL Truncate ODS Table"
+          TopLeft="256.716981132075,159.430293501048" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Full load Source counts"
+          TopLeft="281,328" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="369.216981132075,201.430293501048">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5,39.056603773585"
+              Start="0,0"
+              End="16.5,31.556603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5283018867925" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5283018867925"
+                    Point2="0,19.5283018867925"
+                    Point3="4,19.5283018867925" />
+                  <mssgle:LineSegment
+                    End="12.5,19.5283018867925" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5,19.5283018867925"
+                    Point2="16.5,19.5283018867925"
+                    Point3="16.5,23.5283018867925" />
+                  <mssgle:LineSegment
+                    End="16.5,31.556603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="385.716981132075,282.486897274633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.71698113207498,45.513102725367"
+              Start="0,0"
+              End="-9.71698113207498,38.013102725367">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7565513626835" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.7565513626835"
+                    Point2="0,22.7565513626835"
+                    Point3="-4,22.7565513626835" />
+                  <mssgle:LineSegment
+                    End="-5.71698113207498,22.7565513626835" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.71698113207498,22.7565513626835"
+                    Point2="-9.71698113207498,22.7565513626835"
+                    Point3="-9.71698113207498,26.7565513626835" />
+                  <mssgle:LineSegment
+                    End="-9.71698113207498,38.013102725367" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Truncate Table INITHS"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="147,40"
+          Id="1eefab8d-3747-4d65-aed1-b6807a19e709"
+          TopLeft="588.716981132075,152" />
+        <AnnotationLayout
+          Text="Full load Table INITHS"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="146,40"
+          Id="088b07d3-aa08-4ad1-93e5-b199d28fa2ca"
+          TopLeft="617.43396226415,234" />
+        <AnnotationLayout
+          Text="Get Full Load Table INITHS Source Count"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="245,40"
+          Id="8fbdf940-8335-4201-8560-849b4a68c7b1"
+          TopLeft="609.43396226415,316" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          TopLeft="60,264" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ST-Dummy Task"
+          TopLeft="60,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          TopLeft="228,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          TopLeft="228,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="1ff89239-4279-4cd0-ae82-f283f9cf9d7d"
+          TopLeft="454,60" />
+        <AnnotationLayout
+          Text="Push Package Execution Error Details in Framework Tables"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="3af2e912-b79c-4e08-975f-5eedd070182c"
+          TopLeft="454,160" />
+        <AnnotationLayout
+          Text="Set Error Log Flag"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="10b224cb-51b6-4b2d-9b9c-a639a4440c04"
+          TopLeft="458,260" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="273,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          TopLeft="385,284" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          TopLeft="653,132" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          TopLeft="912,264" />
+        <NodeLayout
+          Size="344,42"
+          Id="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          TopLeft="610,64" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="743.666666666667,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-222.166666666667,110"
+              Start="0,0"
+              End="-222.166666666667,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.3916913946588"
+                    Point2="0,44.3916913946588"
+                    Point3="-4,44.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-218.166666666667,44.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-218.166666666667,44.3916913946588"
+                    Point2="-222.166666666667,44.3916913946588"
+                    Point3="-222.166666666667,48.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-222.166666666667,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.083333333333,49.3916913946588,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="830.333333333333,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="168.166666666667,90"
+              Start="0,0"
+              End="168.166666666667,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3204747774481"
+                    Point2="0,36.3204747774481"
+                    Point3="4,36.3204747774481" />
+                  <mssgle:LineSegment
+                    End="164.166666666667,36.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="164.166666666667,36.3204747774481"
+                    Point2="168.166666666667,36.3204747774481"
+                    Point3="168.166666666667,40.3204747774481" />
+                  <mssgle:LineSegment
+                    End="168.166666666667,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="76.0833333333333,41.3204747774481,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="784.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,1.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="344,NaN"
+          Id="84a04973-b47d-4acc-9ae2-0c426b217986"
+          TopLeft="1048,60" />
+        <AnnotationLayout
+          Text="Get Post Execution Record Count From Target Table"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="344,NaN"
+          Id="c8a364b0-def1-4b41-8b2a-a272f18e243e"
+          TopLeft="1046,130" />
+        <AnnotationLayout
+          Text="Push Package Execution Details data into Framework Tables"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="323,NaN"
+          Id="d718dfed-37a9-4265-a160-b8a9f94058e2"
+          TopLeft="60,280" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          TopLeft="63,310" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          TopLeft="85,226.081132075472" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          TopLeft="60,131.691509433962" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          TopLeft="60,62.051886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="213,104.051886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.639622641509"
+              Start="0,0"
+              End="0,20.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,2.0698113207545,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="213,173.691509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.5,52.38962264151"
+              Start="0,0"
+              End="-16.5,44.88962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.194811320755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.194811320755"
+                    Point2="0,26.194811320755"
+                    Point3="-4,26.194811320755" />
+                  <mssgle:LineSegment
+                    End="-12.5,26.194811320755" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.5,26.194811320755"
+                    Point2="-16.5,26.194811320755"
+                    Point3="-16.5,30.194811320755" />
+                  <mssgle:LineSegment
+                    End="-16.5,44.88962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          TopLeft="196.5,268.081132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,41.918867924528"
+              Start="0,0"
+              End="19.5,34.418867924528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.959433962264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.959433962264"
+                    Point2="0,20.959433962264"
+                    Point3="4,20.959433962264" />
+                  <mssgle:LineSegment
+                    End="15.5,20.959433962264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,20.959433962264"
+                    Point2="19.5,20.959433962264"
+                    Point3="19.5,24.959433962264" />
+                  <mssgle:LineSegment
+                    End="19.5,34.418867924528" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="f8f3efc9-29c3-477c-b5a8-56e6a29829c8"
+          TopLeft="394.333333333333,60" />
+        <AnnotationLayout
+          Text="Get Latest  Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="ab86a336-f773-4a32-a110-a09757df7ef1"
+          TopLeft="395.333333333333,132" />
+        <AnnotationLayout
+          Text="Push Package execution details in Framework Tables"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="1e7cf862-5db7-4d85-b21d-c4ef5c2b3b03"
+          TopLeft="391.833333333333,328" />
+        <AnnotationLayout
+          Text="Get Total Record Count From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="eeba50f3-2860-4558-b3e1-3d6340a39fc8"
+          TopLeft="390.833333333333,221" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT - Load SERENADE_INITHS Full">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DFT - Load SERENADE_INITHS Full\Row Count"
+          TopLeft="21,155" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS"
+          TopLeft="5.5,229.27358490566" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load SERENADE_INITHS Full\DER Values"
+          TopLeft="5.5,82.7075471698113" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DFT - Load SERENADE_INITHS Full\OLE DB Source"
+          TopLeft="279,22" />
+        <EdgeLayout
+          Id="Package\DFT - Load SERENADE_INITHS Full.Paths[Derived Column Output]"
+          TopLeft="73.5,126.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,28.2924528301887"
+              Start="0,0"
+              End="12.5,20.7924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.1462264150943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.1462264150943"
+                    Point2="0,14.1462264150943"
+                    Point3="4,14.1462264150943" />
+                  <mssgle:LineSegment
+                    End="8.5,14.1462264150943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,14.1462264150943"
+                    Point2="12.5,14.1462264150943"
+                    Point3="12.5,18.1462264150943" />
+                  <mssgle:LineSegment
+                    End="12.5,20.7924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load SERENADE_INITHS Full.Paths[Row Count Output 1]"
+          TopLeft="86,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-12.5,32.27358490566"
+              Start="0,0"
+              End="-12.5,24.77358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.13679245283" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.13679245283"
+                    Point2="0,16.13679245283"
+                    Point3="-4,16.13679245283" />
+                  <mssgle:LineSegment
+                    End="-8.5,16.13679245283" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-8.5,16.13679245283"
+                    Point2="-12.5,16.13679245283"
+                    Point3="-12.5,20.13679245283" />
+                  <mssgle:LineSegment
+                    End="-12.5,24.77358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load SERENADE_INITHS Full.Paths[OLE DB Source Output]"
+          TopLeft="279,43">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.5,61.7075471698113"
+              Start="0,0"
+              End="-130,61.7075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-64.75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.75,0"
+                    Point2="-68.75,0"
+                    Point3="-68.75,4" />
+                  <mssgle:LineSegment
+                    End="-68.75,57.7075471698113" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-68.75,57.7075471698113"
+                    Point2="-68.75,61.7075471698113"
+                    Point3="-72.75,61.7075471698113" />
+                  <mssgle:LineSegment
+                    End="-130,61.7075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load SERENADE_INITHS Full\OLE DST ODS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

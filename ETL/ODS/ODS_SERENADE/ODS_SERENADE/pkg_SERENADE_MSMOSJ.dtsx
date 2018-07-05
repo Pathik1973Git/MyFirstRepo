@@ -1,0 +1,3063 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{545B1560-ABB1-4C7F-8D74-491BDC32F721}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="pkg_SERENADE_MSMOSJ"
+  DTS:VersionBuild="510"
+  DTS:VersionGUID="{0C8F4384-B111-4167-9833-9F80A8CBB881}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{A1ADE913-2993-40C6-BEAE-7B8923731140}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{768092D3-D2B1-419B-B3F5-D3112D0DCCEC}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3Source&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{9EBC37C7-AB75-4A46-9BDE-8775B9F4170A}"
+      DTS:ObjectName="M3Source" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3ODSCACCSTisAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{BA3DE022-4EB7-407C-B18A-A3724C72E9EC}"
+      DTS:ObjectName="M3ODSCACCSTisAuditingEnabled" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{08CC2FC2-A142-43EB-8980-C274029B15B3}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="isIncremental">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A609B628-EDD3-48BC-B3A2-CD7940BD12B9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varART_CTRL_MASTER_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">3095</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2B605A63-EDC3-4D24-B94B-E614EE6F4280}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="( @[User::varSourceNewRecords] ) - ( @[User::varTargetInsertedCount] +  @[User::varTargetUpdatedCount]  + @[User::varTargetUnchangedRecordsAfter] )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCountDifference">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F408EBB-C210-4D7E-A5A7-6F8B1A8B1759}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">RWSODS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6C47C76D-6A23-4754-B813-725D786A35DF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">SERENADE</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34549375-746F-4B35-86E3-22DE39368AE0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEndTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:19:52 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{335F512C-B489-4491-8ACD-44D941A3203C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEXEC_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8BB448B-40DE-4276-A216-2928B289189D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsErrorLogged">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CC676904-92F9-41A8-B226-9087997E6C18}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLOAD_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5A809008-DA5E-415F-A15F-4239910EDB0C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceChangeRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D3EC867B-1D43-4E4D-B86A-2AC8AEE18DCD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDeletedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{147D86C9-829C-45A2-BF3A-A8D93F6627B4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">CWI.MSMOSJ</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0D301AF2-E3E8-483A-8A4E-5FA5F8705F4E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceNewRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{44BFED58-50CC-403C-A701-9DA044989898}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTotalRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D1293DF0-0F74-40C4-BF2B-6DF4855CBF3C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:20:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CAB749DB-CBF4-4FDA-959F-BEB43EAA2E1B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDeletedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BCD8267C-3EA9-4C0A-8E7D-2E11D1732FF9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetFailedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7E8D2CC3-8BE2-4B18-8BC4-C9C7F637C46D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{44D9391B-1417-4155-AD1D-877DAD0AD553}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::varDestinationSchemaName] + &quot;.&quot; + @[User::varTargetTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetName">
+      <DTS:VariableValue
+        DTS:DataType="8">SERENADE.MSMOSJ</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E79F8CDE-0FD4-4B25-90D6-DB8D0D91336B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">MSMOSJ</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{591C5532-4453-4077-813A-59CF2A741648}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2946577B-EDCE-4126-935F-9BE9C89A5948}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsBefore">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{548F7C5D-118C-45C2-8D2D-AFB1EF8EF28D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUnchangedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C75609EA-271C-435A-A953-E077893AFC50}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT-Full Load For Serenade_MSMOSJ Table"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5D350077-8B65-4C5B-BB15-BFB19CD398B8}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT-Full Load For Serenade_MSMOSJ Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          defaultBufferMaxRows="20000"
+          engineThreads="20"
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="DER Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LOADDATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LOADDATE]"
+                      name="LOADDATE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LoadID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LoadID]"
+                      name="LoadID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::varLOAD_ID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::varLOAD_ID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[cwi].[msmosj]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{5DCBEAFB-0701-48E5-89BD-406567BDFEB3}:invalid"
+                  connectionManagerRefId="{5DCBEAFB-0701-48E5-89BD-406567BDFEB3}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcomp]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvcomp]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcomp]"
+                      name="rvcomp"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvexnb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvexnb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvexnb]"
+                      name="rvexnb"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rveynb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rveynb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rveynb]"
+                      name="rveynb"
+                      precision="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcacd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvcacd]"
+                      length="3"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcacd]"
+                      name="rvcacd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuwvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuwvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuwvb]"
+                      name="rvuwvb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuxvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuxvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuxvb]"
+                      name="rvuxvb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuyvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuyvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuyvb]"
+                      name="rvuyvb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuzvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuzvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuzvb]"
+                      name="rvuzvb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu0vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu0vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu0vb]"
+                      name="rvu0vb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu1vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu1vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu1vb]"
+                      name="rvu1vb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu2vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu2vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu2vb]"
+                      name="rvu2vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu3vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu3vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu3vb]"
+                      name="rvu3vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu4vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu4vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu4vb]"
+                      name="rvu4vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvl1pc]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvl1pc]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvl1pc]"
+                      name="rvl1pc"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu5vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu5vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu5vb]"
+                      name="rvu5vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu6vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu6vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu6vb]"
+                      name="rvu6vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu7vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu7vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu7vb]"
+                      name="rvu7vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu8vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu8vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu8vb]"
+                      name="rvu8vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu9vb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu9vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu9vb]"
+                      name="rvu9vb"
+                      precision="11"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvavb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvavb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvavb]"
+                      name="rvvavb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvbvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvbvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvbvb]"
+                      name="rvvbvb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvcvb]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvcvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvcvb]"
+                      name="rvvcvb"
+                      precision="9"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvafnr]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvafnr]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvafnr]"
+                      name="rvafnr"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvcomp]"
+                      dataType="numeric"
+                      name="rvcomp"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvexnb]"
+                      dataType="numeric"
+                      name="rvexnb"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rveynb]"
+                      dataType="numeric"
+                      name="rveynb"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvcacd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="rvcacd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuwvb]"
+                      dataType="numeric"
+                      name="rvuwvb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuxvb]"
+                      dataType="numeric"
+                      name="rvuxvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuyvb]"
+                      dataType="numeric"
+                      name="rvuyvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvuzvb]"
+                      dataType="numeric"
+                      name="rvuzvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu0vb]"
+                      dataType="numeric"
+                      name="rvu0vb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu1vb]"
+                      dataType="numeric"
+                      name="rvu1vb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu2vb]"
+                      dataType="numeric"
+                      name="rvu2vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu3vb]"
+                      dataType="numeric"
+                      name="rvu3vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu4vb]"
+                      dataType="numeric"
+                      name="rvu4vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvl1pc]"
+                      dataType="numeric"
+                      name="rvl1pc"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu5vb]"
+                      dataType="numeric"
+                      name="rvu5vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu6vb]"
+                      dataType="numeric"
+                      name="rvu6vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu7vb]"
+                      dataType="numeric"
+                      name="rvu7vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu8vb]"
+                      dataType="numeric"
+                      name="rvu8vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvu9vb]"
+                      dataType="numeric"
+                      name="rvu9vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvavb]"
+                      dataType="numeric"
+                      name="rvvavb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvbvb]"
+                      dataType="numeric"
+                      name="rvvbvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvvcvb]"
+                      dataType="numeric"
+                      name="rvvcvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rvafnr]"
+                      dataType="numeric"
+                      name="rvafnr"
+                      precision="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvcomp]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvcomp]"
+                      name="rvcomp"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvexnb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvexnb]"
+                      name="rvexnb"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rveynb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rveynb]"
+                      name="rveynb"
+                      precision="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvcacd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvcacd]"
+                      name="rvcacd" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuwvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuwvb]"
+                      name="rvuwvb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuxvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuxvb]"
+                      name="rvuxvb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuyvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuyvb]"
+                      name="rvuyvb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuzvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvuzvb]"
+                      name="rvuzvb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu0vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu0vb]"
+                      name="rvu0vb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu1vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu1vb]"
+                      name="rvu1vb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu2vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu2vb]"
+                      name="rvu2vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu3vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu3vb]"
+                      name="rvu3vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu4vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu4vb]"
+                      name="rvu4vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvl1pc]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvl1pc]"
+                      name="rvl1pc"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu5vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu5vb]"
+                      name="rvu5vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu6vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu6vb]"
+                      name="rvu6vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu7vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu7vb]"
+                      name="rvu7vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu8vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu8vb]"
+                      name="rvu8vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu9vb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvu9vb]"
+                      name="rvu9vb"
+                      precision="11"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvavb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvavb]"
+                      name="rvvavb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvbvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvbvb]"
+                      name="rvvbvb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvcvb]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvvcvb]"
+                      name="rvvcvb"
+                      precision="9"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvafnr]"
+                      dataType="numeric"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rvafnr]"
+                      name="rvafnr"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST ODS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Serenade].[msmosj]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Connections[OleDbConnection]"
+                  connectionManagerID="{76628D94-7500-41FE-BDDB-CBF583B918C8}:invalid"
+                  connectionManagerRefId="{76628D94-7500-41FE-BDDB-CBF583B918C8}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LoadID]"
+                      cachedDataType="i4"
+                      cachedName="LoadID"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LoadID]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LOADDATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LOADDATE"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADDATE]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output].Columns[LOADDATE]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvcomp]"
+                      cachedDataType="numeric"
+                      cachedName="rvcomp"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvcomp]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcomp]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvexnb]"
+                      cachedDataType="numeric"
+                      cachedName="rvexnb"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvexnb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvexnb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rveynb]"
+                      cachedDataType="numeric"
+                      cachedName="rveynb"
+                      cachedPrecision="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rveynb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rveynb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvcacd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="rvcacd"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvcacd]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvcacd]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvuwvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvuwvb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuwvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuwvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvuxvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvuxvb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuxvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuxvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvuyvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvuyvb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuyvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuyvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvuzvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvuzvb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuzvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvuzvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu0vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu0vb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu0vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu0vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu1vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu1vb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu1vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu1vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu2vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu2vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu2vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu2vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu3vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu3vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu3vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu3vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu4vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu4vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu4vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu4vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvl1pc]"
+                      cachedDataType="numeric"
+                      cachedName="rvl1pc"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvl1pc]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvl1pc]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu5vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu5vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu5vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu5vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu6vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu6vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu6vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu6vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu7vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu7vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu7vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu7vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu8vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu8vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu8vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu8vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvu9vb]"
+                      cachedDataType="numeric"
+                      cachedName="rvu9vb"
+                      cachedPrecision="11"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu9vb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvu9vb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvvavb]"
+                      cachedDataType="numeric"
+                      cachedName="rvvavb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvavb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvavb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvvbvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvvbvb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvbvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvbvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvvcvb]"
+                      cachedDataType="numeric"
+                      cachedName="rvvcvb"
+                      cachedPrecision="9"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvcvb]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvvcvb]" />
+                    <inputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[rvafnr]"
+                      cachedDataType="numeric"
+                      cachedName="rvafnr"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvafnr]"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[rvafnr]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      dataType="i4"
+                      name="LOADID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADDATE]"
+                      dataType="dbTimeStamp"
+                      name="LOADDATE" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvcomp]"
+                      dataType="numeric"
+                      name="rvcomp"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvexnb]"
+                      dataType="numeric"
+                      name="rvexnb"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rveynb]"
+                      dataType="numeric"
+                      name="rveynb"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvcacd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="rvcacd" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuwvb]"
+                      dataType="numeric"
+                      name="rvuwvb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuxvb]"
+                      dataType="numeric"
+                      name="rvuxvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuyvb]"
+                      dataType="numeric"
+                      name="rvuyvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvuzvb]"
+                      dataType="numeric"
+                      name="rvuzvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu0vb]"
+                      dataType="numeric"
+                      name="rvu0vb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu1vb]"
+                      dataType="numeric"
+                      name="rvu1vb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu2vb]"
+                      dataType="numeric"
+                      name="rvu2vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu3vb]"
+                      dataType="numeric"
+                      name="rvu3vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu4vb]"
+                      dataType="numeric"
+                      name="rvu4vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvl1pc]"
+                      dataType="numeric"
+                      name="rvl1pc"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu5vb]"
+                      dataType="numeric"
+                      name="rvu5vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu6vb]"
+                      dataType="numeric"
+                      name="rvu6vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu7vb]"
+                      dataType="numeric"
+                      name="rvu7vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu8vb]"
+                      dataType="numeric"
+                      name="rvu8vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvu9vb]"
+                      dataType="numeric"
+                      name="rvu9vb"
+                      precision="11"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvavb]"
+                      dataType="numeric"
+                      name="rvvavb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvbvb]"
+                      dataType="numeric"
+                      name="rvvbvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvvcvb]"
+                      dataType="numeric"
+                      name="rvvcvb"
+                      precision="9"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[rvafnr]"
+                      dataType="numeric"
+                      name="rvafnr"
+                      precision="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::varSourceTotalRecords</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[Derived Column Output]"
+              endId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[OLE DB Source Output]"
+              endId="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[Row Count Output 1]"
+              endId="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Truncate ODS Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{26F1AD7F-A9C9-434F-B2C1-9B35C77FB25D}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Truncate ODS Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Truncate table " +  @[User::varTargetName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+          SQLTask:SqlStatementSource="Truncate table SERENADE.MSMOSJ" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full load Source counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C9072B16-D42D-4826-BC1A-F9C9684E6F1F}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full load Source counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Select " +   (DT_WSTR, 10) @[User::varSourceTotalRecords]  + " AS NewSourceCount  "</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5DCBEAFB-0701-48E5-89BD-406567BDFEB3}"
+          SQLTask:SqlStatementSource="Select 0 AS NewSourceCount  "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4A326657-21F5-4C15-99DA-3823C6E31A61}"
+      DTS:From="Package\EST - SQL Truncate ODS Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DFT-Full Load For Serenade_MSMOSJ Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{6C2CB43F-568D-4ED0-B1A2-F05BA3F19C22}"
+      DTS:From="Package\DFT-Full Load For Serenade_MSMOSJ Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Full load Source counts" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{96B6511B-CBD0-40B6-991C-42A7D270FF67}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F7E5DD56-6C8B-489C-ADE1-F2B48734C734}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E309AB9F-F609-43ED-BCDC-7BF045BA188E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA;@EXEC_ID INT =?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_ERROR] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@START_TIME,&#xA;@END_TIME ,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{68620C32-EBDC-4977-B1FB-2F456FAF8A7E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET - Set IsErrorLogged flag"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::varIsErrorLogged]=TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{7CB4F226-25DD-4BCA-B71A-CC37CC14B59A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_5a785293be4f4576bafbdd917f02dc93"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{50E17FD6-EA28-4003-94E9-D79F47CF4C21}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varIsErrorLogged]==FALSE"
+          DTS:From="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{B2A9C90E-259A-4000-8382-0C7A5C84D30A}"
+          DTS:From="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{DDF7C8C5-6152-4332-94C1-B0E98B3EAC43}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{17C0FB9E-BA4C-4DBE-A872-CA2F6D6695A2}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6539A3A2-9478-4C52-B89C-7AB4BD9D926A}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA; @EXEC_ID INT = ?,&#xA;@SOURCE_TOTAL_RECORDS decimal(10,0) = ?,&#xA;@SOURCE_NEW_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_CHANGE_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_DELETE_RECORDS  decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_BEFORE decimal(10,0) = ?,&#xA;@TARGET_NEW_RECORDS decimal(10,0) = ?,&#xA;@TARGET_CHANGE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_DELETE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_UNCHANGED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_FAILED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_AFTER decimal(10,0) = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_COMPLETE] &#xA; @ART_CTRL_MASTER_ID, &#xA; @EXEC_ID,&#xA;@SOURCE_NME,&#xA;@SOURCE_TOTAL_RECORDS,&#xA;@SOURCE_NEW_RECORDS,&#xA;@SOURCE_CHANGE_RECORDS,&#xA;@SOURCE_DELETE_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_BEFORE,&#xA;@TARGET_NEW_RECORDS,&#xA;@TARGET_CHANGE_RECORDS,&#xA;@TARGET_DELETE_RECORDS,&#xA;@TARGET_UNCHANGED_RECORDS,&#xA;@TARGET_FAILED_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_AFTER,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceTotalRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varSourceNewRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varSourceChangeRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varSourceDeletedRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::varTargetFailedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="12"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="13"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="14"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="15"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="16"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="17"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{092D1465-2243-47AE-A56A-A73B144FD93F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Post Execution Target Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0
+SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM "+ (DT_STR, 100, 1252) @[User::varTargetName]   +" nolock)
+ SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+              SQLTask:SqlStatementSource="DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0&#xA;SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM SERENADE.MSMOSJ nolock)&#xA; SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EA15FCEB-596F-4D45-B0C3-C4FC7D320C28}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Log IBC Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="Exec AM.USP_PKG_ON_ERROR_IBC ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{D88882B6-8849-4922-A11D-955ED4CF0518}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_457b4773b1c84d21ab737917771f6b46"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{45D6A4B6-BD8E-4A07-8D6F-31454108CD56}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{D9FE87C0-E265-4BD3-AE61-684C84AAB8D8}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference] != 0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{C6301B08-E6C9-4DAB-892A-B33375BF8151}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{5E76F407-D225-46FB-8A09-C117CD2B8AE1}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F505F192-798F-49E9-9ED0-ED41706294ED}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D6A72ECA-85DD-49EE-A75E-0963BD0C5FC6}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="DECLARE  @ART_CTRL_MASTER_ID INT = ? ,&#xA;  @EXEC_ID INT = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ? ,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_EXECUTE] &#xA; @ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@SOURCE_NME,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4AC9E841-2971-4235-94FF-D3249EF6D20C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Target Before Count"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select Count(*) as NumRows from "+(DT_WSTR,100)  @[User::varTargetName]+" "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{76628D94-7500-41FE-BDDB-CBF583B918C8}"
+              SQLTask:SqlStatementSource="Select Count(*) as NumRows from SERENADE.MSMOSJ "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EFDB948D-59DE-4F1E-9B15-5D35DDB8911F}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Set Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{16749A4A-D51D-423C-B921-177572C89EE1}"
+              SQLTask:SqlStatementSource="SELECT LAST_LOAD_ID FROM [AM].[ARTIFACT_CTRL_MASTER] WHERE [ART_CTRL_MASTER_ID] =  ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{9483B587-C621-4065-9A22-3A77DB4FC934}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_897ecc0e90e34f0c9be0a6168fbcf683"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{1DF33C89-1C48-4E71-AB80-2661201344CA}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Set Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{893F66D2-B0C7-4909-82D7-AA79EEB1B74D}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{5CEED2F9-41C2-46F4-A99F-82227FBC7F45}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="287,42"
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="296,42"
+          Id="Package\EST - SQL Truncate ODS Table"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="296,42"
+          Id="Package\Full load Source counts"
+          TopLeft="5.5,209.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="151.25,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="151.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Truncae the ODS Table before Full Load"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="296,39"
+          Id="1eefab8d-3747-4d65-aed1-b6807a19e709"
+          TopLeft="311.5,12" />
+        <AnnotationLayout
+          Text="Full load for the ODS Table "
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="296,39"
+          Id="088b07d3-aa08-4ad1-93e5-b199d28fa2ca"
+          TopLeft="323.5,102" />
+        <AnnotationLayout
+          Text="Get Full Load Count of Source Table "
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="296,39"
+          Id="8fbdf940-8335-4201-8560-849b4a68c7b1"
+          TopLeft="309.5,211" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          TopLeft="60,264" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ST-Dummy Task"
+          TopLeft="60,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          TopLeft="228,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          TopLeft="228,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="1ff89239-4279-4cd0-ae82-f283f9cf9d7d"
+          TopLeft="454,60" />
+        <AnnotationLayout
+          Text="Push Package Execution Error Details in Framework Tables"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="3af2e912-b79c-4e08-975f-5eedd070182c"
+          TopLeft="454,160" />
+        <AnnotationLayout
+          Text="Set Error Log Flag"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{assembly:Null}"
+          Size="336,NaN"
+          Id="10b224cb-51b6-4b2d-9b9c-a639a4440c04"
+          TopLeft="458,260" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="273,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          TopLeft="385,284" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          TopLeft="653,132" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          TopLeft="912,264" />
+        <NodeLayout
+          Size="344,42"
+          Id="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          TopLeft="610,64" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="743.666666666667,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-222.166666666667,110"
+              Start="0,0"
+              End="-222.166666666667,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.3916913946588"
+                    Point2="0,44.3916913946588"
+                    Point3="-4,44.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-218.166666666667,44.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-218.166666666667,44.3916913946588"
+                    Point2="-222.166666666667,44.3916913946588"
+                    Point3="-222.166666666667,48.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-222.166666666667,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.083333333333,49.3916913946588,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="830.333333333333,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="168.166666666667,90"
+              Start="0,0"
+              End="168.166666666667,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3204747774481"
+                    Point2="0,36.3204747774481"
+                    Point3="4,36.3204747774481" />
+                  <mssgle:LineSegment
+                    End="164.166666666667,36.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="164.166666666667,36.3204747774481"
+                    Point2="168.166666666667,36.3204747774481"
+                    Point3="168.166666666667,40.3204747774481" />
+                  <mssgle:LineSegment
+                    End="168.166666666667,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="76.0833333333333,41.3204747774481,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="784.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26"
+              Start="0,0"
+              End="0,18.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,1.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="344,NaN"
+          Id="84a04973-b47d-4acc-9ae2-0c426b217986"
+          TopLeft="1048,60" />
+        <AnnotationLayout
+          Text="Get Post Execution Record Count From Target Table"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="344,NaN"
+          Id="c8a364b0-def1-4b41-8b2a-a272f18e243e"
+          TopLeft="1046,130" />
+        <AnnotationLayout
+          Text="Push Package Execution Details data into Framework Tables"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{assembly:Null}"
+          Size="323,NaN"
+          Id="d718dfed-37a9-4265-a160-b8a9f94058e2"
+          TopLeft="60,280" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          TopLeft="44,310" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          TopLeft="49,220.081132075472" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          TopLeft="52,130.691509433962" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          TopLeft="47,62.051886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="202.5,104.051886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.639622641509"
+              Start="0,0"
+              End="0,19.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,1.56981132075451,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="203.5,172.691509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.38962264151"
+              Start="0,0"
+              End="0,39.88962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.88962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          TopLeft="199.5,262.081132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.918867924528"
+              Start="0,0"
+              End="0,40.418867924528">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.418867924528" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="f8f3efc9-29c3-477c-b5a8-56e6a29829c8"
+          TopLeft="394.333333333333,60" />
+        <AnnotationLayout
+          Text="Get Latest  Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="ab86a336-f773-4a32-a110-a09757df7ef1"
+          TopLeft="395.333333333333,132" />
+        <AnnotationLayout
+          Text="Push Package execution details in Framework Tables"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="1e7cf862-5db7-4d85-b21d-c4ef5c2b3b03"
+          TopLeft="391.833333333333,328" />
+        <AnnotationLayout
+          Text="Get Total Record Count From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{assembly:Null}"
+          Size="306,NaN"
+          Id="eeba50f3-2860-4558-b3e1-3d6340a39fc8"
+          TopLeft="390.833333333333,221" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT-Full Load For Serenade_MSMOSJ Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS"
+          TopLeft="259.5,252.27358490566" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table\Row Count"
+          TopLeft="267,175" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table\DER Values"
+          TopLeft="266.5,95.7075471698113" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source"
+          TopLeft="261,20" />
+        <EdgeLayout
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[Row Count Output 1]"
+          TopLeft="329.75,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.27358490566"
+              Start="0,0"
+              End="0,27.77358490566">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.77358490566" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[OLE DB Source Output]"
+          TopLeft="335.25,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33.7075471698113"
+              Start="0,0"
+              End="0,26.2075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.2075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT-Full Load For Serenade_MSMOSJ Table.Paths[Derived Column Output]"
+          TopLeft="333.25,139.707547169811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.2924528301887"
+              Start="0,0"
+              End="0,27.7924528301887">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7924528301887" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DST ODS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT-Full Load For Serenade_MSMOSJ Table\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

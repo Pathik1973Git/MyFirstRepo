@@ -1,0 +1,3473 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{05D9BA7E-28F1-4A40-9B3D-F1F4876241D7}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="pkg_OSBDKY"
+  DTS:VersionBuild="471"
+  DTS:VersionGUID="{EB79F668-4EA0-4C53-80A8-D25DF1A9F60E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{DF2076F0-B63A-4138-AA83-12FE3BA6D1CA}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{5002C182-3061-4202-BB7A-C381C0609766}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3Source&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{66307397-E827-4479-A644-4D88DCAF4E3B}"
+      DTS:ObjectName="M3Source" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3ODSCACCSTisAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{8EFDF456-8821-4002-8BD0-F4AEFC603506}"
+      DTS:ObjectName="M3ODSCACCSTisAuditingEnabled" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F124DAF9-4F47-4DDC-857B-989DCE24B588}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="isIncremental">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2234D022-B37A-4258-A2AC-56E7ED9E9837}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varART_CTRL_MASTER_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">1098</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CB23D44F-CDF9-4FD6-A5B5-1F61D56C7498}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="( @[User::varSourceNewRecords] ) - ( @[User::varTargetInsertedCount] +  @[User::varTargetUpdatedCount]  + @[User::varTargetUnchangedRecordsAfter] )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCountDifference">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C732048-1005-4349-8558-8ED637CFB7B2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">RWSODS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AAE0475C-8164-4276-9FF8-C409C1CCAEEB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FBDF5473-5344-4B5D-9493-C545066B94D0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEndTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:19:52 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9E10BDCB-8CAC-4E0A-9BF9-E15959D93AE6}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEXEC_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F53972BC-2D9F-4DDC-9C76-53E1D3062F78}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsErrorLogged">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{294C76D3-7AF2-46D3-ACF1-6FFD40B0A7B9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLOAD_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{69C37D88-AB12-4A2D-95F8-D5D841EF08AA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceChangeRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59CA3D1A-9269-411E-883F-FC9083C3C104}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDeletedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{74E09F67-A17B-4104-988E-EC78A22B8036}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3SQLREPLPRD.RWSReplicate.dbo.OSBDKY</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{98E1491A-8F55-40C8-9540-9E66C5B81124}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceNewRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8A9340D-9F22-464E-823F-401133AFE8C9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTotalRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D5EA038-538F-4F6F-936D-6445D5E0F19A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:20:15 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{33986112-7AC6-4B80-86E9-88D3CE4EAC3D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDeletedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D89A74F3-B938-471F-960A-264DD550AD0E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetFailedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1EBF5A55-4CF0-44EF-B711-C337938AC1CA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3B41FF00-06CF-4C0B-8157-5E477418EDB8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::varDestinationSchemaName] + &quot;.&quot; + @[User::varTargetTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3.OSBDKY</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C95781CE-EFE1-49D2-95C4-4D4453596F36}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">OSBDKY</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A26DB7FB-9F2E-43CC-B520-AA2FB7245B93}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{39D8AEDA-D73A-40B0-8839-47FE6D205A40}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsBefore">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2183C8FD-ABBD-48A9-B8E9-23C036C6E5EE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUnchangedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45223D88-B983-4165-ABA0-6A1C07BE6B50}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load M3_osbdky Full"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B96CC767-9674-44D9-9AD5-27820BB28168}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load M3_osbdky Full"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load M3_osbdky Full\DER Values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="DER Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_osbdky Full\DER Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Inputs[Derived Column Input].Columns[SMLMTS]"
+                      cachedDataType="numeric"
+                      cachedName="SMLMTS"
+                      cachedPrecision="18"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMTS]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load M3_osbdky Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]"
+                      name="LastModified"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)[DATEADD]("s",((DT_I8)#{Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMTS]} / 1000),(DT_DBTIMESTAMP)"01/01/1970")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)DATEADD("s",((DT_I8)SMLMTS / 1000),(DT_DBTIMESTAMP)"01/01/1970")</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      name="ODSLoadDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]"
+                      name="DRV_LoadID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::varLOAD_ID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::varLOAD_ID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]"
+                      name="ODSModifiedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load M3_osbdky Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST ODS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[M3].[OSBDKY]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Connections[OleDbConnection]"
+                  connectionManagerID="{96741F01-A5CE-458A-9B4D-523035E04BEB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMCONO]"
+                      cachedDataType="numeric"
+                      cachedName="SMCONO"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCONO]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCONO]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMSSTP]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="SMSSTP"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMSSTP]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMSSTP]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMYEA4]"
+                      cachedDataType="numeric"
+                      cachedName="SMYEA4"
+                      cachedPrecision="4"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMYEA4]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMYEA4]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK1]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK1"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK1]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK1]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK2]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK2"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK2]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK2]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK3]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK3"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK3]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK3]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK4]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK4"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK4]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK4]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK5]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK5"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK5]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK5]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOSK6]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="SMOSK6"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK6]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK6]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMOBJC]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="SMOBJC"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOBJC]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOBJC]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMD1PC]"
+                      cachedDataType="numeric"
+                      cachedName="SMD1PC"
+                      cachedPrecision="10"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMD1PC]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMD1PC]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMRGDT]"
+                      cachedDataType="numeric"
+                      cachedName="SMRGDT"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMRGDT]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGDT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMRGTM]"
+                      cachedDataType="numeric"
+                      cachedName="SMRGTM"
+                      cachedPrecision="6"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMRGTM]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGTM]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMLMDT]"
+                      cachedDataType="numeric"
+                      cachedName="SMLMDT"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMLMDT]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMDT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMCHNO]"
+                      cachedDataType="numeric"
+                      cachedName="SMCHNO"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCHNO]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHNO]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMCHID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="SMCHID"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCHID]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHID]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[SMLMTS]"
+                      cachedDataType="numeric"
+                      cachedName="SMLMTS"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMLMTS]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMTS]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LastModified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastModified"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSLoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSLoadDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LastChangeDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastChangeDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastChangeDate]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSModifiedDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSModifiedDate]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[DRV_LoadID]"
+                      cachedDataType="i4"
+                      cachedName="DRV_LoadID"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      dataType="dbTimeStamp"
+                      name="LastModified" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      name="ODSLoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCONO]"
+                      dataType="numeric"
+                      name="SMCONO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMSSTP]"
+                      dataType="wstr"
+                      length="6"
+                      name="SMSSTP" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMYEA4]"
+                      dataType="numeric"
+                      name="SMYEA4"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK1]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK2]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK3]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK4]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK5]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOSK6]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMOBJC]"
+                      dataType="wstr"
+                      length="6"
+                      name="SMOBJC" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMD1PC]"
+                      dataType="numeric"
+                      name="SMD1PC"
+                      precision="10"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMRGDT]"
+                      dataType="numeric"
+                      name="SMRGDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMRGTM]"
+                      dataType="numeric"
+                      name="SMRGTM"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMLMDT]"
+                      dataType="numeric"
+                      name="SMLMDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCHNO]"
+                      dataType="numeric"
+                      name="SMCHNO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMCHID]"
+                      dataType="wstr"
+                      length="10"
+                      name="SMCHID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[SMLMTS]"
+                      dataType="numeric"
+                      name="SMLMTS"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      name="LastChangeDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      dataType="i4"
+                      name="LOADID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ODSModifiedDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE SRC M3"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [SMCONO]
+      ,[SMSSTP]
+      ,[SMYEA4]
+      ,[SMOSK1]
+      ,[SMOSK2]
+      ,[SMOSK3]
+      ,[SMOSK4]
+      ,[SMOSK5]
+      ,[SMOSK6]
+      ,[SMOBJC]
+      ,[SMD1PC]
+      ,[SMRGDT]
+      ,[SMRGTM]
+      ,[SMLMDT]
+      ,[SMCHNO]
+      ,[SMCHID]
+      ,[SMLMTS]
+      ,[LastChangeDate]
+  FROM [M3SQLREPLPRD].[RWSReplicate].[dbo].[OSBDKY]  where [LastChangeDate] &lt; ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::M3SQLQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{FBDF5473-5344-4B5D-9493-C545066B94D0};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Connections[OleDbConnection]"
+                  connectionManagerID="{96741F01-A5CE-458A-9B4D-523035E04BEB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[LastChangeDate]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]"
+                      name="LastChangeDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCONO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCONO]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCONO]"
+                      name="SMCONO"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMSSTP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMSSTP]"
+                      length="6"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMSSTP]"
+                      name="SMSSTP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMYEA4]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMYEA4]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMYEA4]"
+                      name="SMYEA4"
+                      precision="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK1]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK1]"
+                      name="SMOSK1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK2]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK2]"
+                      name="SMOSK2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK3]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK3]"
+                      name="SMOSK3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK4]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK4]"
+                      name="SMOSK4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK5]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK5]"
+                      name="SMOSK5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK6]"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOSK6]"
+                      name="SMOSK6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOBJC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOBJC]"
+                      length="6"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMOBJC]"
+                      name="SMOBJC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMD1PC]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMD1PC]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMD1PC]"
+                      name="SMD1PC"
+                      precision="10"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGDT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMRGDT]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGDT]"
+                      name="SMRGDT"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGTM]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMRGTM]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMRGTM]"
+                      name="SMRGTM"
+                      precision="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMDT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMLMDT]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMDT]"
+                      name="SMLMDT"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHNO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCHNO]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHNO]"
+                      name="SMCHNO"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCHID]"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMCHID]"
+                      name="SMCHID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMTS]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMLMTS]"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[SMLMTS]"
+                      name="SMLMTS"
+                      precision="18"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      name="LastChangeDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCONO]"
+                      dataType="numeric"
+                      name="SMCONO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMSSTP]"
+                      dataType="wstr"
+                      length="6"
+                      name="SMSSTP" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMYEA4]"
+                      dataType="numeric"
+                      name="SMYEA4"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK1]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK2]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK3]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK4]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK5]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK5" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOSK6]"
+                      dataType="wstr"
+                      length="15"
+                      name="SMOSK6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMOBJC]"
+                      dataType="wstr"
+                      length="6"
+                      name="SMOBJC" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMD1PC]"
+                      dataType="numeric"
+                      name="SMD1PC"
+                      precision="10"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMRGDT]"
+                      dataType="numeric"
+                      name="SMRGDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMRGTM]"
+                      dataType="numeric"
+                      name="SMRGTM"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMLMDT]"
+                      dataType="numeric"
+                      name="SMLMDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCHNO]"
+                      dataType="numeric"
+                      name="SMCHNO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMCHID]"
+                      dataType="wstr"
+                      length="10"
+                      name="SMCHID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[SMLMTS]"
+                      dataType="numeric"
+                      name="SMLMTS"
+                      precision="18" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCONO]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCONO]"
+                      name="SMCONO"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMSSTP]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMSSTP]"
+                      name="SMSSTP" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMYEA4]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMYEA4]"
+                      name="SMYEA4"
+                      precision="4" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK1]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK1]"
+                      name="SMOSK1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK2]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK2]"
+                      name="SMOSK2" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK3]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK3]"
+                      name="SMOSK3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK4]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK4]"
+                      name="SMOSK4" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK5]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK5]"
+                      name="SMOSK5" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK6]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOSK6]"
+                      name="SMOSK6" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOBJC]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMOBJC]"
+                      name="SMOBJC" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMD1PC]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMD1PC]"
+                      name="SMD1PC"
+                      precision="10"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMRGDT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMRGDT]"
+                      name="SMRGDT"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMRGTM]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMRGTM]"
+                      name="SMRGTM"
+                      precision="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMLMDT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMLMDT]"
+                      name="SMLMDT"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCHNO]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCHNO]"
+                      name="SMCHNO"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCHID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMCHID]"
+                      name="SMCHID" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMLMTS]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[SMLMTS]"
+                      name="SMLMTS"
+                      precision="18" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[LastChangeDate]"
+                      name="LastChangeDate" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_osbdky Full\ROW Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts the rows in a dataset."
+              name="ROW Count"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::varSourceTotalRecords</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_osbdky Full\ROW Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_osbdky Full\ROW Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - Load M3_osbdky Full\ROW Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load M3_osbdky Full.Paths[Derived Column Output]"
+              endId="Package\DFT - Load M3_osbdky Full\ROW Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load M3_osbdky Full\DER Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load M3_osbdky Full.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Load M3_osbdky Full\DER Values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Load M3_osbdky Full\OLE SRC M3.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - Load M3_osbdky Full.Paths[Row Count Output 1]"
+              endId="Package\DFT - Load M3_osbdky Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - Load M3_osbdky Full\ROW Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dummy Script Task to check if incremental load"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{007944ac-a16c-4c73-8bec-1c15dc4233da}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dummy Script Task to check if incremental load"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_652c84c976cc41088c02c7470ca63f6e"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Get Source Counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2fe20291-02d7-4922-b896-3b14607db5d2}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Get Source Counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT Cast(COUNT(1) as int) AS SOURCE_TOTAL_RECORDS FROM "+ (DT_WSTR, 100)@[User::varSourceName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="SELECT Cast(COUNT(1) as int) AS SOURCE_TOTAL_RECORDS FROM M3SQLREPLPRD.RWSReplicate.dbo.OSBDKY"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceTotalRecords" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::varSourceName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Delete ODS Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3309E723-DA70-468E-89C2-30C472D52568}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Delete ODS Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="exec [M3].usp_Delete_OSBDKY"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varTargetDeletedCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Truncate ODS Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5B6A91E7-6D16-4064-8F7D-14ADA7DF5383}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Truncate ODS Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Truncate table " +  @[User::varTargetName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="Truncate table M3.OSBDKY" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST- Merge  OSBDKY"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{826D20A7-60A9-44E3-A519-7562B8DAB387}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST- Merge  OSBDKY"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="exec [M3].[usp_Merge_OSBDKY]  ?,?,?"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::varTargetUpdatedCount" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="3"
+            SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::varStartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::varEndTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::varLOAD_ID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full load Source counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{912e7923-db9e-4d3e-b29c-552eeb7b2558}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full load Source counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Select " +   (DT_WSTR, 10) @[User::varSourceTotalRecords]  + " AS NewSourceCount  "</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+          SQLTask:SqlStatementSource="Select 0 AS NewSourceCount  "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{61983A12-B35D-4B19-9F62-DCD08F8057B5}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::isIncremental] == True"
+      DTS:From="Package\Dummy Script Task to check if incremental load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\EST - SQL Delete ODS Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{22050E79-7CEA-4281-80D0-EC6EE878B6CF}"
+      DTS:From="Package\EST - SQL Delete ODS Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EST - Get Source Counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{70388EEA-27D9-4FB4-8FFE-D52956EA20AA}"
+      DTS:From="Package\EST - SQL Truncate ODS Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DFT - Load M3_osbdky Full" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{F8E9212B-B70D-4A21-A553-5B36985FCB90}"
+      DTS:From="Package\DFT - Load M3_osbdky Full"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Full load Source counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{ACFE1170-92DA-4F74-B51B-D8EFD0561842}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::isIncremental] == False"
+      DTS:From="Package\Dummy Script Task to check if incremental load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\EST - SQL Truncate ODS Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{0505809E-F76B-40E6-93C0-1642CE82548F}"
+      DTS:From="Package\EST - Get Source Counts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\EST- Merge  OSBDKY" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{95DC5343-8FE0-4B3B-8131-25B5D33BBA21}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F639D077-F2C5-417D-8840-A26F4F9CF772}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4D61ABE6-104F-438C-8E2D-90A4CC8DFC19}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA;@EXEC_INT INT =?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_ERROR] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_INT,&#xA;@START_TIME,&#xA;@END_TIME ,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{EC892B33-CCF1-41FC-A6CE-88046A272875}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET - Set IsErrorLogged flag"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::varIsErrorLogged]=TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{17B4F9DC-F2D5-490B-B1EE-FA49CB2F7389}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_1d19741b6a284fd7aea771200bff252d"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{7F19FBF7-0942-41C3-A94C-894365476E06}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varIsErrorLogged]==FALSE"
+          DTS:From="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{C3376FAA-5EA6-4C3B-AA20-041C8640B9E4}"
+          DTS:From="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{B255BC71-1FEF-456E-8F30-20B2EF889E07}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{87FD015C-D3E8-4A34-B771-ED1E9C536923}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9392c274-e4aa-4f5e-bd2f-9b3263e72373}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA; @EXEC_ID INT = ?,&#xA;@SOURCE_TOTAL_RECORDS decimal(10,0) = ?,&#xA;@SOURCE_NEW_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_CHANGE_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_DELETE_RECORDS  decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_BEFORE decimal(10,0) = ?,&#xA;@TARGET_NEW_RECORDS decimal(10,0) = ?,&#xA;@TARGET_CHANGE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_DELETE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_UNCHANGED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_FAILED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_AFTER decimal(10,0) = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_COMPLETE] &#xA; @ART_CTRL_MASTER_ID, &#xA; @EXEC_ID,&#xA;@SOURCE_NME,&#xA;@SOURCE_TOTAL_RECORDS,&#xA;@SOURCE_NEW_RECORDS,&#xA;@SOURCE_CHANGE_RECORDS,&#xA;@SOURCE_DELETE_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_BEFORE,&#xA;@TARGET_NEW_RECORDS,&#xA;@TARGET_CHANGE_RECORDS,&#xA;@TARGET_DELETE_RECORDS,&#xA;@TARGET_UNCHANGED_RECORDS,&#xA;@TARGET_FAILED_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_AFTER,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceTotalRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varSourceNewRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varSourceChangeRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varSourceDeletedRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::varTargetFailedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="12"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="13"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="14"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="15"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="16"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="17"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{debea586-4e17-468d-ab0a-22a89c87ebab}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Post Execution Target Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0
+SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM "+ (DT_STR, 100, 1252) @[User::varTargetName]   +" nolock ) 
+
+
+
+IF('"+ (DT_WSTR, 10) @[User::isIncremental] + "'  = 'False')
+	SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted
+ELSE
+	SELECT  @TargetTotalRecords AS RSTargetTotal, " +  (DT_WSTR, 10) @[User::varTargetInsertedCount]  + " AS RSTargetInserted"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0&#xA;SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM M3.OSBDKY nolock ) &#xA;&#xA;&#xA;&#xA;IF('False'  = 'False')&#xA;&#x9;SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted&#xA;ELSE&#xA;&#x9;SELECT  @TargetTotalRecords AS RSTargetTotal, 0 AS RSTargetInserted"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5662b3a7-2034-4035-a7c8-82aa2ad8ee3b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Log IBC Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="Exec AM.USP_PKG_ON_ERROR_IBC ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{d8a6f4bd-9ee8-4b26-9c0e-fb8194965341}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_9ec9340c958549d98c131f4986726af9"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{18a082c7-6b63-492d-af90-188e96566d45}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{525b60e2-1d56-458a-89f8-836d736abd94}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference] != 0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{1ce1755f-8f4d-41ff-8b5d-5a2759ac82a6}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{6562AF8A-8DFE-4CBB-BEEC-0FC28DB8D163}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{E9FA8DBC-7F01-42BC-A151-4A6305854358}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{717410e6-8bff-405e-8cd3-8c05f9afeb07}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Delete Destination Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DELETE FROM " + @[User::varTargetName] + " WHERE LOADID = " +  (DT_WSTR, 10) @[User::varLOAD_ID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="DELETE FROM M3.OSBDKY WHERE LOADID = 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d6561c0a-fc91-4fa0-ba06-7f741e71e4a1}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE  @ART_CTRL_MASTER_ID INT = ? ,&#xA;  @EXEC_ID INT = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ? ,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_EXECUTE] &#xA; @ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@SOURCE_NME,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{54b4f343-2ae4-4437-9403-f13889bd6aa2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Target Before Count"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select Count(*) as NumRows from "+(DT_WSTR,100)  @[User::varTargetName]+" "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select Count(*) as NumRows from M3.OSBDKY "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5b28c85c-ba18-492d-b48a-2df4ce3e9d93}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Set Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="SELECT LAST_LOAD_ID FROM [AM].[ARTIFACT_CTRL_MASTER] WHERE [ART_CTRL_MASTER_ID] =  ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{00f4cb24-c807-46ed-aea3-2fda65f03673}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - SQL Check For Incremental Load"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="SELECT        CONVERT(bit, IS_INCREMENTAL_LOAD)  AS isNextRunIncremental&#xA;FROM            [AM].[ENVIRONMENT_VAR_BATCH] ENV_BAT JOIN [AM].[BATCH_CTRL_MASTER] CTRL_BAT ON ENV_BAT.SCHEDULE_TYPE_VALUE_ID=CTRL_BAT.SCHEDULE_TYPE_VALUE_ID&#xA;WHERE        (CTRL_BAT.LOAD_ID = ?)"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="isNextRunIncremental"
+                SQLTask:DtsVariableName="User::isIncremental" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="4" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{532827f3-7a4d-4054-bf0e-8e7d42436b59}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Get End Load Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(MAX(LastChangeDate),0)  FROM " +  @[User::varSourceName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select ISNULL(MAX(LastChangeDate),0)  FROM M3SQLREPLPRD.RWSReplicate.dbo.OSBDKY"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varEndTime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d5d55e1b-6762-4173-9e46-3bd551cf6b25}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Get Start Load Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(MAX(LastChangeDate),0) FROM " +  @[User::varTargetName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select ISNULL(MAX(LastChangeDate),0) FROM M3.OSBDKY"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varStartTime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{5fed32ce-1c1c-4b0f-aeb4-03bb5db6b538}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_c748d9974fed4f12bd694d609ae1d409"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{a0cea84f-4c6f-4e0e-95ac-90210c16dde6}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Set Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{3fb0279a-9ffe-44ad-be87-63562dc0708d}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{2d225659-28b3-4910-865c-67bd90192a65}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{408a6816-1127-4964-9340-f5c52555ec4a}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{3c4c1a32-f233-4e5e-83c3-cb6c5f9c92b7}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{e295ac01-394e-4659-9a94-8b36ebc19aa1}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{71004661-6577-43b8-87af-1a86987a6efa}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="209,42"
+          Id="Package\DFT - Load M3_osbdky Full"
+          TopLeft="671.716981132075,340.486897274633" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package\Dummy Script Task to check if incremental load"
+          TopLeft="416,103" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\EST - Get Source Counts"
+          TopLeft="230,330" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\EST - SQL Delete ODS Data"
+          TopLeft="221.882264150943,237.354821802935" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\EST - SQL Truncate ODS Table"
+          TopLeft="665.716981132075,259.430293501048" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\EST- Merge  OSBDKY"
+          TopLeft="240,451" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Full load Source counts"
+          TopLeft="677,432" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="569,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-241.617735849057,92.354821802935"
+              Start="0,0"
+              End="-241.617735849057,84.854821802935">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1774109014675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.1774109014675"
+                    Point2="0,46.1774109014675"
+                    Point3="-4,46.1774109014675" />
+                  <mssgle:LineSegment
+                    End="-237.617735849057,46.1774109014675" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-237.617735849057,46.1774109014675"
+                    Point2="-241.617735849057,46.1774109014675"
+                    Point3="-241.617735849057,50.1774109014675" />
+                  <mssgle:LineSegment
+                    End="-241.617735849057,84.854821802935" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.808867924528,51.1774109014675,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="327.941132075472,279.354821802935">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,50.645178197065"
+              Start="0,0"
+              End="0,43.145178197065">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.145178197065" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="777.216981132075,301.430293501048">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39.056603773585"
+              Start="0,0"
+              End="0,31.556603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.556603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="774.108490566038,382.486897274633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,49.513102725367"
+              Start="0,0"
+              End="0,42.013102725367">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.013102725367" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="618.666666666667,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="159.550314465408,114.430293501048"
+              Start="0,0"
+              End="159.550314465408,106.930293501048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1292470550389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.1292470550389"
+                    Point2="0,46.1292470550389"
+                    Point3="4,46.1292470550389" />
+                  <mssgle:LineSegment
+                    End="155.550314465408,46.1292470550389" />
+                  <mssgle:CubicBezierSegment
+                    Point1="155.550314465408,46.1292470550389"
+                    Point2="159.550314465408,46.1292470550389"
+                    Point3="159.550314465408,50.1292470550389" />
+                  <mssgle:LineSegment
+                    End="159.550314465408,106.930293501048" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="71.7751572327042,51.1292470550389,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="329.75,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Load all records from M3 to ODS"
+          ParentId="Package"
+          Size="191,53"
+          Id="b296e914-662b-4447-a3fb-009b82134d3e"
+          TopLeft="999.147798742139,337.04926624738">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Check Load Type - Incremental OR Full"
+          ParentId="Package"
+          Size="264,40"
+          Id="ebbe1580-917f-4a04-8cd7-c7b5e7c08d80"
+          TopLeft="708.297274633123,106.265199161426">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Delete Data from ODS table"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="264,39"
+          Id="0011e429-fcac-4268-b8cd-4f927b516708"
+          TopLeft="37,244.444444444444" />
+        <AnnotationLayout
+          Text="Truncate ODS Table OSBDKY&#xA;"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="173,53"
+          Id="032f3018-ab92-4bca-9d4d-bf8addd0bbc5"
+          TopLeft="984.666666666667,243" />
+        <AnnotationLayout
+          Text="Perform Incremental Load Operation"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="223,39"
+          Id="9f37b1d8-8721-43a4-be2f-1b168c4433f4"
+          TopLeft="3,453.444444444445" />
+        <AnnotationLayout
+          Text="Insert if initial load where dest ODS is empty"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="263,39"
+          Id="eafa0bef-7a47-4792-bd66-33a1b5ff5782"
+          TopLeft="680,23" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="256,42"
+          Id="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          TopLeft="5.5,107.5" />
+        <NodeLayout
+          Size="209,42"
+          Id="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          TopLeft="29,209.5" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package.EventHandlers[OnError]\ST-Dummy Task"
+          TopLeft="54,5.5" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          TopLeft="133.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          TopLeft="133.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="273,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          TopLeft="387,284" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          TopLeft="655,132" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          TopLeft="914,264" />
+        <NodeLayout
+          Size="344,42"
+          Id="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          TopLeft="660,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="745.666666666667,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-222.166666666667,110"
+              Start="0,0"
+              End="-222.166666666667,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.3916913946588"
+                    Point2="0,44.3916913946588"
+                    Point3="-4,44.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-218.166666666667,44.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-218.166666666667,44.3916913946588"
+                    Point2="-222.166666666667,44.3916913946588"
+                    Point3="-222.166666666667,48.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-222.166666666667,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.083333333333,49.3916913946588,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="832.333333333333,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="168.166666666667,90"
+              Start="0,0"
+              End="168.166666666667,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3204747774481"
+                    Point2="0,36.3204747774481"
+                    Point3="4,36.3204747774481" />
+                  <mssgle:LineSegment
+                    End="164.166666666667,36.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="164.166666666667,36.3204747774481"
+                    Point2="168.166666666667,36.3204747774481"
+                    Point3="168.166666666667,40.3204747774481" />
+                  <mssgle:LineSegment
+                    End="168.166666666667,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="76.0833333333333,41.3204747774481,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="832,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-43,28"
+              Start="0,0"
+              End="-43,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="-4,14" />
+                  <mssgle:LineSegment
+                    End="-39,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39,14"
+                    Point2="-43,14"
+                    Point3="-43,18" />
+                  <mssgle:LineSegment
+                    End="-43,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.5,19,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="344,NaN"
+          Id="7392239e-2e5f-4eb7-a376-33b0f59f996f"
+          TopLeft="1050,60" />
+        <AnnotationLayout
+          Text="Get Post Execution Record Count From Target Table"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="344,NaN"
+          Id="22eb38af-4238-41a2-acd5-e601c1fa98de"
+          TopLeft="1048,130" />
+        <AnnotationLayout
+          Text="Push Package Execution Details data into Framework Tables"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="323,NaN"
+          Id="2b337525-9295-4138-99d5-9f416c950065"
+          TopLeft="60,284" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          TopLeft="64.666666666667,212.25" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          TopLeft="72,568" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          TopLeft="110,285.081132075472" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          TopLeft="60,131.691509433962" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          TopLeft="87,497" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          TopLeft="70,425.360377358491" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          TopLeft="70,354.720754716981" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          TopLeft="60,62.051886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="213,104.051886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.639622641509"
+              Start="0,0"
+              End="0,20.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,2.0698113207545,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="215.333333333334,173.691509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38.558490566038"
+              Start="0,0"
+              End="0,31.058490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.058490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          TopLeft="222.25,327.081132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.639622641509"
+              Start="0,0"
+              End="0,20.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="223,396.720754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,28.63962264151"
+              Start="0,0"
+              End="0,21.13962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.13962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          TopLeft="221,467.360377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.639622641509"
+              Start="0,0"
+              End="0,22.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 5]"
+          TopLeft="219.583333333333,254.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.831132075472"
+              Start="0,0"
+              End="0,23.331132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.331132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 6]"
+          TopLeft="222,539">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="a7af491d-1d5f-4cd7-b8cf-cecfccd4ce0f"
+          TopLeft="394.333333333333,60" />
+        <AnnotationLayout
+          Text="Get Latest  Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="c1f5da3a-a6d6-4c96-b5c1-25350c2d0eb4"
+          TopLeft="395.333333333333,132" />
+        <AnnotationLayout
+          Text="Get Latest Load Date From Source"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="cfb4798a-72d6-4bfc-b9b7-461cf888abd0"
+          TopLeft="395.333333333333,418" />
+        <AnnotationLayout
+          Text="Push Package execution details in Framework Tables"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="34b764c6-a18e-4163-adf2-d9529f8d9db7"
+          TopLeft="391.833333333333,571" />
+        <AnnotationLayout
+          Text="Get Latest Load Date From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="2a4a8f78-bf04-4058-a7d7-a968ce7180a3"
+          TopLeft="397.333333333333,355" />
+        <AnnotationLayout
+          Text="Get Total Record Count From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="a21b8cc2-b6a9-46a3-8b6c-89eca9e804e6"
+          TopLeft="398.833333333333,287" />
+        <AnnotationLayout
+          Text="If exists Delete Destination Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="7f416a52-5278-447c-bf9f-252a96e31853"
+          TopLeft="399,213" />
+        <AnnotationLayout
+          Text="Retrieve load type (full/incremental)"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="206,NaN"
+          Id="e70e18e6-63cb-4ee3-9bad-b29fdd22da96"
+          TopLeft="418.416666666667,494.25" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT - Load M3_osbdky Full">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138,42"
+          Id="Package\DFT - Load M3_osbdky Full\OLE SRC M3"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_osbdky Full\ROW Count"
+          TopLeft="5.5,157.575471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_osbdky Full\DER Values"
+          TopLeft="5.5,82.7075471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_osbdky Full\OLE DST ODS"
+          TopLeft="5.5,229.27358490566" />
+        <EdgeLayout
+          Id="Package\DFT - Load M3_osbdky Full.Paths[Row Count Output 1]"
+          TopLeft="73.3867924528302,201.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.7735849056604"
+              Start="0,0"
+              End="0,20.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load M3_osbdky Full.Paths[OLE DB Source Output]"
+          TopLeft="74,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,35.2075471698113"
+              Start="0,0"
+              End="0,27.7075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load M3_osbdky Full.Paths[Derived Column Output]"
+          TopLeft="73.3867924528302,126.632075471698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.9433962264151"
+              Start="0,0"
+              End="0,23.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load M3_osbdky Full\OLE SRC M3">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load M3_osbdky Full\OLE DST ODS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

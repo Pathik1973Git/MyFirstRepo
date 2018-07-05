@@ -1,0 +1,3640 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName=""
+  DTS:DelayValidation="True"
+  DTS:DTSID="{2015470E-3768-4990-80B0-DBDD94383B71}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="pkg_MPAGRP"
+  DTS:VersionBuild="466"
+  DTS:VersionGUID="{0073625E-D777-4378-96BB-A5811D16B845}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{A691F0C2-4EC1-4356-AA2C-CF690DE3A36B}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A0D700E-C671-437C-93E0-ADB763E71E83}"
+      DTS:ObjectName="RWSAudit" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3Source&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{F562D180-05B3-4C42-9DB1-08F48CB96645}"
+      DTS:ObjectName="M3Source" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;M3ODSCACCSTisAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{47E09D2F-466F-4093-B902-7C393E293796}"
+      DTS:ObjectName="M3ODSCACCSTisAuditingEnabled" />
+  </DTS:Configurations>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{72043675-7E2F-41EF-AF41-1F2268B40369}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="isIncremental">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41C1FD78-15B0-4E33-B9D8-A73F7823ABC2}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varART_CTRL_MASTER_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">1060</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{50894CD4-6F4B-422B-8E0C-220AD7A8B59F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="( @[User::varSourceNewRecords] ) - ( @[User::varTargetInsertedCount] +  @[User::varTargetUpdatedCount]  + @[User::varTargetUnchangedRecordsAfter] )"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varCountDifference">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EDA00172-3D3F-46D7-B833-87850FF66A66}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">RWSODS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6082F160-4A02-40CC-B4C8-FEEDA404A032}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varDestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DEA0A96A-0920-4C9E-9EEF-88743B5CEA04}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEndTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:19:52 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{07FC4540-7956-46BA-9043-164DD59CACD9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varEXEC_ID">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A73B6669-2E59-4926-A29F-A8FA2A340AC6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varIsErrorLogged">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BF676418-F53D-4027-ACB9-6C05FF476481}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varLOAD_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{355A19F2-6D6A-4D08-B803-B2DF24A94357}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceChangeRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7AFA4C16-5071-48E1-8B8E-CCB2B1ACE746}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceDeletedRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DAC94002-05B2-415E-9D56-6463EEFF03BF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3SQLREPLPRD.RWSReplicate.dbo.MPAGRP</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2E6FE9A5-61DA-4929-AF5E-189472FCEAD4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceNewRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15DF481E-2382-4948-8A5D-F9BDB97F1869}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varSourceTotalRecords">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{21277A9D-EE06-4A79-A1C0-E6835AAAD840}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varStartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">5/29/2017 6:20:15 AM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{34186E92-5FC9-451B-B400-1A34192CEB1E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetDeletedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DCE654A4-A527-467D-8032-790113C2F062}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetFailedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0C73782A-4A1E-42C0-AD7A-89FBEFF9898B}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetInsertedCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0364376A-20D9-4D0B-A230-FF76093F8115}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::varDestinationSchemaName] + &quot;.&quot; + @[User::varTargetTableName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetName">
+      <DTS:VariableValue
+        DTS:DataType="8">M3.MPAGRP</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5C4F0C24-AE96-4D87-99C1-3B5D56DC241D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">MPAGRP</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{803192CF-A0F8-4DF5-A361-9D64D55E9E36}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9BA04134-9098-45EA-9214-FADE4FBF6131}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetTotalRecordsBefore">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{079DCD06-DB7D-43EE-8DF1-861B8F07779F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUnchangedRecordsAfter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5B3166FC-856A-4AA1-8C3A-8ADC3CF6487F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="varTargetUpdatedCount">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">18,7,OnError,19,OnExecStatusChanged,13,OnInformation,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load M3_MPAGRP Full"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{92875632-A9DB-495A-8808-B1EA2B71FF5B}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load M3_MPAGRP Full"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load M3_MPAGRP Full\DER Values"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Updates column values using expressions"
+              name="DER Values"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Inputs[Derived Column Input].Columns[AJLMDT]"
+                      cachedDataType="numeric"
+                      cachedName="AJLMDT"
+                      cachedPrecision="8"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT - Load M3_MPAGRP Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]"
+                      name="LastModified"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I8)#{Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]} == 0 ? (DT_DATE)"01/01/1970" : (DT_DBTIMESTAMP)([SUBSTRING]((DT_WSTR,8)#{Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]},1,4) + "-" + [SUBSTRING]((DT_WSTR,8)#{Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]},5,2) + "-" + [SUBSTRING]((DT_WSTR,8)#{Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]},7,2))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I8)AJLMDT == 0 ? (DT_DATE)"01/01/1970" : (DT_DBTIMESTAMP)(SUBSTRING((DT_WSTR,8)AJLMDT,1,4) + "-" + SUBSTRING((DT_WSTR,8)AJLMDT,5,2) + "-" + SUBSTRING((DT_WSTR,8)AJLMDT,7,2))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]"
+                      name="ODSLoadDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]"
+                      name="DRV_LoadID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::varLOAD_ID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::varLOAD_ID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]"
+                      name="ODSModifiedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)@[System::StartTime]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT - Load M3_MPAGRP Full\DER Values.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST ODS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[M3].[MPAGRP]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Connections[OleDbConnection]"
+                  connectionManagerID="{96741F01-A5CE-458A-9B4D-523035E04BEB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LastModified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastModified"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[LastModified]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSLoadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSLoadDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSLoadDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJCONO]"
+                      cachedDataType="numeric"
+                      cachedName="AJCONO"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCONO]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCONO]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJFACI]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="AJFACI"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFACI]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFACI]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJSUNO]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="AJSUNO"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJSUNO]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSUNO]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJAGNB]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="AJAGNB"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJAGNB]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJAGNB]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJSEQN]"
+                      cachedDataType="numeric"
+                      cachedName="AJSEQN"
+                      cachedPrecision="7"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJSEQN]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSEQN]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJFRQT]"
+                      cachedDataType="numeric"
+                      cachedName="AJFRQT"
+                      cachedPrecision="15"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFRQT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFRQT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJPUPR]"
+                      cachedDataType="numeric"
+                      cachedName="AJPUPR"
+                      cachedPrecision="17"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJPUPR]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJPUPR]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJDIP3]"
+                      cachedDataType="numeric"
+                      cachedName="AJDIP3"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJDIP3]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJDIP3]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJMAPR]"
+                      cachedDataType="numeric"
+                      cachedName="AJMAPR"
+                      cachedPrecision="1"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJMAPR]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJMAPR]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJGRPI]"
+                      cachedDataType="numeric"
+                      cachedName="AJGRPI"
+                      cachedPrecision="2"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJGRPI]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJGRPI]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJOBV1]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="AJOBV1"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV1]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV1]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJOBV2]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="AJOBV2"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV2]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV2]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJOBV3]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="AJOBV3"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV3]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV3]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJOBV4]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="AJOBV4"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV4]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV4]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJFVDT]"
+                      cachedDataType="numeric"
+                      cachedName="AJFVDT"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFVDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFVDT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJTXID]"
+                      cachedDataType="numeric"
+                      cachedName="AJTXID"
+                      cachedPrecision="13"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJTXID]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJTXID]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJRGDT]"
+                      cachedDataType="numeric"
+                      cachedName="AJRGDT"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJRGDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGDT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJLMDT]"
+                      cachedDataType="numeric"
+                      cachedName="AJLMDT"
+                      cachedPrecision="8"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJLMDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJCHID]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="AJCHID"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCHID]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHID]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJRGTM]"
+                      cachedDataType="numeric"
+                      cachedName="AJRGTM"
+                      cachedPrecision="6"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJRGTM]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGTM]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[AJCHNO]"
+                      cachedDataType="numeric"
+                      cachedName="AJCHNO"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCHNO]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHNO]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[LastChangeDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="LastChangeDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastChangeDate]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[ODSModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ODSModifiedDate"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSModifiedDate]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[ODSModifiedDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].Columns[DRV_LoadID]"
+                      cachedDataType="i4"
+                      cachedName="DRV_LoadID"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output].Columns[DRV_LoadID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastModified]"
+                      dataType="dbTimeStamp"
+                      name="LastModified" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSLoadDate]"
+                      dataType="dbTimeStamp"
+                      name="ODSLoadDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCONO]"
+                      dataType="numeric"
+                      name="AJCONO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFACI]"
+                      dataType="wstr"
+                      length="3"
+                      name="AJFACI" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJSUNO]"
+                      dataType="wstr"
+                      length="10"
+                      name="AJSUNO" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJAGNB]"
+                      dataType="wstr"
+                      length="7"
+                      name="AJAGNB" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJSEQN]"
+                      dataType="numeric"
+                      name="AJSEQN"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFRQT]"
+                      dataType="numeric"
+                      name="AJFRQT"
+                      precision="15"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJPUPR]"
+                      dataType="numeric"
+                      name="AJPUPR"
+                      precision="17"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJDIP3]"
+                      dataType="numeric"
+                      name="AJDIP3"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJMAPR]"
+                      dataType="numeric"
+                      name="AJMAPR"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJGRPI]"
+                      dataType="numeric"
+                      name="AJGRPI"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV1]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV2]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV3]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJOBV4]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJFVDT]"
+                      dataType="numeric"
+                      name="AJFVDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJTXID]"
+                      dataType="numeric"
+                      name="AJTXID"
+                      precision="13" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJRGDT]"
+                      dataType="numeric"
+                      name="AJRGDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJLMDT]"
+                      dataType="numeric"
+                      name="AJLMDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCHID]"
+                      dataType="wstr"
+                      length="10"
+                      name="AJCHID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJRGTM]"
+                      dataType="numeric"
+                      name="AJRGTM"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[AJCHNO]"
+                      dataType="numeric"
+                      name="AJCHNO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LOADID]"
+                      dataType="i4"
+                      name="LOADID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[ODSModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ODSModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input].ExternalColumns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      name="LastChangeDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE SRC M3"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [AJCONO]
+      ,[AJFACI]
+      ,[AJSUNO]
+      ,[AJAGNB]
+      ,[AJSEQN]
+      ,[AJFRQT]
+      ,[AJPUPR]
+      ,[AJDIP3]
+      ,[AJMAPR]
+      ,[AJGRPI]
+      ,[AJOBV1]
+      ,[AJOBV2]
+      ,[AJOBV3]
+      ,[AJOBV4]
+      ,[AJFVDT]
+      ,[AJTXID]
+      ,[AJRGDT]
+      ,[AJLMDT]
+      ,[AJCHID]
+      ,[AJRGTM]
+      ,[AJCHNO]
+      ,[LastChangeDate]
+  FROM [M3SQLREPLPRD].[RWSReplicate].[dbo].[MPAGRP] where [LastChangeDate] &lt; ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::M3SQLQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{DEA0A96A-0920-4C9E-9EEF-88743B5CEA04};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Connections[OleDbConnection]"
+                  connectionManagerID="{96741F01-A5CE-458A-9B4D-523035E04BEB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[RWSODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[LastChangeDate]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[LastChangeDate]"
+                      name="LastChangeDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCONO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCONO]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCONO]"
+                      name="AJCONO"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFACI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFACI]"
+                      length="3"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFACI]"
+                      name="AJFACI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSUNO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJSUNO]"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSUNO]"
+                      name="AJSUNO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJAGNB]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJAGNB]"
+                      length="7"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJAGNB]"
+                      name="AJAGNB"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSEQN]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJSEQN]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJSEQN]"
+                      name="AJSEQN"
+                      precision="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFRQT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFRQT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFRQT]"
+                      name="AJFRQT"
+                      precision="15"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJPUPR]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJPUPR]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJPUPR]"
+                      name="AJPUPR"
+                      precision="17"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJDIP3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJDIP3]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJDIP3]"
+                      name="AJDIP3"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJMAPR]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJMAPR]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJMAPR]"
+                      name="AJMAPR"
+                      precision="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJGRPI]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJGRPI]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJGRPI]"
+                      name="AJGRPI"
+                      precision="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV1]"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV1]"
+                      name="AJOBV1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV2]"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV2]"
+                      name="AJOBV2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV3]"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV3]"
+                      name="AJOBV3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV4]"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJOBV4]"
+                      name="AJOBV4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFVDT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFVDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJFVDT]"
+                      name="AJFVDT"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJTXID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJTXID]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJTXID]"
+                      name="AJTXID"
+                      precision="13"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGDT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJRGDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGDT]"
+                      name="AJRGDT"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJLMDT]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJLMDT]"
+                      name="AJLMDT"
+                      precision="8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCHID]"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHID]"
+                      name="AJCHID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGTM]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJRGTM]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJRGTM]"
+                      name="AJRGTM"
+                      precision="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHNO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCHNO]"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].Columns[AJCHNO]"
+                      name="AJCHNO"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      name="LastChangeDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCONO]"
+                      dataType="numeric"
+                      name="AJCONO"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFACI]"
+                      dataType="wstr"
+                      length="3"
+                      name="AJFACI" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJSUNO]"
+                      dataType="wstr"
+                      length="10"
+                      name="AJSUNO" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJAGNB]"
+                      dataType="wstr"
+                      length="7"
+                      name="AJAGNB" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJSEQN]"
+                      dataType="numeric"
+                      name="AJSEQN"
+                      precision="7" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFRQT]"
+                      dataType="numeric"
+                      name="AJFRQT"
+                      precision="15"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJPUPR]"
+                      dataType="numeric"
+                      name="AJPUPR"
+                      precision="17"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJDIP3]"
+                      dataType="numeric"
+                      name="AJDIP3"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJMAPR]"
+                      dataType="numeric"
+                      name="AJMAPR"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJGRPI]"
+                      dataType="numeric"
+                      name="AJGRPI"
+                      precision="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV1]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV2]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV3]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJOBV4]"
+                      dataType="wstr"
+                      length="20"
+                      name="AJOBV4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJFVDT]"
+                      dataType="numeric"
+                      name="AJFVDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJTXID]"
+                      dataType="numeric"
+                      name="AJTXID"
+                      precision="13" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJRGDT]"
+                      dataType="numeric"
+                      name="AJRGDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJLMDT]"
+                      dataType="numeric"
+                      name="AJLMDT"
+                      precision="8" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCHID]"
+                      dataType="wstr"
+                      length="10"
+                      name="AJCHID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJRGTM]"
+                      dataType="numeric"
+                      name="AJRGTM"
+                      precision="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output].ExternalColumns[AJCHNO]"
+                      dataType="numeric"
+                      name="AJCHNO"
+                      precision="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCONO]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCONO]"
+                      name="AJCONO"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFACI]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFACI]"
+                      name="AJFACI" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJSUNO]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJSUNO]"
+                      name="AJSUNO" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJAGNB]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJAGNB]"
+                      name="AJAGNB" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJSEQN]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJSEQN]"
+                      name="AJSEQN"
+                      precision="7" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFRQT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFRQT]"
+                      name="AJFRQT"
+                      precision="15"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJPUPR]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJPUPR]"
+                      name="AJPUPR"
+                      precision="17"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJDIP3]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJDIP3]"
+                      name="AJDIP3"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJMAPR]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJMAPR]"
+                      name="AJMAPR"
+                      precision="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJGRPI]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJGRPI]"
+                      name="AJGRPI"
+                      precision="2" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV1]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV1]"
+                      name="AJOBV1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV2]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV2]"
+                      name="AJOBV2" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV3]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV3]"
+                      name="AJOBV3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV4]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJOBV4]"
+                      name="AJOBV4" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFVDT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJFVDT]"
+                      name="AJFVDT"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJTXID]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJTXID]"
+                      name="AJTXID"
+                      precision="13" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJRGDT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJRGDT]"
+                      name="AJRGDT"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJLMDT]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJLMDT]"
+                      name="AJLMDT"
+                      precision="8" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCHID]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCHID]"
+                      name="AJCHID" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJRGTM]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJRGTM]"
+                      name="AJRGTM"
+                      precision="6" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCHNO]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[AJCHNO]"
+                      name="AJCHNO"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[LastChangeDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[LastChangeDate]"
+                      name="LastChangeDate" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load M3_MPAGRP Full\ROW Count"
+              componentClassID="{E2697D8C-70DA-42B2-8208-A19CE3A9FE41}"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts the rows in a dataset."
+              name="ROW Count"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::varSourceTotalRecords</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load M3_MPAGRP Full\ROW Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load M3_MPAGRP Full\ROW Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT - Load M3_MPAGRP Full\ROW Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load M3_MPAGRP Full.Paths[Derived Column Output]"
+              endId="Package\DFT - Load M3_MPAGRP Full\ROW Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT - Load M3_MPAGRP Full\DER Values.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT - Load M3_MPAGRP Full.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Load M3_MPAGRP Full\DER Values.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT - Load M3_MPAGRP Full.Paths[Row Count Output 1]"
+              endId="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT - Load M3_MPAGRP Full\ROW Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Dummy Script Task to check if incremental load"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Script Task"
+      DTS:DTSID="{7db22d19-11f8-4667-977a-6b76433ed181}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dummy Script Task to check if incremental load"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_84611e906c4e42ee94b8d4b3fa704ba6"
+          VSTAMajorVersion="3"
+          VSTAMinorVersion="0"
+          Language="CSharp" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Get  Source Counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{54ee82e8-79e0-43a1-927f-3eaa2f94b214}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Get  Source Counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"SELECT Cast(COUNT(1) as int) AS SOURCE_TOTAL_RECORDS FROM "+ (DT_WSTR, 100)@[User::varSourceName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="SELECT Cast(COUNT(1) as int) AS SOURCE_TOTAL_RECORDS FROM M3SQLREPLPRD.RWSReplicate.dbo.MPAGRP"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceTotalRecords" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::varSourceName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Delete ODS Data"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EFC8FE9E-EBAC-41BD-B92A-1B0E5C062476}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Delete ODS Data"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="exec [M3].usp_Delete_MPAGRP"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varTargetDeletedCount" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - SQL Truncate ODS Table"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EA48AF65-E871-4F6C-9F99-31CAD377E3EE}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - SQL Truncate ODS Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Truncate table " +  @[User::varTargetName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="Truncate table M3.MPAGRP" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST- Merge MPAGRP"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0C30FCF0-3B1F-4D89-94F8-21F844D88A39}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST- Merge MPAGRP"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+          SQLTask:SqlStatementSource="Declare @startdate datetime = ?,&#xA;@endtime datetime = ?,&#xA;@loadId int = ?&#xA;&#xA;exec [M3].[usp_Merge_MPAGRP] &#xA;@startdate,&#xA;@endtime,&#xA;@loadId"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::varTargetUpdatedCount" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="3"
+            SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::varStartTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::varEndTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::varLOAD_ID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Full load Source counts"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{497cf96d-f269-4fd2-82dd-7ac555a244fc}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Full load Source counts"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"Select " +   (DT_WSTR, 10) @[User::varSourceTotalRecords]  + " AS NewSourceCount  "</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+          SQLTask:SqlStatementSource="Select 0 AS NewSourceCount  "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::varSourceNewRecords" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7D07367D-8544-422A-928F-52A96BADBE96}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::isIncremental] == True"
+      DTS:From="Package\Dummy Script Task to check if incremental load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\EST - SQL Delete ODS Data" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DE133446-1D33-4D03-8E44-80522A0B6B37}"
+      DTS:From="Package\EST - SQL Delete ODS Data"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EST - Get  Source Counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0981A91D-9C94-4E4C-8D8A-4D67978433ED}"
+      DTS:From="Package\EST - SQL Truncate ODS Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DFT - Load M3_MPAGRP Full" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{3442D782-E060-4B22-90BA-167040CF1530}"
+      DTS:From="Package\DFT - Load M3_MPAGRP Full"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Full load Source counts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{74E5FE45-C728-4B86-B67B-4D8E3B49EA4F}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::isIncremental] == False"
+      DTS:From="Package\Dummy Script Task to check if incremental load"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\EST - SQL Truncate ODS Table" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{A0706B76-6189-44CC-B6A8-C0AC65ADC5B3}"
+      DTS:From="Package\EST - Get  Source Counts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\EST- Merge MPAGRP" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{A296B941-BC00-4B83-9236-01609BE8C13D}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{2432BA3C-8D26-426B-A4D1-106FA04BC8AB}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c4af056c-800c-4b79-8b2b-2c48823ab12e}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA;@EXEC_ID INT =?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_ERROR] &#xA;@ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@START_TIME,&#xA;@END_TIME ,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{f96c8820-23b6-4880-95c9-54518d96c0ad}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExpressionTask.ExpressionTask, Microsoft.SqlServer.ExpressionTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ET - Set IsErrorLogged flag"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::varIsErrorLogged]=TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{0cd77ac6-3710-457d-a76b-6ac09b4797a3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_18086b5e427043f2a9667ce65efb834f"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{29bcf7d1-b3d1-4776-b8be-f9d6551979ad}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varIsErrorLogged]==FALSE"
+          DTS:From="Package.EventHandlers[OnError]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{19eefeba-42b6-49ff-b7cb-6ff5b1caf734}"
+          DTS:From="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{8E626E75-4B90-4568-8C73-BD1E265A32BD}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{1874DA22-C0FE-4603-9B52-C9185775A8D1}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9d15e9b5-3ec6-47cd-b3db-2e0f133ff924}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_COMPLETE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE @ART_CTRL_MASTER_ID INT = ?, &#xA; @EXEC_ID INT = ?,&#xA;@SOURCE_TOTAL_RECORDS decimal(10,0) = ?,&#xA;@SOURCE_NEW_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_CHANGE_RECORDS  decimal(10,0) = ?,&#xA;@SOURCE_DELETE_RECORDS  decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_BEFORE decimal(10,0) = ?,&#xA;@TARGET_NEW_RECORDS decimal(10,0) = ?,&#xA;@TARGET_CHANGE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_DELETE_RECORDS decimal(10,0) = ?,&#xA;@TARGET_UNCHANGED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_FAILED_RECORDS decimal(10,0) = ?,&#xA;@TARGET_TOTAL_RECORDS_AFTER decimal(10,0) = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ?,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_COMPLETE] &#xA; @ART_CTRL_MASTER_ID, &#xA; @EXEC_ID,&#xA;@SOURCE_NME,&#xA;@SOURCE_TOTAL_RECORDS,&#xA;@SOURCE_NEW_RECORDS,&#xA;@SOURCE_CHANGE_RECORDS,&#xA;@SOURCE_DELETE_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_BEFORE,&#xA;@TARGET_NEW_RECORDS,&#xA;@TARGET_CHANGE_RECORDS,&#xA;@TARGET_DELETE_RECORDS,&#xA;@TARGET_UNCHANGED_RECORDS,&#xA;@TARGET_FAILED_RECORDS,&#xA;@TARGET_TOTAL_RECORDS_AFTER,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceTotalRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varSourceNewRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varSourceChangeRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varSourceDeletedRecords"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="7"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="8"
+                SQLTask:DtsVariableName="User::varTargetUpdatedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="9"
+                SQLTask:DtsVariableName="User::varTargetDeletedCount"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="10"
+                SQLTask:DtsVariableName="User::varTargetUnchangedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="11"
+                SQLTask:DtsVariableName="User::varTargetFailedRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="12"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="13"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="14"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="15"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="16"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="7"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="17"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8574cebe-520c-4502-bbac-ee064a53a48d}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Post Execution Target Counts"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0
+SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM "+ (DT_STR, 100, 1252) @[User::varTargetName]   +" nolock ) 
+
+
+
+IF('"+ (DT_WSTR, 10) @[User::isIncremental] + "'  = 'False')
+	SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted
+ELSE
+	SELECT  @TargetTotalRecords AS RSTargetTotal, " +  (DT_WSTR, 10) @[User::varTargetInsertedCount]  + " AS RSTargetInserted"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="DECLARE @TargetTotalRecords INT =0, @TargetInsertedRecords INT = 0,  @LoadType BIT = 0&#xA;SET @TargetTotalRecords =(SELECT COUNT(1) AS TARGET_TOTAL_RECORDS_AFTER FROM M3.MPAGRP nolock ) &#xA;&#xA;&#xA;&#xA;IF('False'  = 'False')&#xA;&#x9;SELECT  @TargetTotalRecords AS RSTargetTotal, @TargetTotalRecords AS RSTargetInserted&#xA;ELSE&#xA;&#x9;SELECT  @TargetTotalRecords AS RSTargetTotal, 0 AS RSTargetInserted"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsAfter" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::varTargetInsertedCount" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{cc90454f-e1c1-4de2-b5eb-24518c6b99d5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Log IBC Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="Exec AM.USP_PKG_ON_ERROR_IBC ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="131"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{e47815f1-8684-4a4d-81a8-bb7b6c4f258c}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_93c9a823941e43c6a6b74dffdac5d206"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{15bb8370-9492-4f9b-98dc-e2c8afeaf938}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference]==0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{47a13aec-7641-401b-9587-b4512f915a1d}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::varCountDifference] != 0"
+          DTS:From="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{4b2cb667-0503-41ff-b249-80472dbe51a7}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{49276A6A-7368-40A3-BD94-5669B6CEC96C}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{491EF555-8119-49D3-9A4F-DD968EEE3F5B}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8d73c61c-dc1a-48ca-82cd-a203863da8f8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Delete Destination Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"DELETE FROM " + @[User::varTargetName] + " WHERE LOADID = " +  (DT_WSTR, 10) @[User::varLOAD_ID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="DELETE FROM M3.MPAGRP WHERE LOADID = 0" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d9689385-b911-41b9-afa7-69b2c92b15c7}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - EXEC SP USP_PKG_ON_EXECUTE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="DECLARE  @ART_CTRL_MASTER_ID INT = ? ,&#xA;  @EXEC_ID INT = ?,&#xA;@SOURCE_NME VarChar (100) = ?,&#xA;@TARGET_NME Varchar(100) = ? ,&#xA;@START_TIME Varchar(50)=?,&#xA;@END_TIME Varchar(50)=?,&#xA;@IS_INCREMENTAL BIT=?&#xA;&#xA;EXEC [AM].[USP_PKG_ON_EXECUTE] &#xA; @ART_CTRL_MASTER_ID,&#xA;@EXEC_ID,&#xA;@SOURCE_NME,&#xA;@TARGET_NME,&#xA;@START_TIME,&#xA;@END_TIME,&#xA;@IS_INCREMENTAL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::varEXEC_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::varStartTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::varEndTime"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="6"
+                SQLTask:DtsVariableName="User::isIncremental"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ea789cde-c244-4288-808d-a94ac83ee7d8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Get Target Before Count"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select Count(*) as NumRows from "+(DT_WSTR,100)  @[User::varTargetName]+" "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select Count(*) as NumRows from M3.MPAGRP "
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varTargetTotalRecordsBefore" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{20e5dba3-d2ba-48dd-9639-7fd7816c9245}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - Set Load ID"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="SELECT LAST_LOAD_ID FROM [AM].[ARTIFACT_CTRL_MASTER] WHERE [ART_CTRL_MASTER_ID] =  ?"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varART_CTRL_MASTER_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6294f9ae-bd7f-4776-8148-18629d13bdf2}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EST - SQL Check For Incremental Load"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA04ED7F-65DF-4103-A9EC-8761DA79861D}"
+              SQLTask:SqlStatementSource="SELECT        CONVERT(bit, IS_INCREMENTAL_LOAD)  AS isNextRunIncremental&#xA;FROM            [AM].[ENVIRONMENT_VAR_BATCH] ENV_BAT JOIN [AM].[BATCH_CTRL_MASTER] CTRL_BAT ON ENV_BAT.SCHEDULE_TYPE_VALUE_ID=CTRL_BAT.SCHEDULE_TYPE_VALUE_ID&#xA;WHERE        (CTRL_BAT.LOAD_ID = ?)"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="isNextRunIncremental"
+                SQLTask:DtsVariableName="User::isIncremental" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varLOAD_ID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="4" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a9abb442-17c9-470a-abdb-6d1c98f712f0}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Get End Load Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(MAX(LastChangeDate),0)  FROM " +  @[User::varSourceName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select ISNULL(MAX(LastChangeDate),0)  FROM M3SQLREPLPRD.RWSReplicate.dbo.MPAGRP"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varEndTime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varSourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9979fde3-4a05-464d-aa50-2f5719d86c2a}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Get Start Load Value"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"Select ISNULL(MAX(LastChangeDate),0) FROM " +  @[User::varTargetName]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{96741F01-A5CE-458A-9B4D-523035E04BEB}"
+              SQLTask:SqlStatementSource="Select ISNULL(MAX(LastChangeDate),0) FROM M3.MPAGRP"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::varStartTime" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::varTargetName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{dad2ed2b-78c3-46bd-a348-c012f126697b}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="ST-Dummy Task">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_74f6d9e83f8e4ef4a5ae8b734ef5003a"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3e3c56f6-1a22-4ba1-b224-175b78a8ce08}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[System::SourceName]== @[System::PackageName]"
+          DTS:From="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Set Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{e15bf0ed-32e4-41a1-822b-967d3b2fea7b}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{60845b3f-facb-4fe5-b13f-2ad447a32d58}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{5ea02469-18ee-4953-8595-856a829a2559}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{bd07111f-8845-460c-b37b-a940a599d177}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:DTSID="{fcb50652-8b4e-41d2-a714-36c823cb1d37}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{2bc978d6-52d6-4c18-bf99-0fcb427e0d27}"
+          DTS:From="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\DFT - Load M3_MPAGRP Full"
+          TopLeft="664.716981132075,340.486897274633" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package\Dummy Script Task to check if incremental load"
+          TopLeft="382,104.870589453621" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\EST - Get  Source Counts"
+          TopLeft="202.14286043206,324.329408504394" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\EST - SQL Delete ODS Data"
+          TopLeft="214.882264150943,235.354821802935" />
+        <NodeLayout
+          Size="225,42"
+          Id="Package\EST - SQL Truncate ODS Table"
+          TopLeft="658.716981132075,259.430293501048" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\EST- Merge MPAGRP"
+          TopLeft="208.714285539121,425.870589453621" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Full load Source counts"
+          TopLeft="674.285725768732,421.286896982921" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="535,146.870589453621">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-226.617735849057,88.484232349314"
+              Start="0,0"
+              End="-226.617735849057,80.984232349314">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.242116174657" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.242116174657"
+                    Point2="0,44.242116174657"
+                    Point3="-4,44.242116174657" />
+                  <mssgle:LineSegment
+                    End="-222.617735849057,44.242116174657" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-222.617735849057,44.242116174657"
+                    Point2="-226.617735849057,44.242116174657"
+                    Point3="-226.617735849057,48.242116174657" />
+                  <mssgle:LineSegment
+                    End="-226.617735849057,80.984232349314" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-121.308867924528,49.242116174657,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="304.762562291501,277.354821802935">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,46.974586701459"
+              Start="0,0"
+              End="0,39.474586701459">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.474586701459" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="771.466981132075,301.430293501048">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39.056603773585"
+              Start="0,0"
+              End="0,31.556603773585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.556603773585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="769.901353450403,382.086897274633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,39.1999997082879"
+              Start="0,0"
+              End="0,31.6999997082879">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6999997082879" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="584.666666666667,146.870589453621">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="186.550314465408,112.559704047427"
+              Start="0,0"
+              End="186.550314465408,105.059704047427">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.375173283098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.375173283098"
+                    Point2="0,45.375173283098"
+                    Point3="4,45.375173283098" />
+                  <mssgle:LineSegment
+                    End="182.550314465408,45.375173283098" />
+                  <mssgle:CubicBezierSegment
+                    Point1="182.550314465408,45.375173283098"
+                    Point2="186.550314465408,45.375173283098"
+                    Point3="186.550314465408,49.375173283098" />
+                  <mssgle:LineSegment
+                    End="186.550314465408,105.059704047427" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="85.2751572327042,50.375173283098,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="298.42857298559,366.329408504394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,59.541180949227"
+              Start="0,0"
+              End="0,52.041180949227">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.041180949227" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Load all records from M3 to ODS"
+          ParentId="Package"
+          Size="191,53"
+          Id="b296e914-662b-4447-a3fb-009b82134d3e"
+          TopLeft="992.147798742139,337.04926624738">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Check Load Type - Incremental OR Full"
+          ParentId="Package"
+          Size="264,40"
+          Id="ebbe1580-917f-4a04-8cd7-c7b5e7c08d80"
+          TopLeft="701.297274633123,106.265199161426">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Delete Data from ODS table"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="264,39"
+          Id="0011e429-fcac-4268-b8cd-4f927b516708"
+          TopLeft="30,244.444444444444" />
+        <AnnotationLayout
+          Text="Truncate ODS Table MPAGRP"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="185,39"
+          Id="032f3018-ab92-4bca-9d4d-bf8addd0bbc5"
+          TopLeft="977.666666666667,243" />
+        <AnnotationLayout
+          Text="Perform Incremental Load Operation"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="223,39"
+          Id="9f37b1d8-8721-43a4-be2f-1b168c4433f4"
+          TopLeft="0,420.197386753445" />
+        <AnnotationLayout
+          Text="Insert if initial load where dest ODS is empty"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="263,39"
+          Id="eafa0bef-7a47-4792-bd66-33a1b5ff5782"
+          TopLeft="673,23" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\EST - EXEC SP USP_PKG_ON_ERROR"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ET - Set IsErrorLogged flag"
+          TopLeft="60,264" />
+        <NodeLayout
+          Size="336,42"
+          Id="Package.EventHandlers[OnError]\ST-Dummy Task"
+          TopLeft="60,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 4]"
+          TopLeft="228,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 5]"
+          TopLeft="228,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{x:Null}"
+          Size="336,NaN"
+          Id="0943e379-9aae-459a-8b91-81d4cbd7c007"
+          TopLeft="454,60" />
+        <AnnotationLayout
+          Text="Push Package Execution Error Details in Framework Tables"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{x:Null}"
+          Size="336,NaN"
+          Id="bd0c891a-7867-499b-afaa-c0c9c5377c9b"
+          TopLeft="454,160" />
+        <AnnotationLayout
+          Text="Set Error Log Flag"
+          ParentId="Package.EventHandlers[OnError]"
+          FontInfo="{x:Null}"
+          Size="336,NaN"
+          Id="f0e23c14-b6de-43b6-b0f3-aee45ba980d3"
+          TopLeft="458,260" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="273,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - EXEC SP USP_PKG_ON_COMPLETE"
+          TopLeft="387,284" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Get Post Execution Target Counts"
+          TopLeft="655,132" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package.EventHandlers[OnPostExecute]\EST - Log IBC Error"
+          TopLeft="914,264" />
+        <NodeLayout
+          Size="344,42"
+          Id="Package.EventHandlers[OnPostExecute]\ST-Dummy Task"
+          TopLeft="660,62" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="745.666666666667,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-222.166666666667,110"
+              Start="0,0"
+              End="-222.166666666667,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.3916913946588"
+                    Point2="0,44.3916913946588"
+                    Point3="-4,44.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-218.166666666667,44.3916913946588" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-218.166666666667,44.3916913946588"
+                    Point2="-222.166666666667,44.3916913946588"
+                    Point3="-222.166666666667,48.3916913946588" />
+                  <mssgle:LineSegment
+                    End="-222.166666666667,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-119.083333333333,49.3916913946588,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="832.333333333333,174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="168.166666666667,90"
+              Start="0,0"
+              End="168.166666666667,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3204747774481"
+                    Point2="0,36.3204747774481"
+                    Point3="4,36.3204747774481" />
+                  <mssgle:LineSegment
+                    End="164.166666666667,36.3204747774481" />
+                  <mssgle:CubicBezierSegment
+                    Point1="164.166666666667,36.3204747774481"
+                    Point2="168.166666666667,36.3204747774481"
+                    Point3="168.166666666667,40.3204747774481" />
+                  <mssgle:LineSegment
+                    End="168.166666666667,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="76.0833333333333,41.3204747774481,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="832,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-43,28"
+              Start="0,0"
+              End="-43,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10"
+                    Point2="0,14"
+                    Point3="-4,14" />
+                  <mssgle:LineSegment
+                    End="-39,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-39,14"
+                    Point2="-43,14"
+                    Point3="-43,18" />
+                  <mssgle:LineSegment
+                    End="-43,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.5,19,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="344,NaN"
+          Id="2faa9221-4a6b-4ae3-bc4e-e37b8193b238"
+          TopLeft="1050,60" />
+        <AnnotationLayout
+          Text="Get Post Execution Record Count From Target Table"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="344,NaN"
+          Id="9a13ca36-c11b-4f1b-91de-77c148e00cea"
+          TopLeft="1048,130" />
+        <AnnotationLayout
+          Text="Push Package Execution Details data into Framework Tables"
+          ParentId="Package.EventHandlers[OnPostExecute]"
+          FontInfo="{x:Null}"
+          Size="323,NaN"
+          Id="79b03eb8-b266-4753-98e7-c902980f0b6f"
+          TopLeft="60,268" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Delete Destination Load ID"
+          TopLeft="64.666666666667,212.25" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - EXEC SP USP_PKG_ON_EXECUTE"
+          TopLeft="72,568" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Get Target Before Count"
+          TopLeft="110,285.081132075472" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - Set Load ID"
+          TopLeft="60,131.691509433962" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package.EventHandlers[OnPreExecute]\EST - SQL Check For Incremental Load"
+          TopLeft="87,497" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\SQL Get End Load Value"
+          TopLeft="70,425.360377358491" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\SQL Get Start Load Value"
+          TopLeft="70,354.720754716981" />
+        <NodeLayout
+          Size="306,42"
+          Id="Package.EventHandlers[OnPreExecute]\ST-Dummy Task"
+          TopLeft="60,62.051886792453" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="213,104.051886792453">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.639622641509"
+              Start="0,0"
+              End="0,20.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,2.0698113207545,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="215.333333333334,173.691509433962">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38.558490566038"
+              Start="0,0"
+              End="0,31.058490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.058490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 2]"
+          TopLeft="222.25,327.081132075472">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.639622641509"
+              Start="0,0"
+              End="0,20.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 3]"
+          TopLeft="223,396.720754716981">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,28.63962264151"
+              Start="0,0"
+              End="0,21.13962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.13962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 4]"
+          TopLeft="221,467.360377358491">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29.639622641509"
+              Start="0,0"
+              End="0,22.139622641509">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.139622641509" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 5]"
+          TopLeft="219.583333333333,254.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.831132075472"
+              Start="0,0"
+              End="0,23.331132075472">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.331132075472" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint 6]"
+          TopLeft="222,539">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Dummy task to evaluate the expression"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="37322775-0e41-43eb-84df-ee4b60050576"
+          TopLeft="394.333333333333,60" />
+        <AnnotationLayout
+          Text="Get Latest  Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="66477991-b7b3-49c7-a7e5-e03f9a0f1ce5"
+          TopLeft="395.333333333333,132" />
+        <AnnotationLayout
+          Text="Get Latest Load Date From Source"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="c4f8e57b-d0f2-486a-b5a5-5633ee090d9c"
+          TopLeft="395.333333333333,418" />
+        <AnnotationLayout
+          Text="Push Package execution details in Framework Tables"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="c78bbe68-2353-491a-8504-60907797e7a1"
+          TopLeft="391.833333333333,571" />
+        <AnnotationLayout
+          Text="Get Latest Load Date From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="8df65a33-2409-48eb-aec5-489afbffe403"
+          TopLeft="397.333333333333,355" />
+        <AnnotationLayout
+          Text="Get Total Record Count From Target"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="3d6b6878-83dd-4bc4-b090-3ad1972d848b"
+          TopLeft="398.833333333333,287" />
+        <AnnotationLayout
+          Text="If exists Delete Destination Load ID"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="306,NaN"
+          Id="16346f7b-61ff-4489-a6e0-7a32a3a96fb8"
+          TopLeft="399,213" />
+        <AnnotationLayout
+          Text="Retrieve load type (full/incremental)"
+          ParentId="Package.EventHandlers[OnPreExecute]"
+          FontInfo="{x:Null}"
+          Size="206,NaN"
+          Id="1d6c99a7-a018-4697-85e3-38e756fb0f1d"
+          TopLeft="418.416666666667,494.25" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT - Load M3_MPAGRP Full">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138,42"
+          Id="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_MPAGRP Full\ROW Count"
+          TopLeft="5.5,157.575471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_MPAGRP Full\DER Values"
+          TopLeft="5.5,82.7075471698113" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS"
+          TopLeft="5.5,229.27358490566" />
+        <EdgeLayout
+          Id="Package\DFT - Load M3_MPAGRP Full.Paths[Row Count Output 1]"
+          TopLeft="73.3867924528302,201.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,27.7735849056604"
+              Start="0,0"
+              End="0,20.2735849056604">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2735849056604" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load M3_MPAGRP Full.Paths[OLE DB Source Output]"
+          TopLeft="74,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,35.2075471698113"
+              Start="0,0"
+              End="0,27.7075471698113">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7075471698113" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT - Load M3_MPAGRP Full.Paths[Derived Column Output]"
+          TopLeft="73.3867924528302,126.632075471698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,30.9433962264151"
+              Start="0,0"
+              End="0,23.4433962264151">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4433962264151" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load M3_MPAGRP Full\OLE SRC M3">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load M3_MPAGRP Full\OLE DST ODS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

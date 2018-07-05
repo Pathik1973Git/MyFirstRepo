@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_RetailCommission", "ETL_RetailCommission\ETL_RetailCommission.dtproj", "{1C46AA7B-CF9E-4A21-96DA-3F968B2288B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C46AA7B-CF9E-4A21-96DA-3F968B2288B4}.Development|Default.ActiveCfg = Development
+		{1C46AA7B-CF9E-4A21-96DA-3F968B2288B4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfsapp1:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ETL_RetailCommission\\ETL_RetailCommission.dtproj
+		SccProjectName1 = ETL_RetailCommission
+		SccLocalPath1 = ETL_RetailCommission
+	EndGlobalSection
+EndGlobal

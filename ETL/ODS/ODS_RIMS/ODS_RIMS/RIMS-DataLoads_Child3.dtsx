@@ -1,0 +1,3610 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/10/2011"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName=""
+  DTS:CreatorName="GNet\SridharNivarty"
+  DTS:DTSID="{DEC23A34-08C8-4066-AD80-9ECA3D54D5E9}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3368.0"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="RIMS-DataLoads_Child3"
+  DTS:VersionBuild="755"
+  DTS:VersionGUID="{F37729DF-660D-4354-8499-F7405E85B9E8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RWSAudit]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+      DTS:ObjectName="RWSAudit">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=DWSQLDEV;Initial Catalog=RWSAudit;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RWSRIMSODS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C392A1A3-CFC4-4C30-AA34-6DF4ED8F9DFF}"
+      DTS:ObjectName="RWSRIMSODS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DWSQLDEV;Initial Catalog=RWSODS;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source]"
+      DTS:CreationName="OLEDB"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{EFA586F3-60D6-49B5-897F-8DAAFFCE732F}"
+      DTS:ObjectName="Source">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">"Data Source="+ @[User::strSourceDatabaseServer]+";Initial Catalog="+ @[User::strSourceDatabase]+";Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=dwhsqldev;Initial Catalog=RimsStore009CompanyOwned;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditDatabase"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Connections[RWSAudit].Properties[ConnectionString]"
+      DTS:CreationName=""
+      DTS:DTSID="{D7F52FF4-6CBC-44D8-A38C-DA638BAB6C24}"
+      DTS:ObjectName="SSISAuditDatabase" />
+    <DTS:Configuration
+      DTS:ConfigurationString="SSISAuditingMethod"
+      DTS:ConfigurationType="2"
+      DTS:ConfigurationVariable="\Package.Variables[User::SSISAuditingMethod].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{CD81A369-2CE9-47BD-9764-72301A1E864F}"
+      DTS:ObjectName="SSISAuditingMethod" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;RWSRIMSODS&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{12A49603-D14F-4AB2-88B0-35DA86EB22F2}"
+      DTS:ObjectName="RWSRIMSODS" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;StagingRIMSIsAuditingEnabled&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{51D38A89-810F-4FBE-8F84-6B342685464C}"
+      DTS:ObjectName="StagingRIMSIsAuditingEnabled" />
+    <DTS:Configuration
+      DTS:ConfigurationString="&quot;RWSAudit&quot;;&quot;[Audit].[SSISConfigurations]&quot;;&quot;RIMSDestinationServer&quot;;"
+      DTS:ConfigurationType="7"
+      DTS:CreationName=""
+      DTS:DTSID="{52FE0E98-C191-4647-B5A4-6F5F58FCF276}"
+      DTS:ObjectName="RIMSDestinationServer" />
+    <DTS:Configuration
+      DTS:ConfigurationString="strETLSource"
+      DTS:ConfigurationVariable="\Package.Variables[User::cstrETLSource].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{434F8F15-FDF7-477C-8530-A0B2D12FA7B3}"
+      DTS:ObjectName="strETLSource" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="RWSAudit"
+      DTS:CreationName="DTS.LogProviderSQLServer.3"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{FD77687A-FF75-459D-BF99-517D0556D444}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{588728B4-0C85-480A-AC28-11C93C3B2786}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="cstrETLSource">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B82277D7-2C4F-4EC5-9E82-8AB2FB511E08}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RWSODS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9EE2FE73-2EE5-43E5-81D1-E785F84207CE}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DestinationServer">
+      <DTS:VariableValue
+        DTS:DataType="8">DWSQLDEV</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{561ACB89-D6AE-4613-AF04-53B7422BF7F7}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="intStoreNumber">
+      <DTS:VariableValue
+        DTS:DataType="2">20</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{802A019C-D028-4189-A93C-7338C507ADDD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LoopQuitParent1">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0EB1C6B8-579C-4068-B12A-EEC57A27F1E4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="objStoreList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{76D541D9-441D-4F29-8D4E-415E603AEB32}"
+      DTS:EvaluateAsExpression="True"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="objTableList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A2F6715B-7E7C-41E7-829E-A32F0DBEC5ED}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="objTableListInner">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DF31EC7C-132A-4D73-81BE-243404AAE6B9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RIMS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D9E3318B-C35F-4B02-801A-0F825035C326}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strDestinationSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{13627234-90F7-43EB-B453-CCD77BB5BE24}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strInnerSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1AD56750-2905-46F2-9FA8-62487701CB9C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">dbo</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B6C3C1D2-0D2E-47DD-8E3C-D7DD275833FB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSourceDatabase">
+      <DTS:VariableValue
+        DTS:DataType="8">RimsStore009CompanyOwned</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6AF252F2-0D8F-454B-A9F5-F7812DD2AC56}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSourceDatabaseServer">
+      <DTS:VariableValue
+        DTS:DataType="8">dwhsqldev</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59DEECDE-D683-4582-B071-E2DF4A6BF32E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="strSourceSchema">
+      <DTS:VariableValue
+        DTS:DataType="8">dbo</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">5,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{FD77687A-FF75-459D-BF99-517D0556D444}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC Get List of Source Stores Again"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9BDBC52B-A6F0-4085-BB88-687F784D9F90}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC Get List of Source Stores Again"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+          SQLTask:SqlStatementSource="Exec Audit.usp_ETLPackageExecOrder ?"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::objStoreList" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::cstrETLSource"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LOOP Each RIMS Store"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{B5E3AE16-666E-4033-833D-0719BE9FB4E1}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LOOP Each RIMS Store">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+        DTS:DTSID="{35684C77-E6F0-4214-BF96-E46116B374AF}"
+        DTS:ObjectName="{35684C77-E6F0-4214-BF96-E46116B374AF}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::objStoreList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\LOOP Each RIMS Store\EXEC Get Table List 1"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1460C95A-D810-4643-9476-BD74525E401C}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC Get Table List 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+              SQLTask:SqlStatementSource=" /* &gt;X/2 AND &lt;=3X/4 */&#xA;declare @sql varchar(8000)&#xA;&#xA;set @sql = '&#xA;&#xA; ;WITH CTE_Cnt&#xA; AS (SELECT COUNT(*) Cnt FROM Audit.ETLPackageExecOrder where StoreNumber = '''+ ? +''' AND SourceDatabase LIKE ''%'+ ? +'%'')&#xA; , CTE_RN&#xA; AS (SELECT *,ROW_NUMBER() OVER(ORDER BY TableName) AS RN FROM Audit.ETLPackageExecOrder where StoreNumber = '''+ ? +''' AND SourceDatabase LIKE ''%'+ ? +'%'')&#xA; &#xA; SELECT A.*&#xA; FROM Audit.ETLPackageExecOrder A&#xA; JOIN CTE_RN B ON B.StoreNumber = A.StoreNumber AND B.SourceDatabase = A.SourceDatabase AND B.DestinationSchema = A.DestinationSchema AND B.TableName = A.TableName&#xA; ,CTE_Cnt C&#xA; WHERE A.StoreNumber = '''+ ? +''' AND A.SourceDatabase LIKE ''%'+ ? +'%'' AND (B.RN &gt; (C.Cnt/2) AND B.RN &lt;= ((C.Cnt)*3/4))'&#xA;&#xA; exec (@sql)&#xA;&#xA;"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::objTableListInner" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::intStoreNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::cstrETLSource"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::intStoreNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="User::cstrETLSource"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="User::intStoreNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="5"
+                SQLTask:DtsVariableName="User::cstrETLSource"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{CD111907-BF52-4CDB-BE57-1ADB06581598}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:ForceExecutionResult="0"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="For Each Table - Group 1">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+            DTS:DTSID="{6A94A36E-19C1-447F-8F4B-E89E6E64452A}"
+            DTS:ObjectName="{5480810C-589D-4BE8-8281-1EFB54A36722}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::objTableListInner" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{EE3804BA-1369-4B4D-915A-E92C2C588376}"
+              DTS:EvaluateAsExpression="True"
+              DTS:Expression="@[User::strSourceSchema] +&quot;.&quot;+ @[User::strTableName]"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="strSchemaTableName">
+              <DTS:VariableValue
+                DTS:DataType="8">dbo.AccountsPayable</DTS:VariableValue>
+            </DTS:Variable>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{359EED72-BD8C-4855-91B8-E53AC1FF94AC}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="strSchemaTableName1">
+              <DTS:VariableValue
+                DTS:DataType="8">dbo.AccountsPayable</DTS:VariableValue>
+            </DTS:Variable>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{A8634B1E-8C33-46DA-83A2-528CA7BEE0E2}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="strTableName">
+              <DTS:VariableValue
+                DTS:DataType="8">AccountsPayable</DTS:VariableValue>
+            </DTS:Variable>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{C0CEF960-26FC-4306-8EEE-88662823A066}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="strTableStatus">
+              <DTS:VariableValue
+                DTS:DataType="8"
+                xml:space="preserve"></DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\Check Table Extract Status"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A94D29B4-2D07-4C1E-974B-ED8D6F01B105}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Check Table Extract Status"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                  SQLTask:SqlStatementSource="&#xA;exec Audit.usp_getSetTableExtractionStatus ?,?,?, ? OUTPUT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::strTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="User::strTableStatus"
+                    SQLTask:ParameterDirection="Output"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::intStoreNumber"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::cstrETLSource"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\EXEC Drop Each Table in Schema"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{9987B2AC-6956-483D-9986-F60DFE7EB0AE}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXEC Drop Each Table in Schema"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C392A1A3-CFC4-4C30-AA34-6DF4ED8F9DFF}"
+                  SQLTask:SqlStatementSource="exec usp_DropTableInSchema ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::strDestinationSchemaName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::strTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container"
+              DTS:CreationName="STOCK:FORLOOP"
+              DTS:Description="For Loop Container"
+              DTS:DTSID="{786E5478-C19B-43C1-AC8E-58506B7DF56C}"
+              DTS:EvalExpression="@[User::LoopQuitParent1]==0"
+              DTS:ExecutableType="STOCK:FORLOOP"
+              DTS:LocaleID="-1"
+              DTS:MaxConcurrent="1"
+              DTS:MaxErrorCount="3"
+              DTS:ObjectName="For Loop Container">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{774CF9EF-370D-4334-A140-DF9D4CEC5663}"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="destcnt">
+                  <DTS:VariableValue
+                    DTS:DataType="8"
+                    xml:space="preserve"></DTS:VariableValue>
+                </DTS:Variable>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{0321AD70-4E28-48DF-B108-494ED359CE3F}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="objTableListInnerInner">
+                  <DTS:VariableValue
+                    DTS:DataSubType="ManagedSerializable"
+                    DTS:DataType="13">
+                    <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+                      <SOAP-ENV:Body>
+                        <xsd:anyType
+                          id="ref-1"></xsd:anyType>
+                      </SOAP-ENV:Body>
+                    </SOAP-ENV:Envelope>
+                  </DTS:VariableValue>
+                </DTS:Variable>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{08200038-FA62-4FFF-B27F-C8B35C009CCD}"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="srccnt">
+                  <DTS:VariableValue
+                    DTS:DataType="8"
+                    xml:space="preserve"></DTS:VariableValue>
+                </DTS:Variable>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{CC875245-CA8E-48B4-99E0-56C3D57244AC}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="&quot;SELECT count(*) AS cnt FROM &quot; + @[User::strSchemaTableName]"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="strDestCountSQL">
+                  <DTS:VariableValue
+                    DTS:DataType="8">SELECT count(*) AS cnt FROM dbo.AccountsPayable</DTS:VariableValue>
+                </DTS:Variable>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:DTSID="{34169D67-0B13-4E73-9C6A-67342A98F87A}"
+                  DTS:EvaluateAsExpression="True"
+                  DTS:Expression="&quot;SELECT count(*) AS cnt FROM &quot; + @[User::strSchemaTableName]"
+                  DTS:IncludeInDebugDump="2345"
+                  DTS:Namespace="User"
+                  DTS:ObjectName="strSourceCountSQL">
+                  <DTS:VariableValue
+                    DTS:DataType="8">SELECT count(*) AS cnt FROM dbo.AccountsPayable</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows After Load (Destination)"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{FED41EED-FCA5-4BAE-ABA8-BC20E7DCCDD7}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Cnt Rows After Load (Destination)"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{C392A1A3-CFC4-4C30-AA34-6DF4ED8F9DFF}"
+                      SQLTask:SqlStmtSourceType="Variable"
+                      SQLTask:SqlStatementSource="User::strDestCountSQL"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="cnt"
+                        SQLTask:DtsVariableName="User::destcnt" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows Before Load"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{C6FE683E-F4C7-40AA-906B-DBFD945AC14E}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Cnt Rows Before Load"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{EFA586F3-60D6-49B5-897F-8DAAFFCE732F}"
+                      SQLTask:SqlStmtSourceType="Variable"
+                      SQLTask:SqlStatementSource="User::strSourceCountSQL"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="cnt"
+                        SQLTask:DtsVariableName="User::srccnt" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{A46F8329-D56C-46BC-8317-1559D8FF261F}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Counts Compare"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="IF( ? &gt;= ?*0.998) &#xA;BEGIN &#xA;  WAITFOR DELAY '00:00:00'&#xA;END &#xA;ELSE &#xA;BEGIN &#xA; RAISERROR ('An error occured',11,1)&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::destcnt"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="3"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::srccnt"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="3"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\FAILURE - Set Variable LoopQuitParent Equal to 0"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{3066DE92-8AF3-44C3-8243-9FF6E4AD86D3}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="FAILURE - Set Variable LoopQuitParent Equal to 0"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="1">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="SELECT 0 AS LoopQuitParent"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="LoopQuitParent"
+                        SQLTask:DtsVariableName="User::LoopQuitParent1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Actual Cnt"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{BC083F5F-B739-4B51-8F59-4F5522A5AA23}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Log Actual Cnt"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="2">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="update [Audit].[ETLLoadCount] &#xA;SET CntActual = ?,&#xA;        EndTime = GETDATE() &#xA;where CntActual IS NULL &#xA;AND Tbl = ? &#xA;AND StartTime = (select max(StartTime) &#xA;from [Audit].[ETLLoadCount] &#xA;where tbl = ? )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::destcnt"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="3"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::strTableName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="User::strTableName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Expected Counts"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{B622F368-7D94-4ECD-9D2A-36B1EF5A2D8E}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Log Expected Counts"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="exec Audit.usp_ETLLoadCount ?,?, 0, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::strSourceDatabase"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::strTableName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="2"
+                        SQLTask:DtsVariableName="User::srccnt"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SCR Process RIMS Tables"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Script Task"
+                  DTS:DTSID="{E47B4C37-3660-48E3-999F-631A4E7A8CF8}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SCR Process RIMS Tables"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <ScriptProject
+                      Name="ST_10e619fee7e143dd8f9d938d8d4b8bc4"
+                      VSTAMajorVersion="3"
+                      VSTAMinorVersion="0"
+                      Language="VisualBasic"
+                      ReadOnlyVariables="User::objTableListInnerInner,User::strTableName,User::DestinationDatabase,User::DestinationServer,User::intStoreNumber,User::strDestinationSchemaName,User::strSourceDatabase,User::strSourceDatabaseServer,User::strSourceSchema">
+                      <ProjectItem
+                        Name="My Project\AssemblyInfo.vb"
+                        Encoding="UTF8"><![CDATA[Imports System
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+
+' General Information about an assembly is controlled through the following 
+' set of attributes. Change these attribute values to modify the information
+' associated with an assembly.
+
+' Review the values of the assembly attributes
+
+<Assembly: AssemblyTitle("ST_c2597d6626b347c0b2a5dab904916954.vbproj")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("Microsoft")> 
+<Assembly: AssemblyProduct("ST_c2597d6626b347c0b2a5dab904916954.vbproj")> 
+<Assembly: AssemblyCopyright("Copyright @ Microsoft 2011")> 
+<Assembly: AssemblyTrademark("")> 
+<Assembly: CLSCompliant(True)> 
+
+<Assembly: ComVisible(False)> 
+
+'The following GUID is for the ID of the typelib if this project is exposed to COM
+<Assembly: Guid("16dea356-84e7-4899-bfbf-6c2346dede09")> 
+
+' Version information for an assembly consists of the following four values:
+'
+'      Major Version
+'      Minor Version 
+'      Build Number
+'      Revision
+'
+' You can specify all the values or you can default the Build and Revision Numbers 
+' by using the '*' as shown below:
+' <Assembly: AssemblyVersion("1.0.*")>
+
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> ]]></ProjectItem>
+                      <ProjectItem
+                        Name="ScriptMain.vb"
+                        Encoding="UTF8"><![CDATA[#Region "Help:  Introduction to the script task"
+'The Script Task allows you to perform virtually any operation that can be accomplished in
+'a .Net application within the context of an Integration Services control flow. 
+
+'Expand the other regions which have "Help" prefixes for examples of specific ways to use
+'Integration Services features within this script task.
+#End Region
+
+
+#Region "Imports"
+Imports System
+Imports System.Data
+Imports System.Data.OleDb
+Imports System.Math
+Imports Microsoft.SqlServer.Dts.Runtime
+'Imports Microsoft.SqlServer.Management.Common
+Imports Microsoft.SqlServer.Management.Smo
+#End Region
+
+'ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+'or parent of this class.
+<Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute()> _
+<System.CLSCompliantAttribute(False)> _
+Partial Public Class ScriptMain
+    Inherits Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+
+#Region "Help:  Using Integration Services variables and parameters in a script"
+    'To use a variable in this script, first ensure that the variable has been added to 
+    'either the list contained in the ReadOnlyVariables property or the list contained in 
+    'the ReadWriteVariables property of this script task, according to whether or not your
+    'code needs to write to the variable.  To add the variable, save this script, close this instance of
+    'Visual Studio, and update the ReadOnlyVariables and 
+    'ReadWriteVariables properties in the Script Transformation Editor window.
+    'To use a parameter in this script, follow the same steps. Parameters are always read-only.
+
+    'Example of reading from a variable:
+    ' startTime = Dts.Variables("System::StartTime").Value
+
+    'Example of writing to a variable:
+    ' Dts.Variables("User::myStringVariable").Value = "new value"
+
+    'Example of reading from a package parameter:
+    ' batchId = Dts.Variables("$Package::batchId").Value
+
+    'Example of reading from a project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").Value
+
+    'Example of reading from a sensitive project parameter:
+    ' batchId = Dts.Variables("$Project::batchId").GetSensitiveValue()
+#End Region
+
+#Region "Help:  Firing Integration Services events from a script"
+    'This script task can fire events for logging purposes.
+
+    'Example of firing an error event:
+    ' Dts.Events.FireError(18, "Process Values", "Bad value", "", 0)
+
+    'Example of firing an information event:
+    ' Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, fireAgain)
+
+    'Example of firing a warning event:
+    ' Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0)
+#End Region
+
+#Region "Help:  Using Integration Services connection managers in a script"
+    'Some types of connection managers can be used in this script task.  See the topic 
+    '"Working with Connection Managers Programatically" for details.
+
+    'Example of using an ADO.Net connection manager:
+    ' Dim rawConnection As Object = Dts.Connections("Sales DB").AcquireConnection(Dts.Transaction)
+    ' Dim myADONETConnection As SqlConnection = CType(rawConnection, SqlConnection)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Sales DB").ReleaseConnection(rawConnection)
+
+    'Example of using a File connection manager
+    ' Dim rawConnection As Object = Dts.Connections("Prices.zip").AcquireConnection(Dts.Transaction)
+    ' Dim filePath As String = CType(rawConnection, String)
+    ' <Use the connection in some code here, then release the connection>
+    ' Dts.Connections("Prices.zip").ReleaseConnection(rawConnection)
+#End Region
+
+    'This method is called when this script task executes in the control flow.
+    'Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+    'To open Help, press F1.
+
+    Public Sub Main()
+
+        Try
+            'set configuration items
+            Dim strSourceServer As String = Dts.Variables("strSourceDatabaseServer").Value
+            Dim strSourceDatabase As String = Dts.Variables("strSourceDatabase").Value
+            Dim strDestinationServer As String = Dts.Variables("DestinationServer").Value
+            Dim strDestinationDatabase As String = Dts.Variables("DestinationDatabase").Value
+            Dim objTableList As New Object
+            Dim daTableList As New OleDb.OleDbDataAdapter
+            Dim dtTableList As New DataTable
+            objTableList = Dts.Variables("objTableListInnerInner").Value
+            daTableList.Fill(dtTableList, objTableList)
+
+
+            'set source db
+            Dim svrSource As New Server
+            svrSource = New Server(strSourceServer)
+            Dim dbSource As New Database
+            dbSource = svrSource.Databases(strSourceDatabase)
+
+            'set destination db
+            Dim svrDestination As New Server
+            svrDestination = New Server(strDestinationServer)
+            Dim dbDestination As New Database
+            dbDestination = svrDestination.Databases(strDestinationDatabase)
+
+            'create transfer task and set basic options
+            Dim xfrTask As New Transfer(dbSource)
+            xfrTask.CopyAllObjects = False
+            xfrTask.CopyAllTables = False
+            xfrTask.Options.WithDependencies = False
+            xfrTask.Options.ContinueScriptingOnError = True
+            xfrTask.DestinationDatabase = dbDestination.Name
+            xfrTask.DestinationServer = svrDestination.Name
+            xfrTask.CopySchema = True
+            'xfrTask.CopySchema = False
+            xfrTask.CopyData = True
+            'xfrTask.CopyData = False
+            'xfrTask.DropDestinationObjectsFirst = False
+            xfrTask.DropDestinationObjectsFirst = True
+
+            'set list of included tables
+            For Each rowRow As DataRow In dtTableList.Rows
+                Dim tblTable As New Table
+                tblTable.Schema = rowRow(4)
+                tblTable.Name = rowRow(6)
+                tblTable.Parent = dbSource
+                xfrTask.ObjectList.Add(tblTable)
+            Next
+
+            'execute transfer task
+            xfrTask.TransferData()
+
+            Dts.TaskResult = ScriptResults.Success
+        Catch ex As Exception
+            MsgBox("an error occurred: " + ex.Message)
+            Dts.TaskResult = ScriptResults.Failure
+        End Try
+
+        Dts.TaskResult = ScriptResults.Success
+    End Sub
+
+#Region "ScriptResults declaration"
+    'This enum provides a convenient shorthand within the scope of this class for setting the
+    'result of the script.
+
+    'This code was generated automatically.
+    Enum ScriptResults
+        Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success
+        Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+    End Enum
+
+#End Region
+
+End Class]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Settings.settings"
+                        Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)" GeneratedClassNamespace="$safeprojectname" GeneratedClassName="MySettings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Settings.Designer.vb"
+                        Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+
+Partial Friend NotInheritable Class MySettings
+    Inherits System.Configuration.ApplicationSettingsBase
+
+    Private Shared m_Value As MySettings
+
+    Private Shared m_SyncObject As Object = New Object
+
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Public Shared ReadOnly Property Value() As MySettings
+        Get
+            If (MySettings.m_Value Is Nothing) Then
+                System.Threading.Monitor.Enter(MySettings.m_SyncObject)
+                If (MySettings.m_Value Is Nothing) Then
+                    Try
+                        MySettings.m_Value = New MySettings
+                    Finally
+                        System.Threading.Monitor.Exit(MySettings.m_SyncObject)
+                    End Try
+                End If
+            End If
+            Return MySettings.m_Value
+        End Get
+    End Property
+End Class]]></ProjectItem>
+                      <ProjectItem
+                        Name="Project"
+                        Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:ProjectId>{F83E7586-D45D-415A-B3C0-B426A825CD76}</msb:ProjectId>
+		<msb:NoContent>Reference;Import;Folder</msb:NoContent>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>st_41e6b2ab568a4b4fa4a56654b7ad900a</msb:DisplayName>
+		<msb:CodeName>st_41e6b2ab568a4b4fa4a56654b7ad900a</msb:CodeName>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:File Include="My Project\Settings.Designer.vb"/>
+		<msb:File Include="My Project\Resources.Designer.vb"/>
+		<msb:File Include="My Project\AssemblyInfo.vb"/>
+		<msb:File Include="My Project\Resources.resx"/>
+		<msb:File Include="My Project\Settings.settings"/>
+		<msb:File Include="ScriptMain.vb"/>
+		<msb:Project Include="ST_10e619fee7e143dd8f9d938d8d4b8bc4.vbproj"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Resources.resx"
+                        Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+                      <ProjectItem
+                        Name="ST_10e619fee7e143dd8f9d938d8d4b8bc4.vbproj"
+                        Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="utf-16"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><!-- This section defines project-level properties.
+
+       Configuration - Specifies whether the default configuration is Release or Debug.
+       Platform - Specifies what CPU the output of this project can run on.
+       OutputType - Must be "Library" for VSTA.
+       NoStandardLibraries - Set to "false" for VSTA.
+       RootNamespace - In C#, this specifies the namespace given to new files.
+                       In Visual Basic, all objects are wrapped in this namespace at runtime.
+       AssemblyName - Name of the output assembly.
+  --><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><OutputType>Library</OutputType><RootNamespace>ST_c2597d6626b347c0b2a5dab904916954.vbproj</RootNamespace><AssemblyName>ST_10e619fee7e143dd8f9d938d8d4b8bc4</AssemblyName><StartupObject></StartupObject><OptionExplicit>On</OptionExplicit><OptionCompare>Binary</OptionCompare><OptionStrict>Off</OptionStrict><OptionInfer>On</OptionInfer><ProjectGuid>{A8D6E86A-835C-4257-A1FA-4032877D252A}</ProjectGuid></PropertyGroup><!-- This section defines properties that are set when the "Debug" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  --><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DefineConstants></DefineConstants><DefineDebug>true</DefineDebug><DefineTrace>true</DefineTrace><DebugSymbols>true</DebugSymbols><Optimize>false</Optimize><OutputPath>bin\</OutputPath><RegisterForComInterop>false</RegisterForComInterop><RemoveIntegerChecks>false</RemoveIntegerChecks><NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn></PropertyGroup><!-- This section defines properties that are set when the "Release" configuration is
+       selected.
+
+       DebugSymbols - If true, create symbols (.pdb). If false, do not create symbols.
+       Optimize - If true, optimize the build output. If false, do not optimize.
+       OutputPath - Output path of the project relative to the project file.
+       EnableUnmanagedDebugging - If true, starting the debugger will attach both managed and unmanaged debuggers.
+       DefineConstants - Constants defined for the preprocessor.
+       Warning Level - Warning level for the compiler.
+  --><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DefineConstants></DefineConstants><DefineDebug>false</DefineDebug><DefineTrace>true</DefineTrace><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>bin\</OutputPath><RegisterForComInterop>false</RegisterForComInterop><RemoveIntegerChecks>false</RemoveIntegerChecks><NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn></PropertyGroup><!-- This section enables pre- and post-build steps. However,
+       it is recommended that MSBuild tasks be used instead of these properties.
+  --><PropertyGroup><PreBuildEvent></PreBuildEvent><PostBuildEvent></PostBuildEvent></PropertyGroup><!-- This sections specifies references for the project. --><ItemGroup><Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" /><Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" /><Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" /><Reference Include="Microsoft.SqlServer.SmoExtended, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" /><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /></ItemGroup><!-- Visual Basic supports Importing namespaces (equivalent to using statements in C#).--><ItemGroup><Import Include="Microsoft.VisualBasic" /><Import Include="System" /><Import Include="System.Collections" /><Import Include="System.Data" /><Import Include="System.Diagnostics" /><Import Include="System.Windows.Forms" /></ItemGroup><!-- This section defines the user source files that are part of the
+       project.
+
+       Compile - Specifies a source file to compile.
+       EmbeddedResource - Specifies a .resx file for embedded resources.
+       None - Specifies a file that is not to be passed to the compiler (for instance,
+              a text file or XML file).
+       AppDesigner - Specifies the directory where the application properties files can
+                     be found.
+  --><ItemGroup><AppDesigner Include="My Project\" /><Compile Include="My Project\AssemblyInfo.vb"><SubType>Code</SubType></Compile><EmbeddedResource Include="My Project\Resources.resx"><Generator>VbMyResourcesResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.vb</LastGenOutput><CustomToolNamespace>My.Resources</CustomToolNamespace></EmbeddedResource><Compile Include="My Project\Resources.Designer.vb"><AutoGen>True</AutoGen><DesignTime>True</DesignTime><DependentUpon>Resources.resx</DependentUpon><SubType>Code</SubType></Compile><None Include="My Project\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.vb</LastGenOutput></None><Compile Include="My Project\Settings.Designer.vb"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon><SubType>Code</SubType></Compile><Compile Include="ScriptMain.vb"><SubType>Code</SubType></Compile><!-- Include the default configuration information and metadata files for the add-in.
+         These files are copied to the build output directory when the project is
+         built, and the path to the configuration file is passed to add-in on the command
+         line when debugging.
+    --></ItemGroup><!-- Include the build rules for a VB project.--><Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" /><!-- This section defines VSTA properties that describe the host-changable project properties. --><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="vb" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebuge98705c2-3e36-4307-a581-180dcc080571/f4de1dd1-b186-49f0-a023-d6f482e5321b&quot;" /><Host Name="SSIS_ScriptTask" /><ProjectClient><HostIdentifier>SSIS_ST110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions><PropertyGroup><TargetFrameworkVersion>v4.0</TargetFrameworkVersion></PropertyGroup><PropertyGroup><TargetFrameworkProfile></TargetFrameworkProfile></PropertyGroup></Project>]]></ProjectItem>
+                      <ProjectItem
+                        Name="My Project\Resources.Designer.vb"
+                        Encoding="UTF8"><![CDATA['------------------------------------------------------------------------------
+' <autogenerated>
+'     This code was generated by a tool.
+'
+'     Changes to this file may cause incorrect behavior and will be lost if
+'     the code is regenerated.
+' </autogenerated>
+'------------------------------------------------------------------------------
+
+Option Strict Off
+Option Explicit On
+
+
+Namespace My.Resources
+    
+    '''<summary>
+    '''   A strongly-typed resource class, for looking up localized strings, etc.
+    '''</summary>
+    'This class was auto-generated by the Strongly Typed Resource Builder
+    'class via a tool like ResGen or Visual Studio.NET.
+    'To add or remove a member, edit your .ResX file then rerun ResGen
+    'with the /str option, or rebuild your VS project.
+    Class MyResources
+        
+        Private Shared _resMgr As System.Resources.ResourceManager
+        
+        Private Shared _resCulture As System.Globalization.CultureInfo
+        
+        Friend Sub New()
+            MyBase.New
+        End Sub
+        
+        '''<summary>
+        '''   Returns the cached ResourceManager instance used by this class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared ReadOnly Property ResourceManager() As System.Resources.ResourceManager
+            Get
+                If (_resMgr Is Nothing) Then
+                    Dim temp As System.Resources.ResourceManager = New System.Resources.ResourceManager("My.Resources.MyResources", GetType(MyResources).Assembly)
+                    _resMgr = temp
+                End If
+                Return _resMgr
+            End Get
+        End Property
+        
+        '''<summary>
+        '''   Overrides the current thread's CurrentUICulture property for all
+        '''   resource lookups using this strongly typed resource class.
+        '''</summary>
+        <System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        Public Shared Property Culture() As System.Globalization.CultureInfo
+            Get
+                Return _resCulture
+            End Get
+            Set
+                _resCulture = value
+            End Set
+        End Property
+    End Class
+End Namespace]]></ProjectItem>
+                      <BinaryItem
+                        Name="ST_10e619fee7e143dd8f9d938d8d4b8bc4.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDACEvU1YAAAAAAAAAAOAAAiELAQsAACQAAAAIAAAAAAAAPkIA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAIAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAORBAABXAAAAAGAAAEAEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAARCIAAAAgAAAAJAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEAEAAAAYAAAAAYAAAAmAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAALAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAg
+QgAAAAAAAEgAAAACAAUAACYAAOQbAAABAAAAAAAAAEglAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKAEAAAoqHgIoBAAACiqmcwYAAAqAAQAABHMHAAAKgAIA
+AARzCAAACoADAAAEcwkAAAqABAAABCoAABMwAQALAAAAAQAAEX4BAAAEbwoAAAoqABMwAQALAAAA
+AgAAEX4CAAAEbwsAAAoqABMwAQALAAAAAwAAEX4DAAAEbwwAAAoqABMwAQALAAAABAAAEX4EAAAE
+bw0AAAoqABMwAgANAAAABQAAEQIDKBEAAAooEgAACioAAAATMAEABwAAAAYAABECKBMAAAoqABMw
+AQALAAAABwAAEdAFAAACKBQAAAoqABMwAQAHAAAACAAAEQIoFQAACioAEzABABAAAAAJAAARAowB
+AAAbLQYoAQAAKyoCKhMwAgAQAAAACgAAEQMSAP4VAgAAGwaBAgAAGyoeAigXAAAKKhMwAgAoAAAA
+CwAAEQJ7GQAACm8aAAAKCweMAwAAGy0SKAIAACsLAnsZAAAKB28bAAAKBypKAigXAAAKAnMcAAAK
+fRkAAAoqAB4CKBcAAAoqEzACAC0AAAAMAAARfgYAAAQtIHIBAABw0AcAAAIoFAAACm8eAAAKcx8A
+AAoLB4AGAAAEfgYAAAQqAAAAEzABAAYAAAANAAARfgcAAAQqAAAeAoAHAAAEKkJzFwAACigRAAAK
+gAkAAAQqAAAAHgIoIAAACiobMAEAPwAAAA4AABF+CAAABC0yfgkAAAQoEQAACighAAAKfggAAAQt
+HHMWAAAGgAgAAATeEH4JAAAEKBEAAAooIgAACtx+CAAABCoAARAAAAIAHQAMKQAQAAAAAB4CKCQA
+AAoqGzADAFUCAAAPAAARAm8lAAAKbyYAAApyMwAAcG8nAAAKbygAAAooKQAAChMIAm8lAAAKbyYA
+AApyYwAAcG8nAAAKbygAAAooKQAAChMHAm8lAAAKbyYAAApyhwAAcG8nAAAKbygAAAooKQAAChMG
+Am8lAAAKbyYAAApyqwAAcG8nAAAKbygAAAooKQAAChMFcxcAAAooEQAAChMEcyoAAAoKcysAAAoN
+Am8lAAAKbyYAAApy0wAAcG8nAAAKbygAAAooEQAAChMEBgkRBCgRAAAKbywAAAomcy0AAAoTChEI
+cy4AAAoTCnMvAAAKDBEKbzAAAAoRB28xAAAKDHMtAAAKEwkRBnMuAAAKEwlzLwAACgsRCW8wAAAK
+EQVvMQAACgsIczIAAAoTCxELFm8zAAAKEQsWbzQAAAoRC281AAAKFm82AAAKEQtvNQAAChdvNwAA
+ChELB284AAAKbzkAAAoRCxEJbzoAAApvOwAAChELF288AAAKEQsXbz0AAAoRCxdvPgAACglvPwAA
+Cm9AAAAKEw8rVBEPb0EAAAp0IAAAARMMc0IAAAoTDRENEQwab0MAAAooKQAACm9EAAAKEQ0RDBxv
+QwAACigpAAAKb0UAAAoRDQhvRgAAChELb0cAAAoRDW9IAAAKJhEPb0kAAAoto94WEQ91LwAAASwM
+EQ91LwAAAW9KAAAK3BELb0sAAAoCbyUAAAoWb0wAAAreNCUoTQAAChMOcgEBAHARDm9OAAAKKE8A
+AAoWFChQAAAKJgJvJQAAChdvTAAACihRAAAK3gACbyUAAAoWb0wAAAoqAAAAQTQAAAIAAAB7AQAA
+bgAAAOkBAAAWAAAAAAAAAAAAAAAAAAAAFAIAABQCAAA0AAAAIgAAAbQAAADOyu++AQAAAJEAAABs
+U3lzdGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAu
+MCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3Rl
+bS5SZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pC
+AQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAABwCQAAI34AANwJAACkDAAAI1N0cmluZ3MA
+AAAAgBYAACwBAAAjVVMArBcAABAAAAAjR1VJRAAAALwXAAAoBAAAI0Jsb2IAAAAAAAAAAgAAAVcd
+ogkJDwAAAPolMwAWAAABAAAAQQAAAAoAAAAMAAAAGQAAAAQAAABeAAAAAgAAADYAAAAPAAAABAAA
+AAgAAAAJAAAACQAAAAEAAAAJAAAAAQAAAAMAAAADAAAAAgAAAAAAewwBAAAAAAAKAGABNgEKAJQB
+dgEGAKQBnQEKAPwBNgEGAHoCnQEKAPwC0gIGADIDIQMGAF8DSgMOAMYDsQMSAEUEHAQGAGYEnQEO
+AJkEgwQOALIEgwQOAN8ExwQGAAkF9gQKAEgFIQUKAGAFEwAOAJUFeAUGAMoFqgUGAOgFnQEGAAwG
+nQEKACUGEwAGAGkGSgYGAI8GfQYGALYGpQYGAMkG9gQWAAQH8gYaAFAHLQcWAFkH5gYaAGMHLQce
+AIoHLQcWAJMH5gYaAJsHLQcGAKEHnQEGAL4HqwcSAMoHHAQiACMIAwgiADsIAwgKAE0IIQUaAF4I
+LQceAH8ILQcaALEILQcWAHMJ5gYaAKgJLQcGAN4JqwcmAN4JqwcGAAQKnQEKADQKIQUGAFwKnQEK
+AGoKEwAKAHYKEwAKAIMKEwAGAKgKnQESAL4KHAQGAB8LqgUGAD8LqgUGAHcLXQsGAJALfQYGAK0L
+SgYGALsLfQYGANYLfQYGAPELfQYGAAoMfQYGACMMfQYGAEAMfQYAAAAAAQAAAAAAAQABAAAAAAAp
+ADcABQABAAEAAAAAAGUANwAJAAEAAgAAARAAcAA3AA0AAQADAAUBAAB6AAAADQAFAAgABQEAAIgA
+AAANAAUADwAAAAAAowCvAA0ABgARAAABEADnAPIAJQAIABUAAQAAAB0B8gApAAoAGAACAQAAKAEA
+AC0ACgAaADEAvwEgADEA6AEtADEACgI6ADEALwJHACEACwOQABEAQgOdABEAawOhABEA3gO/ABEA
+5gPDAAYGawTZAFaAcwTcAFaAewTcAFAgAAAAAAYYcAETAAEAWCAAAAAABhhwARMAAQBgIAAAAAAR
+GKsBFwABAIwgAAAAABMIsgEbAAEApCAAAAAAEwjYASgAAQC8IAAAAAATCAECNQABANQgAAAAABMI
+HwJCAAEA7CAAAAAARgJlAmMAAQAIIQAAAABGAm4CaAACABwhAAAAAIMAfwJsAAIANCEAAAAARgKH
+AnEAAgBIIQAAAAARAJACeAACAGQhAAAAAAEArgKAAAMAgCEAAAAABhhwARMABACIIQAAAAADCMIC
+iwAEALwhAAAAAAYYcAETAAQA0CEAAAAAAxhwARMABADYIQAAAAAWCHcDpQAEABQiAAAAABYIiwOq
+AAQAKCIAAAAAFgiXA68ABAAwIgAAAAARGKsBFwAFAEQiAAAAAAYYcAETAAUATCIAAAAAFgjzA8YA
+BQCoIgAAAAAGGHABEwAFALAiAAAAAAYAYQQTAAUAAAABAGwCAAABAKUCAAABAKUCAAABAKMDCQBw
+ARMAYQBwAeoAcQBwAfkAEQBwARMAeQBwARMAJABwARMALABwARMANABwARMAPABwARMAJADCAosA
+LADCAosANADCAosAPADCAosAgQBwARMAiQBwARMAkQBwAUgBmQDZBZMBGQBlAmMAGQBuAmgAKQD6
+BaABGQCHAnEAqQAWBrABGQBwARMAsQBwAcABRAALA5AATADzA4sATABABj0CTABwARMAuQBwAUwC
+KQCYBlcCOQBwAVwCSQBwARMAyQC+BngCyQDEBngC0QBwARMAUQBwARMAUQDcB4ICIQEtCIgCKQFE
+CI4CMQHzA5UCOQGHApkC2QBwARMA6QBwARMA2QBZCJ4C8QBwARMA8QBwAUgB4QBwARMA8QBxCKUC
+QQFECKsC+QBwAbECSQGMCEwCSQGfCEwCSQHCCLcCUQHOCEwCUQHjCEwC4QAACXEASQEJCUgB8QAA
+CXEASQEhCUgBSQE3CUwCSQFGCUwCSQFTCUwC6QCFCb0CWQGOCcMCGQGcCZUCCQFwARMAAQFECMkC
+YQG/CUgBYQHKCUgBCQHTCbECSQHoCc4CaQH3CdQCGQH7CdkCeQEQChMA+QAYChMAIQElCt0CgQFA
+CuICEQFQCnEAiQFjCukCkQGPCu8CgQGWChcAqQFwAUwCsQFwARMAuQFwAd0CwQFwARMAyQFwAUgB
+0QFwAUgB2QFwAUgB4QFwAUgB6QFwAUgB8QFwAUgB+QFwAUgBAQJwAUgBCQJwAUgBCAAsAOAACAAw
+AOUAKQCDAG4BLgDbAukDLgDzAukDLgDTAskDLgCrAiUDLgCzAkQDLgDLAlECLgDrAlECLgCjAhwD
+LgDjAhkELgC7AowDLgDDApkDLgDrAFECLgCTAsMDQAArAOUAQAATAPAAQwATAPAAQwAbAP8ASQCD
+AFoBYwATAPAAYwAbAP8AaQCDAE0BgAArAOUAgwBzAOUAgwAbAP8AgwB7AOUAiQCDAH8BoAArAOUA
+owDDAMgBowATAPAAwAArAOUAwwATAPAAwwDrAFECyQATAG8C4AArAOUA6QATAG8CAAErAOUAAAET
+APAACQEbAeUAIAErAOUAIAETAPAAIwGbAuUAIwGTAlECQAErAOUAQAETAPAAYAETAPAAYAErAOUA
+gAErAOUAoAErAOUAwAErAOUAwAETAPAA4AErAOUAAAITAPAAAAIrAOUANAE5AT4BQwGYAZwBpwGs
+AbsBuwFDAmMCagJ9AvoCBAABAAYABQAHAAYACAAIAAAAlAFPAAAATQJUAAAA/AFZAAAAWQJeAAAA
+FQOYAAAAMgO1AAAAqQO6AAAAowPLAAIABAADAAIABQAFAAIABgAHAAIABwAJAAIADwALAAIAEgAN
+AAIAEwAPAAEAFAAPAAIAFwARAHUAdQCIABgBHwEmAS0BKgIxAgSAAAABAAAAAAAAAAAAAAAAAFcM
+AAAEAAAAAAAAAAAAAAABAAoAAAAAAAoAAAAAAAAAAAAAAAoAEwAAAAAABAAAAAAAAAAAAAAAAQCd
+AQAAAAALAAAAAAAAAAAAAADQAP0DAAAAAAQAAAAAAAAAAAAAAAEA5gYAAAAACwAAAAAAAAAAAAAA
+0AAVBwAAAAALAAAAAAAAAAAAAADQAGoHAAAAAAsAAAAAAAAAAAAAANAA5AcAAAAAAgAAAAAAAAAA
+AAAAAQAKAAAAAAAAAAAAAQAAAOAKAAAFAAQABgAEAAoACQAAABAADACjAgAAEAAZAKMCAAAAABsA
+owItALYBLQA4AgAAADxNb2R1bGU+AG1zY29ybGliAE1pY3Jvc29mdC5WaXN1YWxCYXNpYwBNeUFw
+cGxpY2F0aW9uAFNUX2MyNTk3ZDY2MjZiMzQ3YzBiMmE1ZGFiOTA0OTE2OTU0LnZicHJvai5NeQBN
+eUNvbXB1dGVyAE15UHJvamVjdABNeVdlYlNlcnZpY2VzAFRocmVhZFNhZmVPYmplY3RQcm92aWRl
+cmAxAE15UmVzb3VyY2VzAFNUX2MyNTk3ZDY2MjZiMzQ3YzBiMmE1ZGFiOTA0OTE2OTU0LnZicHJv
+ai5NeS5SZXNvdXJjZXMATXlTZXR0aW5ncwBTVF9jMjU5N2Q2NjI2YjM0N2MwYjJhNWRhYjkwNDkx
+Njk1NC52YnByb2oAU2NyaXB0TWFpbgBTY3JpcHRSZXN1bHRzAE1pY3Jvc29mdC5WaXN1YWxCYXNp
+Yy5BcHBsaWNhdGlvblNlcnZpY2VzAEFwcGxpY2F0aW9uQmFzZQAuY3RvcgBNaWNyb3NvZnQuVmlz
+dWFsQmFzaWMuRGV2aWNlcwBDb21wdXRlcgBTeXN0ZW0AT2JqZWN0AC5jY3RvcgBnZXRfQ29tcHV0
+ZXIAbV9Db21wdXRlck9iamVjdFByb3ZpZGVyAGdldF9BcHBsaWNhdGlvbgBtX0FwcE9iamVjdFBy
+b3ZpZGVyAFVzZXIAZ2V0X1VzZXIAbV9Vc2VyT2JqZWN0UHJvdmlkZXIAZ2V0X1dlYlNlcnZpY2Vz
+AG1fTXlXZWJTZXJ2aWNlc09iamVjdFByb3ZpZGVyAEFwcGxpY2F0aW9uAFdlYlNlcnZpY2VzAEVx
+dWFscwBvAEdldEhhc2hDb2RlAFR5cGUAR2V0VHlwZQBUb1N0cmluZwBDcmVhdGVfX0luc3RhbmNl
+X18AVABpbnN0YW5jZQBEaXNwb3NlX19JbnN0YW5jZV9fAGdldF9HZXRJbnN0YW5jZQBNaWNyb3Nv
+ZnQuVmlzdWFsQmFzaWMuTXlTZXJ2aWNlcy5JbnRlcm5hbABDb250ZXh0VmFsdWVgMQBtX0NvbnRl
+eHQAR2V0SW5zdGFuY2UAU3lzdGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAX3Jlc01ncgBT
+eXN0ZW0uR2xvYmFsaXphdGlvbgBDdWx0dXJlSW5mbwBfcmVzQ3VsdHVyZQBnZXRfUmVzb3VyY2VN
+YW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAFZhbHVlAEN1bHR1cmUAU3lzdGVtLkNvbmZp
+Z3VyYXRpb24AQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAbV9WYWx1ZQBtX1N5bmNPYmplY3QAZ2V0
+X1ZhbHVlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2VydmVy
+LkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFSVFNjcmlwdE9iamVjdE1vZGVsQmFzZQBNYWluAEVu
+dW0AdmFsdWVfXwBTdWNjZXNzAEZhaWx1cmUAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJy
+b3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBTeXN0ZW0uQ29kZURvbS5Db21w
+aWxlcgBHZW5lcmF0ZWRDb2RlQXR0cmlidXRlAFN5c3RlbS5EaWFnbm9zdGljcwBEZWJ1Z2dlckhp
+ZGRlbkF0dHJpYnV0ZQBNaWNyb3NvZnQuVmlzdWFsQmFzaWMuQ29tcGlsZXJTZXJ2aWNlcwBTdGFu
+ZGFyZE1vZHVsZUF0dHJpYnV0ZQBIaWRlTW9kdWxlTmFtZUF0dHJpYnV0ZQBTeXN0ZW0uQ29tcG9u
+ZW50TW9kZWwuRGVzaWduAEhlbHBLZXl3b3JkQXR0cmlidXRlAFN5c3RlbS5SdW50aW1lLkNvbXBp
+bGVyU2VydmljZXMAUnVudGltZUhlbHBlcnMAR2V0T2JqZWN0VmFsdWUAUnVudGltZVR5cGVIYW5k
+bGUAR2V0VHlwZUZyb21IYW5kbGUAQWN0aXZhdG9yAENyZWF0ZUluc3RhbmNlAE15R3JvdXBDb2xs
+ZWN0aW9uQXR0cmlidXRlAHNldF9WYWx1ZQBTeXN0ZW0uUnVudGltZS5JbnRlcm9wU2VydmljZXMA
+Q29tVmlzaWJsZUF0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseQBnZXRfQXNzZW1i
+bHkAU3lzdGVtLlRocmVhZGluZwBNb25pdG9yAEVudGVyAEV4aXQARGVidWdnZXJOb25Vc2VyQ29k
+ZUF0dHJpYnV0ZQBTeXN0ZW0uRGF0YQBTeXN0ZW0uRGF0YS5PbGVEYgBPbGVEYkRhdGFBZGFwdGVy
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU21vAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuTWFuYWdlbWVudC5T
+bW8ARGF0YWJhc2UARGF0YVRhYmxlAFNlcnZlcgBNaWNyb3NvZnQuU3FsU2VydmVyLlNtb0V4dGVu
+ZGVkAFRyYW5zZmVyAERhdGFSb3cAVGFibGUARXhjZXB0aW9uAFN5c3RlbS5Db2xsZWN0aW9ucwBJ
+RW51bWVyYXRvcgBTY3JpcHRPYmplY3RNb2RlbABnZXRfRHRzAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+TWFuYWdlZERUUwBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5SdW50aW1lAFZhcmlhYmxlcwBnZXRf
+VmFyaWFibGVzAFZhcmlhYmxlAGdldF9JdGVtAENvbnZlcnNpb25zAEZpbGwARGF0YWJhc2VDb2xs
+ZWN0aW9uAGdldF9EYXRhYmFzZXMAVHJhbnNmZXJCYXNlAHNldF9Db3B5QWxsT2JqZWN0cwBzZXRf
+Q29weUFsbFRhYmxlcwBTY3JpcHRpbmdPcHRpb25zAGdldF9PcHRpb25zAHNldF9XaXRoRGVwZW5k
+ZW5jaWVzAHNldF9Db250aW51ZVNjcmlwdGluZ09uRXJyb3IAZ2V0X05hbWUAc2V0X0Rlc3RpbmF0
+aW9uRGF0YWJhc2UAc2V0X0Rlc3RpbmF0aW9uU2VydmVyAHNldF9Db3B5U2NoZW1hAHNldF9Db3B5
+RGF0YQBzZXRfRHJvcERlc3RpbmF0aW9uT2JqZWN0c0ZpcnN0AERhdGFSb3dDb2xsZWN0aW9uAGdl
+dF9Sb3dzAEdldEVudW1lcmF0b3IAZ2V0X0N1cnJlbnQAVGFibGVWaWV3VGFibGVUeXBlQmFzZQBz
+ZXRfU2NoZW1hAHNldF9OYW1lAHNldF9QYXJlbnQAQXJyYXlMaXN0AGdldF9PYmplY3RMaXN0AEFk
+ZABNb3ZlTmV4dABJRGlzcG9zYWJsZQBEaXNwb3NlAFRyYW5zZmVyRGF0YQBzZXRfVGFza1Jlc3Vs
+dABQcm9qZWN0RGF0YQBTZXRQcm9qZWN0RXJyb3IAZ2V0X01lc3NhZ2UAU3RyaW5nAENvbmNhdABJ
+bnRlcmFjdGlvbgBNc2dCb3hSZXN1bHQATXNnQm94U3R5bGUATXNnQm94AENsZWFyUHJvamVjdEVy
+cm9yAENMU0NvbXBsaWFudEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5UG9pbnRBdHRyaWJ1
+dGUAU1RfYzI1OTdkNjYyNmIzNDdjMGIyYTVkYWI5MDQ5MTY5NTQudmJwcm9qLlJlc291cmNlcy5y
+ZXNvdXJjZXMAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJp
+bGl0eUF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29ya0F0
+dHJpYnV0ZQBBc3NlbWJseUZpbGVWZXJzaW9uQXR0cmlidXRlAEd1aWRBdHRyaWJ1dGUAQXNzZW1i
+bHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlQ
+cm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0
+aW9uQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAU1RfMTBlNjE5ZmVlN2UxNDNkZDhm
+OWQ5MzhkOGQ0YjhiYzQAU1RfMTBlNjE5ZmVlN2UxNDNkZDhmOWQ5MzhkOGQ0YjhiYzQuZGxsAAAA
+MU0AeQAuAFIAZQBzAG8AdQByAGMAZQBzAC4ATQB5AFIAZQBzAG8AdQByAGMAZQBzAAAvcwB0AHIA
+UwBvAHUAcgBjAGUARABhAHQAYQBiAGEAcwBlAFMAZQByAHYAZQByAAAjcwB0AHIAUwBvAHUAcgBj
+AGUARABhAHQAYQBiAGEAcwBlAAAjRABlAHMAdABpAG4AYQB0AGkAbwBuAFMAZQByAHYAZQByAAAn
+RABlAHMAdABpAG4AYQB0AGkAbwBuAEQAYQB0AGEAYgBhAHMAZQAALW8AYgBqAFQAYQBiAGwAZQBM
+AGkAcwB0AEkAbgBuAGUAcgBJAG4AbgBlAHIAACdhAG4AIABlAHIAcgBvAHIAIABvAGMAYwB1AHIA
+cgBlAGQAOgAgAAAAAADYtxbK5ncTQpGsyYStNppzAAi3elxWGTTgiQiwP19/EdUKOgMgAAEDAAAB
+BAAAEgwHBhUSGAESDAQAABIIBwYVEhgBEggEAAASEQcGFRIYARIRBAAAEhQHBhUSGAESFAQIABIM
+BAgAEggECAASEQQIABIUBCABAhwDIAAIBCAAEhUDIAAOAh4ABxABAR4AHgAHMAEBARAeAAITAAQg
+ABMABwYVEhkBEwAEKAATAAMGEh0DBhIhBAAAEh0EAAASIQUAAQESIQQIABIdBAgAEiEDBhIgAgYc
+BAAAEiAECAASIAiJhF3NgIDMkQIGCAMGESgEAAAAAAQBAAAABSABARE1CAEAAQAAAAAABSACAQ4O
+GAEACk15VGVtcGxhdGUIMTAuMC4wLjAAAAYVEhgBEgwGFRIYARIIBhUSGAESEQYVEhgBEhQEBwES
+DAQHARIIBAcBEhEEBwESFAQgAQEODAEAB015LlVzZXIAABMBAA5NeS5BcHBsaWNhdGlvbgAAEAEA
+C015LkNvbXB1dGVyAAATAQAOTXkuV2ViU2VydmljZXMAAAQAARwcAwcBAgMHAQgGAAESFRFRBAcB
+EhUDBwEOBRABAB4ABAoBHgAEBwEeAAcgBAEODg4OYQEANFN5c3RlbS5XZWIuU2VydmljZXMuUHJv
+dG9jb2xzLlNvYXBIdHRwQ2xpZW50UHJvdG9jb2wSQ3JlYXRlX19JbnN0YW5jZV9fE0Rpc3Bvc2Vf
+X0luc3RhbmNlX18AAAAGFRIYARMABhUSGQETAAQKARMABSABARMACAcDEwATABMABCABAQIFAQAA
+AAAEIAASYQYgAgEOEmEGBwISHRIdBAcBEiEIAQACAAAAAAAEAAEBHAQHARIgBSAAEoCRBSAAEoCV
+BiABEoCZHAMgABwEAAEOHAYgAggSdRwFIAASgKEFIAEScQ4FIAEBEnEFIAASgKkFIAASgK0FIAAS
+gI0EIAEcCAUgABKAuQQgAQgcAyAAAgQgAQEIBgABARKAiQUAAg4ODgoAAxGAzRwRgNEcIQcQEm0S
+cRJxEnUcDg4ODhJ5EnkSfRKAgRKAhRKAiRKAjQgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2Vw
+dGlvblRocm93cwFHAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjABAFQOFEZyYW1ld29ya0Rp
+c3BsYXlOYW1lEC5ORVQgRnJhbWV3b3JrIDQMAQAHMS4wLjAuMAAAKQEAJDE2ZGVhMzU2LTg0ZTct
+NDg5OS1iZmJmLTZjMjM0NmRlZGUwOQAABQEAAQAAHwEAGkNvcHlyaWdodCBAIE1pY3Jvc29mdCAy
+MDExAAAvAQAqU1RfYzI1OTdkNjYyNmIzNDdjMGIyYTVkYWI5MDQ5MTY5NTQudmJwcm9qAAAOAQAJ
+TWljcm9zb2Z0AAAMQgAAAAAAAAAAAAAuQgAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIEIAAAAA
+AAAAAAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAA
+ABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABYYAAA
+6AMAAAAAAAAAAAAA6AM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E7/4A
+AAEAAAABAAAAAAAAAAEAAAAAAD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBWAGEA
+cgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAAAACw
+BEgDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAACQDAAABADAAMAAwADAAMAA0AGIA
+MAAAADQACgABAEMAbwBtAHAAYQBuAHkATgBhAG0AZQAAAAAATQBpAGMAcgBvAHMAbwBmAHQAAACA
+ACsAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBUAF8AYwAyADUAOQA3AGQA
+NgA2ADIANgBiADMANAA3AGMAMABiADIAYQA1AGQAYQBiADkAMAA0ADkAMQA2ADkANQA0AC4AdgBi
+AHAAcgBvAGoAAAAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4A
+MAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBUAF8AMQAwAGUANgAxADkAZgBl
+AGUANwBlADEANAAzAGQAZAA4AGYAOQBkADkAMwA4AGQAOABkADQAYgA4AGIAYwA0AC4AZABsAGwA
+AABcABsAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAg
+AEAAIABNAGkAYwByAG8AcwBvAGYAdAAgADIAMAAxADEAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEA
+bABGAGkAbABlAG4AYQBtAGUAAABTAFQAXwAxADAAZQA2ADEAOQBmAGUAZQA3AGUAMQA0ADMAZABk
+ADgAZgA5AGQAOQAzADgAZAA4AGQANABiADgAYgBjADQALgBkAGwAbAAAAHgAKwABAFAAcgBvAGQA
+dQBjAHQATgBhAG0AZQAAAAAAUwBUAF8AYwAyADUAOQA3AGQANgA2ADIANgBiADMANAA3AGMAMABi
+ADIAYQA1AGQAYQBiADkAMAA0ADkAMQA2ADkANQA0AC4AdgBiAHAAcgBvAGoAAAAAADQACAABAFAA
+cgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4AAgAAQBBAHMAcwBl
+AG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAADAAAAEAyAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+                    </ScriptProject>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SUCCESS - Set Variable LoopQuitParent Equal to 1"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{05B14F47-4AF2-4376-AAE5-84725A2C9429}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="SUCCESS - Set Variable LoopQuitParent Equal to 1"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="SELECT 1 AS LoopQuitParent"
+                      SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="LoopQuitParent"
+                        SQLTask:DtsVariableName="User::LoopQuitParent1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+                <DTS:Executable
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Table Extract Details"
+                  DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:Description="Execute SQL Task"
+                  DTS:DTSID="{0ACDF52C-8297-4DAF-80CB-B7573881CF20}"
+                  DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+                  DTS:LocaleID="-1"
+                  DTS:ObjectName="Table Extract Details"
+                  DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+                  DTS:ThreadHint="0">
+                  <DTS:Variables />
+                  <DTS:LoggingOptions
+                    DTS:FilterKind="0" />
+                  <DTS:ObjectData>
+                    <SQLTask:SqlTaskData
+                      SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                      SQLTask:SqlStatementSource="SELECT * FROM Audit.ETLPackageExecOrder&#xA;WHERE StoreNumber = ? and TableName = ?"
+                      SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                      <SQLTask:ResultBinding
+                        SQLTask:ResultName="0"
+                        SQLTask:DtsVariableName="User::objTableListInnerInner" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="0"
+                        SQLTask:DtsVariableName="User::intStoreNumber"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="3"
+                        SQLTask:ParameterSize="-1" />
+                      <SQLTask:ParameterBinding
+                        SQLTask:ParameterName="1"
+                        SQLTask:DtsVariableName="User::strTableName"
+                        SQLTask:ParameterDirection="Input"
+                        SQLTask:DataType="129"
+                        SQLTask:ParameterSize="-1" />
+                    </SQLTask:SqlTaskData>
+                  </DTS:ObjectData>
+                </DTS:Executable>
+              </DTS:Executables>
+              <DTS:PrecedenceConstraints>
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{EBBD6533-74D6-41F1-A67A-D912116D2688}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SCR Process RIMS Tables"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows After Load (Destination)" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 1]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{00C8187C-E262-4D9E-BF7A-210B1BEC65C9}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SCR Process RIMS Tables"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 1"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\FAILURE - Set Variable LoopQuitParent Equal to 0"
+                  DTS:Value="1" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 10]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{4022A7CE-1952-42A5-8EC5-BDD89295B0F1}"
+                  DTS:Expression="@[User::destcnt] !=  @[User::srccnt]"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare"
+                  DTS:ObjectName="Constraint 10"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Actual Cnt"
+                  DTS:Value="1" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 2]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{75A3316C-A66F-4C76-8E71-57E2FBAF1EC9}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Expected Counts"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 2"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Table Extract Details" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 3]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{E3D1E1C9-054F-4769-AD23-1F2E07DAD88B}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Table Extract Details"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 3"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SCR Process RIMS Tables" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 4]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{A3A1A90C-1054-4E08-A8B8-5D89D6BDC338}"
+                  DTS:Expression="@[User::destcnt] !=  @[User::srccnt]"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 4"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\FAILURE - Set Variable LoopQuitParent Equal to 0"
+                  DTS:Value="1" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 5]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{CC2E7A9C-4D2A-44A4-9931-E8D142020FCE}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows Before Load"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 5"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Expected Counts" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 6]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{33EDA33E-073F-4E38-BBC7-1B9285AB42B3}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows After Load (Destination)"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 6"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 7]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{6CA3B74F-6F46-4130-B42E-0D96007D163B}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SUCCESS - Set Variable LoopQuitParent Equal to 1"
+                  DTS:ObjectName="Constraint 7"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Actual Cnt" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 8]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{F603728A-637E-4F4F-A2A3-DB4BFBE48739}"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\FAILURE - Set Variable LoopQuitParent Equal to 0"
+                  DTS:ObjectName="Constraint 8"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Actual Cnt" />
+                <DTS:PrecedenceConstraint
+                  DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 9]"
+                  DTS:CreationName=""
+                  DTS:DTSID="{B221B086-9819-4AD2-94DE-7266EAC94849}"
+                  DTS:Expression="@[User::destcnt] ==  @[User::srccnt]"
+                  DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare"
+                  DTS:LogicalAnd="True"
+                  DTS:ObjectName="Constraint 9"
+                  DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SUCCESS - Set Variable LoopQuitParent Equal to 1" />
+              </DTS:PrecedenceConstraints>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\Re Set Variable LoopQuitParent Equal to 0"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{A0398B46-D78E-4BFE-B610-772D05A5E0EC}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Re Set Variable LoopQuitParent Equal to 0"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                  SQLTask:SqlStatementSource="SELECT 0 AS LoopQuitParent"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="LoopQuitParent"
+                    SQLTask:DtsVariableName="User::LoopQuitParent1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Complete"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{DE1C196F-7051-44C6-AD58-EA10FB766DF9}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Set Execution Status - Complete"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                  SQLTask:SqlStatementSource="UPDATE Audit.ETLPackageExecOrder &#xA;SET ExecutionStatus = 'Complete'&#xA;WHERE StoreNumber = ?&#xA;AND TableName = ?&#xA;AND ExecutionStatus = 'Running'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::intStoreNumber"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::strTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Failed"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{141A3FD6-F945-4B1D-9D82-8222880086B3}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Set Execution Status - Failed"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+                  SQLTask:SqlStatementSource="UPDATE Audit.ETLPackageExecOrder &#xA;SET ExecutionStatus = 'Failed'&#xA;WHERE StoreNumber = ?&#xA;AND TableName = ?&#xA;AND ExecutionStatus = 'Running'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::intStoreNumber"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::strTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1\SQL Transfer Schema"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{AB8A7C9D-2BD7-403B-869C-8087CF9E0BE7}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Transfer Schema"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{C392A1A3-CFC4-4C30-AA34-6DF4ED8F9DFF}"
+                  SQLTask:SqlStatementSource="exec usp_ChangeTableSchema ?, ?, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::strSourceSchema"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="User::strTableName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="User::strDestinationSchemaName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{BC7DD0BD-5898-4BDA-A47F-BFD1C757B61D}"
+              DTS:EvalOp="3"
+              DTS:Expression="@[User::strTableStatus] == &quot;Idle&quot;"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\Check Table Extract Status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{9288E2FE-637E-4EB8-9094-0F2C8F33693E}"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\EXEC Drop Each Table in Schema" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 1 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{CCD3C169-5BB1-4A83-AD56-12A2F8963CED}"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\SQL Transfer Schema"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1 1"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Complete" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{686049FC-8AD6-4748-AA24-B0464CB16526}"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Failed"
+              DTS:Value="1" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 2 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{05A2EFA1-46BB-4715-8FFB-AC083AF28C1F}"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Complete"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2 1"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\Re Set Variable LoopQuitParent Equal to 0" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 3]"
+              DTS:CreationName=""
+              DTS:DTSID="{1A13FE8A-5748-415C-8F31-6B320159A0E0}"
+              DTS:From="Package\LOOP Each RIMS Store\For Each Table - Group 1\EXEC Drop Each Table in Schema"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 3"
+              DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1\SQL Transfer Schema" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{0C2B8379-9242-4EAB-A1D7-02C2DD0A5BF1}"
+              DTS:ObjectName="{0C2B8379-9242-4EAB-A1D7-02C2DD0A5BF1}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::intStoreNumber" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{E29B3315-3F2D-478E-BE38-B5A58D9ADC6E}"
+              DTS:ObjectName="{E29B3315-3F2D-478E-BE38-B5A58D9ADC6E}"
+              DTS:ValueIndex="5"
+              DTS:VariableName="User::strDestinationSchemaName" />
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{6079A456-C88F-47BB-A6B4-9703B4505C50}"
+              DTS:ObjectName="{6079A456-C88F-47BB-A6B4-9703B4505C50}"
+              DTS:ValueIndex="6"
+              DTS:VariableName="User::strTableName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\LOOP Each RIMS Store.PrecedenceConstraints[Constraint 1 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{CD4DBFB7-8B20-4C76-A1EC-3878CD6893E1}"
+          DTS:From="Package\LOOP Each RIMS Store\EXEC Get Table List 1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1 1"
+          DTS:To="Package\LOOP Each RIMS Store\For Each Table - Group 1" />
+      </DTS:PrecedenceConstraints>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{EC4A8403-7C8E-4E17-AA36-8265BB701BBA}"
+          DTS:ObjectName="{EC4A8403-7C8E-4E17-AA36-8265BB701BBA}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::intStoreNumber" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{8B6021AC-B0AE-4CFB-9FAD-BB4787A6724E}"
+          DTS:ObjectName="{8B6021AC-B0AE-4CFB-9FAD-BB4787A6724E}"
+          DTS:ValueIndex="1"
+          DTS:VariableName="User::strSourceDatabaseServer" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{F1D37A52-6279-4B1C-B7D1-00780F10CB43}"
+          DTS:ObjectName="{F1D37A52-6279-4B1C-B7D1-00780F10CB43}"
+          DTS:ValueIndex="2"
+          DTS:VariableName="User::strSourceDatabase" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{96A18656-8FB7-41D4-AA0A-4F05A9DEF4FC}"
+          DTS:ObjectName="{96A18656-8FB7-41D4-AA0A-4F05A9DEF4FC}"
+          DTS:ValueIndex="3"
+          DTS:VariableName="User::strSourceSchema" />
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{EDE21A6F-C659-4E5E-95B8-68A7A1C7353A}"
+          DTS:ObjectName="{EDE21A6F-C659-4E5E-95B8-68A7A1C7353A}"
+          DTS:ValueIndex="4"
+          DTS:VariableName="User::strDestinationSchemaName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E514600D-51C6-4328-8708-93E4736F1AB5}"
+      DTS:From="Package\EXEC Get List of Source Stores Again"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\LOOP Each RIMS Store" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{E9880432-EA6F-4DB4-B325-124286C8C61C}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{5BC694EF-6F04-4BEE-98FE-A76AE904D9C4}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SEQ Empty Seq Container"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:Disabled="True"
+          DTS:DTSID="{24C6B17D-9AE8-49CC-B92B-226BA3B668B0}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQ Empty Seq Container">
+          <DTS:Variables />
+          <DTS:Executables />
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL Log Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{E45FDF53-89D2-4DF5-B2D0-08034AE8DBE8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Log Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+              SQLTask:SqlStatementSource="exec Audit.usp_RecordPackageError ?,?,?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::intStoreNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="129"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL Package End"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{B3A5F7BC-C4F6-427F-A4C4-6938A12B23DA}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Package End"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+              SQLTask:SqlStatementSource="Declare @Now Datetime&#xA;Set @Now = GetDate()&#xA;&#xA;Exec Audit.usp_RecordPackageEnd ?,@Now,'Failed'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::PackageID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL Task Error"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{528DAD7B-5817-4960-9EE6-A4AD350E66E3}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Task Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{370091B2-BA3C-48BE-8401-F8DAE66131F6}"
+              SQLTask:SqlStatementSource="Declare @Now DateTime&#xA;Set @Now = GetDate()&#xA;&#xA;Exec Audit.usp_RecordTaskEnd ?,@Now,'Failed'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="System::SourceID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="72"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8EB45DC0-3C69-4401-A85E-1A4CBE082CD2}"
+          DTS:From="Package.EventHandlers[OnError]\SQL Log Error"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\SQL Package End" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{EB3F9E77-8898-4AF9-87AF-93CF89F322F4}"
+          DTS:Expression="@[System::PackageID]==@[System::SourceID]"
+          DTS:From="Package.EventHandlers[OnError]\SEQ Empty Seq Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnError]\SQL Log Error" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{5A1CBC1B-A43E-43D6-8B83-CC8F3E4CDF9C}"
+          DTS:Expression="@[System::PackageID]!=@[System::SourceID]"
+          DTS:From="Package.EventHandlers[OnError]\SEQ Empty Seq Container"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package.EventHandlers[OnError]\SQL Task Error" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnInformation]"
+      DTS:CreationName="OnInformation"
+      DTS:DTSID="{D94B9D5B-2B0B-4BB2-B69A-280577F45AB7}"
+      DTS:EventID="0"
+      DTS:EventName="OnInformation"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F5DA394F-EF27-4D66-AA55-464B68EBC65A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{20EEFB71-1724-4619-976D-0A64DC46C626}"
+          DTS:Expression="SUBSTRING( @[System::ErrorDescription] ,FINDSTRING(@[System::ErrorDescription] ,&quot;wrote&quot;,1)+6,(FINDSTRING(@[System::ErrorDescription] ,&quot;rows&quot;,1)-1) - (FINDSTRING(@[System::ErrorDescription] ,&quot;wrote&quot;,1) + 6) + 7) "
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="Audit"
+          DTS:ObjectName="RowCount">
+          <DTS:VariableValue
+            DTS:DataType="3">0</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{C978F5B1-0666-417C-87CC-63FEB840AF34}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{C8AF110F-0BA6-4C07-A381-A7E0F81E0F80}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{BD6872D2-4C48-457A-BEF0-9DCCB56DD31B}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{907E876F-D6EA-4DEE-B90C-4F00065AD7C0}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="274,44"
+          Id="Package\EXEC Get List of Source Stores Again"
+          TopLeft="1297.26354130686,692.669324156527" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\LOOP Each RIMS Store\EXEC Get Table List 1"
+          TopLeft="361.341147275491,18.6202575508955" />
+        <NodeLayout
+          Size="157,43"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\Check Table Extract Status"
+          TopLeft="246.978809279381,27.1146739484964" />
+        <NodeLayout
+          Size="193,44"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\EXEC Drop Each Table in Schema"
+          TopLeft="120.503567396202,953.481036482391" />
+        <NodeLayout
+          Size="184,61"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows After Load (Destination)"
+          TopLeft="67.3876305272399,375.764946323413" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Cnt Rows Before Load"
+          TopLeft="60.5238072810403,54.711531810211" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Counts Compare"
+          TopLeft="79.3333333333335,479.333333333333" />
+        <NodeLayout
+          Size="162,65"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\FAILURE - Set Variable LoopQuitParent Equal to 0"
+          TopLeft="338.104984931616,375.5327807427" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Actual Cnt"
+          TopLeft="361.913840116715,581.3061778563" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Log Expected Counts"
+          TopLeft="64.43353711176,131.040925241286" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SCR Process RIMS Tables"
+          TopLeft="63.3755112484439,284.662659227031" />
+        <NodeLayout
+          Size="162,65"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\SUCCESS - Set Variable LoopQuitParent Equal to 1"
+          TopLeft="70.2215917327833,573.798743818756" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container\Table Extract Details"
+          TopLeft="64.663666636246,199.271968342333" />
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="124.708844581777,326.662659227031">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="34.6787859454627,49.102287096382"
+              Start="0,0"
+              End="34.6787859454627,41.602287096382">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9004864002958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9004864002958"
+                    Point2="0,19.9004864002958"
+                    Point3="4,19.9004864002958" />
+                  <mssgle:LineSegment
+                    End="30.6787859454627,19.9004864002958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="30.6787859454627,19.9004864002958"
+                    Point2="34.6787859454627,19.9004864002958"
+                    Point3="34.6787859454627,23.9004864002958" />
+                  <mssgle:LineSegment
+                    End="34.6787859454627,41.602287096382" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="182.042177915111,326.662659227031">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="237.062807016505,48.8701215156693"
+              Start="0,0"
+              End="237.062807016505,41.3701215156693">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.8063928609761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.8063928609761"
+                    Point2="0,19.8063928609761"
+                    Point3="4,19.8063928609761" />
+                  <mssgle:LineSegment
+                    End="233.062807016505,19.8063928609761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="233.062807016505,19.8063928609761"
+                    Point2="237.062807016505,19.8063928609761"
+                    Point3="237.062807016505,23.8063928609761" />
+                  <mssgle:LineSegment
+                    End="237.062807016505,41.3701215156693" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="103.290055852002,24.8063928609761,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 10]"
+          TopLeft="182.666666666667,521.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="229.580506783382,59.9728445229666"
+              Start="0,0"
+              End="229.580506783382,52.4728445229666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9611033757979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9611033757979"
+                    Point2="0,29.9611033757979"
+                    Point3="4,29.9611033757979" />
+                  <mssgle:LineSegment
+                    End="225.580506783382,29.9611033757979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="225.580506783382,29.9611033757979"
+                    Point2="229.580506783382,29.9611033757979"
+                    Point3="229.580506783382,33.9611033757979" />
+                  <mssgle:LineSegment
+                    End="229.580506783382,52.4728445229666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="99.548905735441,34.9611033757979,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="153.048601874003,173.040925241286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,26.2310431010474"
+              Start="0,0"
+              End="0,18.7310431010474">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7310431010474" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="153.019588942345,241.271968342333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,43.390690884698"
+              Start="0,0"
+              End="0,35.890690884698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.890690884698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="182.666666666667,479.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="210.771651598282,-38.8005525906333"
+              Start="0,0"
+              End="210.771651598282,-31.3005525906333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-15.4077173340921" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-15.4077173340921"
+                    Point2="0,-19.4077173340921"
+                    Point3="4,-19.4077173340921" />
+                  <mssgle:LineSegment
+                    End="206.771651598282,-19.4077173340921" />
+                  <mssgle:CubicBezierSegment
+                    Point1="206.771651598282,-19.4077173340921"
+                    Point2="210.771651598282,-19.4077173340921"
+                    Point3="210.771651598282,-23.4077173340921" />
+                  <mssgle:LineSegment
+                    End="210.771651598282,-31.3005525906333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="90.144478142891,-14.4077173340921,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="152.7286721964,96.711531810211">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,34.3293934310746"
+              Start="0,0"
+              End="0,26.8293934310746">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8293934310746" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="159.38763052724,436.764946323413">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-26.3876305272398,42.5683870099206"
+              Start="0,0"
+              End="-26.3876305272398,35.0683870099206">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2833673161067" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2833673161067"
+                    Point2="0,25.2833673161067"
+                    Point3="-4,25.2833673161067" />
+                  <mssgle:LineSegment
+                    End="-22.3876305272398,25.2833673161067" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.3876305272398,25.2833673161067"
+                    Point2="-26.3876305272398,25.2833673161067"
+                    Point3="-26.3876305272398,29.2833673161067" />
+                  <mssgle:LineSegment
+                    End="-26.3876305272398,35.0683870099206" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 7]"
+          TopLeft="232.221591732783,604.302460837528">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="129.692248383932,0"
+              Start="0,0"
+              End="122.192248383932,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="122.192248383932,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 8]"
+          TopLeft="444.771651598282,440.5327807427">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="13.8088551850992,140.7733971136"
+              Start="0,0"
+              End="13.8088551850992,133.2733971136">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.3002708817548" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66.3002708817548"
+                    Point2="0,70.3002708817548"
+                    Point3="4,70.3002708817548" />
+                  <mssgle:LineSegment
+                    End="9.80885518509922,70.3002708817548" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.80885518509922,70.3002708817548"
+                    Point2="13.8088551850992,70.3002708817548"
+                    Point3="13.8088551850992,74.3002708817548" />
+                  <mssgle:LineSegment
+                    End="13.8088551850992,133.2733971136" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container.PrecedenceConstraints[Constraint 9]"
+          TopLeft="133,521.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="18.2215917327831,52.4654104854221"
+              Start="0,0"
+              End="18.2215917327831,44.9654104854221">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3037354051777" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3037354051777"
+                    Point2="0,21.3037354051777"
+                    Point3="4,21.3037354051777" />
+                  <mssgle:LineSegment
+                    End="14.2215917327831,21.3037354051777" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.2215917327831,21.3037354051777"
+                    Point2="18.2215917327831,21.3037354051777"
+                    Point3="18.2215917327831,25.3037354051777" />
+                  <mssgle:LineSegment
+                    End="18.2215917327831,44.9654104854221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="575,750"
+          Size="575,793"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\For Loop Container"
+          TopLeft="97.5,127.044561030821" />
+        <NodeLayout
+          Size="182,46"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\Re Set Variable LoopQuitParent Equal to 0"
+          TopLeft="279.700642283831,1161.39604575987" />
+        <NodeLayout
+          Size="180,46"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Complete"
+          TopLeft="58.3818381377523,1101.9791918557" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\Set Execution Status - Failed"
+          TopLeft="435.435423477365,1015.75674125864" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1\SQL Transfer Schema"
+          TopLeft="209.187135291554,1032.3088635259" />
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint]"
+          TopLeft="325.478809279381,70.1146739484964">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="59.521190720619,56.9298870823246"
+              Start="0,0"
+              End="59.521190720619,49.4298870823246">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4649435411623" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.4649435411623"
+                    Point2="0,28.4649435411623"
+                    Point3="4,28.4649435411623" />
+                  <mssgle:LineSegment
+                    End="55.521190720619,28.4649435411623" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.521190720619,28.4649435411623"
+                    Point2="59.521190720619,28.4649435411623"
+                    Point3="59.521190720619,32.4649435411623" />
+                  <mssgle:LineSegment
+                    End="59.521190720619,49.4298870823246" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.7605953603095,33.4649435411623,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 1]"
+          TopLeft="290.5,920.044561030821">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-73.4964326037984,33.4364754515698"
+              Start="0,0"
+              End="-73.4964326037984,25.9364754515698">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.43025965068255" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.43025965068255"
+                    Point2="0,13.4302596506826"
+                    Point3="-4,13.4302596506826" />
+                  <mssgle:LineSegment
+                    End="-69.4964326037984,13.4302596506826" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.4964326037984,13.4302596506826"
+                    Point2="-73.4964326037984,13.4302596506826"
+                    Point3="-73.4964326037984,17.4302596506826" />
+                  <mssgle:LineSegment
+                    End="-73.4964326037984,25.9364754515698" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 1 1]"
+          TopLeft="277.187135291554,1076.3088635259">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-128.805297153802,25.6703283298016"
+              Start="0,0"
+              End="-128.805297153802,18.1703283298016">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.83516416490079" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.83516416490079"
+                    Point2="0,12.8351641649008"
+                    Point3="-4,12.8351641649008" />
+                  <mssgle:LineSegment
+                    End="-124.805297153802,12.8351641649008" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-124.805297153802,12.8351641649008"
+                    Point2="-128.805297153802,12.8351641649008"
+                    Point3="-128.805297153802,16.8351641649008" />
+                  <mssgle:LineSegment
+                    End="-128.805297153802,18.1703283298016" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 2]"
+          TopLeft="479.5,920.044561030821">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="62.935423477365,95.712180227819"
+              Start="0,0"
+              End="62.935423477365,88.212180227819">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.4442263974382" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.4442263974382"
+                    Point2="0,38.4442263974382"
+                    Point3="4,38.4442263974382" />
+                  <mssgle:LineSegment
+                    End="58.935423477365,38.4442263974382" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.935423477365,38.4442263974382"
+                    Point2="62.935423477365,38.4442263974382"
+                    Point3="62.935423477365,42.4442263974382" />
+                  <mssgle:LineSegment
+                    End="62.935423477365,88.212180227819" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="16.2263640824325,43.4442263974382,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 2 1]"
+          TopLeft="238.381838137752,1124.9791918557">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="41.3188041460789,59.4168539041632"
+              Start="0,0"
+              End="33.8188041460789,59.4168539041632">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.6594020730395,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.6594020730395,0"
+                    Point2="20.6594020730395,0"
+                    Point3="20.6594020730395,4" />
+                  <mssgle:LineSegment
+                    End="20.6594020730395,55.4168539041632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.6594020730395,55.4168539041632"
+                    Point2="20.6594020730395,59.4168539041632"
+                    Point3="24.6594020730395,59.4168539041632" />
+                  <mssgle:LineSegment
+                    End="33.8188041460789,59.4168539041632" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1.PrecedenceConstraints[Constraint 3]"
+          TopLeft="217.003567396202,997.481036482391">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="60.1835678953526,34.8278270435125"
+              Start="0,0"
+              End="60.1835678953526,27.3278270435125">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.4139135217562" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.4139135217562"
+                    Point2="0,17.4139135217562"
+                    Point3="4,17.4139135217562" />
+                  <mssgle:LineSegment
+                    End="56.1835678953526,17.4139135217562" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.1835678953526,17.4139135217562"
+                    Point2="60.1835678953526,17.4139135217562"
+                    Point3="60.1835678953526,21.4139135217562" />
+                  <mssgle:LineSegment
+                    End="60.1835678953526,27.3278270435125" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="730,1262"
+          Size="730,1306"
+          Id="Package\LOOP Each RIMS Store\For Each Table - Group 1"
+          TopLeft="111.285941934915,172.031018796971" />
+        <EdgeLayout
+          Id="Package\LOOP Each RIMS Store.PrecedenceConstraints[Constraint 1 1]"
+          TopLeft="451.841147275491,60.6202575508955">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="24.444794659424,111.410761246076"
+              Start="0,0"
+              End="24.444794659424,103.910761246076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.7053806230378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.7053806230378"
+                    Point2="0,55.7053806230378"
+                    Point3="4,55.7053806230378" />
+                  <mssgle:LineSegment
+                    End="20.444794659424,55.7053806230378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.444794659424,55.7053806230378"
+                    Point2="24.444794659424,55.7053806230378"
+                    Point3="24.444794659424,59.7053806230378" />
+                  <mssgle:LineSegment
+                    End="24.444794659424,103.910761246076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="935,1571"
+          Size="935,1615"
+          Id="Package\LOOP Each RIMS Store"
+          TopLeft="1914.09050083481,438.891454400904" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="1571.26354130686,714.669324156527">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="342.82695952795,531.722130244377"
+              Start="0,0"
+              End="335.32695952795,531.722130244377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="167.413479763975,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.413479763975,0"
+                    Point2="171.413479763975,0"
+                    Point3="171.413479763975,4" />
+                  <mssgle:LineSegment
+                    End="171.413479763975,527.722130244377" />
+                  <mssgle:CubicBezierSegment
+                    Point1="171.413479763975,527.722130244377"
+                    Point2="171.413479763975,531.722130244377"
+                    Point3="175.413479763975,531.722130244377" />
+                  <mssgle:LineSegment
+                    End="335.32695952795,531.722130244377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="generates objStoreList"
+          ParentId="Package"
+          Size="140,38"
+          Id="09a48cf8-d13c-43b9-bbf4-9700af003c59"
+          TopLeft="1340.55088660843,648.795415363537">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="11.25"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="Package.EventHandlers[OnError]\SEQ Empty Seq Container"
+          TopLeft="361.877543179711,93.8222874143742" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package.EventHandlers[OnError]\SQL Log Error"
+          TopLeft="488.481903876395,295.497927866679" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package.EventHandlers[OnError]\SQL Package End"
+          TopLeft="701.062885888449,376.348109951081" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package.EventHandlers[OnError]\SQL Task Error"
+          TopLeft="187.181558936333,270.063104276677" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="560.981903876395,337.497927866679">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="220.580982012054,38.8501820844021"
+              Start="0,0"
+              End="220.580982012054,31.3501820844021">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.4250910422011" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.4250910422011"
+                    Point2="0,19.4250910422011"
+                    Point3="4,19.4250910422011" />
+                  <mssgle:LineSegment
+                    End="216.580982012054,19.4250910422011" />
+                  <mssgle:CubicBezierSegment
+                    Point1="216.580982012054,19.4250910422011"
+                    Point2="220.580982012054,19.4250910422011"
+                    Point3="220.580982012054,23.4250910422011" />
+                  <mssgle:LineSegment
+                    End="220.580982012054,31.3501820844021" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="497.210876513044,191.822287414374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="63.7710273633506,103.675640452305"
+              Start="0,0"
+              End="63.7710273633506,96.1756404523049">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.9520016544661" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.9520016544661"
+                    Point2="0,41.9520016544661"
+                    Point3="4,41.9520016544661" />
+                  <mssgle:LineSegment
+                    End="59.7710273633506,41.9520016544661" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.7710273633506,41.9520016544661"
+                    Point2="63.7710273633506,41.9520016544661"
+                    Point3="63.7710273633506,45.9520016544661" />
+                  <mssgle:LineSegment
+                    End="63.7710273633506,96.1756404523049" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint 2]"
+          TopLeft="464.377543179711,191.822287414374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-202.195984243379,78.2408168623028"
+              Start="0,0"
+              End="-202.195984243379,70.7408168623028">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.1204084311514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.1204084311514"
+                    Point2="0,39.1204084311514"
+                    Point3="-4,39.1204084311514" />
+                  <mssgle:LineSegment
+                    End="-198.195984243379,39.1204084311514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-198.195984243379,39.1204084311514"
+                    Point2="-202.195984243379,39.1204084311514"
+                    Point3="-202.195984243379,43.1204084311514" />
+                  <mssgle:LineSegment
+                    End="-202.195984243379,70.7408168623028" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnInformation]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="153,42"
+          Id="{4E43A90D-1A2C-4BA8-8EC2-47F997132F61}"
+          TopLeft="403.21547185319,221.776681072483" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="{651DED89-6CE9-4A3F-B981-EA288AD1F10F}"
+          TopLeft="283.871218281895,32.9448199285749" />
+        <NodeLayout
+          Size="178,42"
+          Id="{101761AD-FB36-4959-BBBE-2F7642559D35}"
+          TopLeft="604.317969541636,160.075494586239" />
+        <EdgeLayout
+          Id="{44D4BC2D-A01E-43C4-90DA-C73FCA8764C6}"
+          TopLeft="386.371218281895,130.944819928575">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="93.3442535712957,90.8318611439079"
+              Start="0,0"
+              End="93.3442535712957,83.3318611439079">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4159305719539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.4159305719539"
+                    Point2="0,45.4159305719539"
+                    Point3="4,45.4159305719539" />
+                  <mssgle:LineSegment
+                    End="89.3442535712957,45.4159305719539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.3442535712957,45.4159305719539"
+                    Point2="93.3442535712957,45.4159305719539"
+                    Point3="93.3442535712957,49.4159305719539" />
+                  <mssgle:LineSegment
+                    End="93.3442535712957,83.3318611439079" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.6721267856478,50.4159305719539,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{4EC7A47A-3FFA-4270-BEBE-977E27A79970}"
+          TopLeft="556.21547185319,242.776681072483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="48.1024976884462,-61.7011864862435"
+              Start="0,0"
+              End="40.6024976884462,-61.7011864862435">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="20.0512488442231,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.0512488442231,0"
+                    Point2="24.0512488442231,0"
+                    Point3="24.0512488442231,-4" />
+                  <mssgle:LineSegment
+                    End="24.0512488442231,-57.7011864862435" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.0512488442231,-57.7011864862435"
+                    Point2="24.0512488442231,-61.7011864862435"
+                    Point3="28.0512488442231,-61.7011864862435" />
+                  <mssgle:LineSegment
+                    End="40.6024976884462,-61.7011864862435" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="{BC3058E0-297B-4020-B6D7-9E0D7A83ADE3}"
+          TopLeft="400.575227981161,110.447010646011" />
+        <NodeLayout
+          Size="161,42"
+          Id="{838B9BEC-5EDF-478D-B479-226E1EA5B57C}"
+          TopLeft="337.341007875248,278.77888918852" />
+        <NodeLayout
+          Size="144,42"
+          Id="{10826DBB-2545-4D83-8176-5E137DD133D5}"
+          TopLeft="718.566888996092,334.438421848744" />
+        <EdgeLayout
+          Id="{86B15ADE-6309-4789-8F79-ED8F38B076B5}"
+          TopLeft="535.908561314495,208.447010646011">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="254.658327681598,125.991411202733"
+              Start="0,0"
+              End="254.658327681598,118.491411202733">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.9820037587051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.9820037587051"
+                    Point2="0,50.9820037587051"
+                    Point3="4,50.9820037587051" />
+                  <mssgle:LineSegment
+                    End="250.658327681598,50.9820037587051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="250.658327681598,50.9820037587051"
+                    Point2="254.658327681598,50.9820037587051"
+                    Point3="254.658327681598,54.9820037587051" />
+                  <mssgle:LineSegment
+                    End="254.658327681598,118.491411202733" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="119.329163840799,55.9820037587051,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{F9B0B520-EB93-43CB-9BED-D760BF7934F7}"
+          TopLeft="503.075227981161,208.447010646011">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-85.2342201059137,70.3318785425092"
+              Start="0,0"
+              End="-85.2342201059137,62.8318785425092">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.1659392712546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.1659392712546"
+                    Point2="0,35.1659392712546"
+                    Point3="-4,35.1659392712546" />
+                  <mssgle:LineSegment
+                    End="-81.2342201059137,35.1659392712546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-81.2342201059137,35.1659392712546"
+                    Point2="-85.2342201059137,35.1659392712546"
+                    Point3="-85.2342201059137,39.1659392712546" />
+                  <mssgle:LineSegment
+                    End="-85.2342201059137,62.8318785425092" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.6171100529568,40.1659392712546,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="{F1252503-F121-4E79-A678-FDD0E293D319}"
+          TopLeft="342.534486130972,36.6849087340845" />
+        <NodeLayout
+          Size="166,42"
+          Id="{695EAA48-A031-455E-B412-721E44790D59}"
+          TopLeft="237.747848793343,260.007689789106" />
+        <NodeLayout
+          Size="149,42"
+          Id="{BE86E402-0A7A-4472-84B9-D959E94A1C90}"
+          TopLeft="575.933196136833,261.014944536167" />
+        <EdgeLayout
+          Id="{07A4C3A1-3CEA-4442-B27B-28AA42D744D8}"
+          TopLeft="445.034486130972,134.684908734085">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-124.286637337629,125.322781055021"
+              Start="0,0"
+              End="-124.286637337629,117.822781055021">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.6613905275105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,58.6613905275105"
+                    Point2="0,62.6613905275105"
+                    Point3="-4,62.6613905275105" />
+                  <mssgle:LineSegment
+                    End="-120.286637337629,62.6613905275105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-120.286637337629,62.6613905275105"
+                    Point2="-124.286637337629,62.6613905275105"
+                    Point3="-124.286637337629,66.6613905275105" />
+                  <mssgle:LineSegment
+                    End="-124.286637337629,117.822781055021" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-70.1433186688147,67.6613905275105,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{A29FDEA0-8606-4847-98BC-80A8781744FF}"
+          TopLeft="477.867819464306,134.684908734085">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="172.565376672527,126.330035802082"
+              Start="0,0"
+              End="172.565376672527,118.830035802082">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.1190270718979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.1190270718979"
+                    Point2="0,51.1190270718979"
+                    Point3="4,51.1190270718979" />
+                  <mssgle:LineSegment
+                    End="168.565376672527,51.1190270718979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.565376672527,51.1190270718979"
+                    Point2="172.565376672527,51.1190270718979"
+                    Point3="172.565376672527,55.1190270718979" />
+                  <mssgle:LineSegment
+                    End="172.565376672527,118.830035802082" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="78.2826883362636,56.1190270718979,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
